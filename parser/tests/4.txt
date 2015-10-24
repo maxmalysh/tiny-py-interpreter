@@ -1,0 +1,6 @@
+someStatement()
+if foo():
+    if bar():
+      fooAndBar()
+  bogusLine()
+
