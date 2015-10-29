@@ -1,0 +1,4 @@
+def test():
+    def foo():
+        def bar():
+                            hey()

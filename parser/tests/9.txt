@@ -1,0 +1,6 @@
+a = False
+b = True
+if a != b:
+    foo = 10
+    while foo > 0:
+        foo = foo + 1

@@ -1,0 +1,3 @@
+hey = "there"
+so = "hello"
+hmm = so + hey

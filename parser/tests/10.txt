@@ -1,0 +1,11 @@
+def hello(first, second,     # look, it will work even with a line break inside!
+                         third):
+    return "world"
+
+foo = bar
+bar = hello(1, 2, 3)
+bar
+print()
+print(hello('hey', bar, 0xFF))
+
+
