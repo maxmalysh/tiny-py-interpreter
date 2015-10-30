@@ -1,0 +1,3 @@
+if True:
+	print("one tab")	# 1 tab here
+    print("4 spaces")   # 4 spaces here

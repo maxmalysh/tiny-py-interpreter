@@ -12,6 +12,10 @@ def atStartOfInput(self):
     return self.column == 0 and self.line == 1
 }
 
+// https://docs.python.org/2/reference/grammar.html
+// https://docs.python.org/3/reference/grammar.html
+// https://docs.python.org/devguide/grammar.html
+
 //******************************************************//
 // Parser Rules                                         //
 //******************************************************//
@@ -20,6 +24,10 @@ def atStartOfInput(self):
  *
  * Different input types
  *
+ # Start symbols for the grammar:
+ #       single_input is a single interactive statement;
+ #       file_input is a module or sequence of commands read from an input file;
+ #       eval_input is the input for the eval() functions.
  */
 file_input
     : ( NEWLINE | stmt )* EOF

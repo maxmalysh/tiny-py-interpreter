@@ -5,7 +5,7 @@ from TinyPyParser import TinyPyParser
 
 
 class AST:
-    def __init__(self, parent = None, tree:ParseTree = None, children = None):
+    def __init__(self, parent=None, tree:ParseTree=None, children=None):
         self.payload = self.getPayload(tree)
 
         if children is None:
@@ -57,11 +57,8 @@ class AST:
     #
     def __str__(self):
         result = ""
-        firstStack = []
-        firstStack.append(self)
-
-        childListStack = []
-        childListStack.append(firstStack)
+        firstStack = [self]
+        childListStack = [firstStack]
 
         while len(childListStack) != 0:
             childStack = childListStack[-1]
@@ -75,14 +72,14 @@ class AST:
                     token = ast.payload
 
                     caption = 'TOKEN[type: %s, text: %s ]' % (
-                        nameFor(token.type), token.text.replace('\n', '\\n') #, token.line, token.column
+                        nameFor(token.type), token.text.replace('\n', '\\n')  # , token.line, token.column
                     )
                 else:
                     caption = str(ast.payload)
 
                 indent = ''
 
-                for i in range(0, len(childListStack) -1):
+                for i in range(0, len(childListStack) - 1):
                     indent += '│       ' if len(childListStack[i]) > 0 else '        '
 
                 result += indent
@@ -100,5 +97,6 @@ class AST:
 
 
 def nameFor(tokenType:int):
-    if tokenType == -1: return 'EOF'
+    if tokenType == -1:
+        return 'EOF'
     return TinyPyParser.symbolicNames[tokenType]

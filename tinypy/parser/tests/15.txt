@@ -1,0 +1,4 @@
+if True:
+    print("this")
+
+    print("shouldn't fail")

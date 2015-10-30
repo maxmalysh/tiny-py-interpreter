@@ -1,0 +1,9 @@
+x = 0
+while x < 3:
+    x = x + 1
+    if True:
+      print("foo")
+    print("bar")
+    if True:
+        print("baz")
+      print("ouch")

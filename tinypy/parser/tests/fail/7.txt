@@ -1,0 +1,5 @@
+# Inconsistent use of tabs and spaces (TabError in Python3; but works in Python 2)
+if True:
+	print("one tab")		# 1 tab here
+        print("8 spaces")	# 8 spaces here
+

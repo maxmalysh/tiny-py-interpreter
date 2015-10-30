@@ -1,14 +1,12 @@
 import re
+import antlr4
 
 from antlr4.Token import CommonToken
 from antlr4 import *
+from Errors import IndentationErr
 
 from TinyPyLexer import TinyPyLexer
 from TinyPyParser import TinyPyParser
-
-
-
-
 
 #
 # https://docs.python.org/3/reference/lexical_analysis.html#indentation
@@ -27,51 +25,47 @@ from TinyPyParser import TinyPyParser
 # At the end of the file, a DEDENT token is generated for each number remaining on the stack
 # that is larger than zero.
 #
-
-
-#
 # The idea is the following:
-
+#
 # Whenever you match a line break in your lexer, optionally match one or more spaces.
 # If there are spaces after the line break, compare the length of these spaces with the current indent-size.
 # If it's more than the current indent size, emit an Indent token, if it's less than the current indent-size,
 # emit a Dedent token and if it's the same, don't do anything.
-
+#
 # You'll also want to emit a number of Dedent tokens at the end of the file
 # to let every Indent have a matching Dedent token.
 
 class CustomLexer(TinyPyLexer):
-
     def __init__(self, input=None):
         super().__init__(input)
-        self.mtokens = []       # A queue where extra tokens are pushed on (see the NEWLINE lexer rule).
-        self.mindents = []      # The stack that keeps track of the indentation level.
+        self.tokens = []       # A queue where extra tokens are pushed on (see the NEWLINE lexer rule).
+        self.indents = []      # The stack that keeps track of the indentation level.
         self.opened = 0        # The amount of opened braces, brackets and parenthesis.
-        self.mlastToken = None  # The most recently produced token.
+        self.lastToken = None  # The most recently produced token.
 
     def emitToken(self, token:Token):
         self._token = token
-        self.mtokens.append(token)
+        self.tokens.append(token)
 
     def nextToken(self):
         # return super().nextToken()
 
         # Check if the end-of-file is ahead and there are still some DEDENTS expected
-        if (self._input.LA(1) == Token.EOF and len(self.mindents) != 0):
+        if (self._input.LA(1) == Token.EOF and len(self.indents) != 0):
             # Remove any trailing EOF tokens from our buffer
-            i = len(self.mtokens) - 1
+            i = len(self.tokens) - 1
             while i >= 0:
-                if self.mtokens[i].type == TinyPyParser.EOF:
-                    self.mtokens.remove(i)
+                if self.tokens[i].type == TinyPyParser.EOF:
+                    self.tokens.remove(i)
                 i -= 1
 
             # First emit an extra line break that serves as the end of the statement
             self.emitToken(self.commonToken(TinyPyParser.NEWLINE, '\n'))
 
             # Now emit as much DEDENT tokens as needed
-            while len(self.mindents) != 0:
+            while len(self.indents) != 0:
                 self.emitToken(self.createDedent())
-                self.mindents.pop()
+                self.indents.pop()
 
             # Put the EOF back on the token stream
             self.emitToken(self.commonToken(TinyPyParser.EOF, "<EOF>"))
@@ -80,13 +74,13 @@ class CustomLexer(TinyPyLexer):
 
         if nextToken.channel == Token.DEFAULT_CHANNEL:
             # Keep track of the last token on the default channel
-            self.mlastToken = nextToken
+            self.lastToken = nextToken
 
-        return nextToken if len(self.mtokens) == 0 else self.mtokens.pop(0)
+        return nextToken if len(self.tokens) == 0 else self.tokens.pop(0)
 
     def createDedent(self):
         dedent = self.commonToken(TinyPyParser.DEDENT, "")
-        dedent.line = self.mlastToken.line
+        dedent.line = self.lastToken.line
         return dedent
 
     def commonToken(self, _type, text):
@@ -115,9 +109,10 @@ class CustomLexer(TinyPyLexer):
     def newLineAction(self):
         newLine = re.sub("[^\r\n]+", "", self.text)
         spaces = re.sub("[\r\n]+", "", self.text)
-        _next = self._input.LA(1)
+        codepoint = self._input.LA(1)
+        _next = chr(codepoint if codepoint >=  0 else 0)
 
-        if self.opened > 0 or _next == '\r' or _next == '\n' or next == '#':
+        if self.opened > 0 or _next == '\r' or _next == '\n' or _next == '#':
             # If we're inside a list or an a blank line, ignore all indents,
             # dedents and line breaks.
             self.skip()
@@ -125,16 +120,20 @@ class CustomLexer(TinyPyLexer):
             self.emitToken(self.commonToken(self.NEWLINE, newLine))
 
             indent = self.getIndentationCount(spaces)
-            previous = self.mindents[-1] if len(self.mindents) != 0 else 0
+            previous = self.indents[-1] if len(self.indents) != 0 else 0
+
+            #print("[%d, %d] Current: %d, previous: %d | indents: %8s" % (self.line, self.column, indent, previous, self.indents), end='')
 
             if indent == previous:
                 # Skip indents of the same size as the present indent-size
                 self.skip()
             elif indent > previous:
-                self.mindents.append(indent)
+                self.indents.append(indent)
                 self.emitToken(self.commonToken(TinyPyParser.INDENT, spaces))
             else:
                 # Possibly emit more than 1 DEDENT token.
-                while len(self.mindents) != 0 and self.mindents[-1] > indent:
+                while len(self.indents) != 0 and self.indents[-1] > indent:
+                    if indent not in self.indents and indent != 0:
+                        raise IndentationErr(line=self.line)
                     self.emitToken(self.createDedent())
-                    self.mindents.pop()
+                    self.indents.pop()

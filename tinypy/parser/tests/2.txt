@@ -1,0 +1,7 @@
+pass
+while True:
+    break
+while False:
+    continue
+def test():
+    return
