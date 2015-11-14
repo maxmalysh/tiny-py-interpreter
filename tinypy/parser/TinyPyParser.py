@@ -1,4 +1,4 @@
-# Generated from /Users/apple/Development/tiny-py-interpreter/parser/TinyPy.g4 by ANTLR 4.5.1
+# Generated from /Users/apple/Development/tiny-py-interpreter/tinypy/parser/TinyPy.g4 by ANTLR 4.5.1
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -350,12 +350,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitFile_input" ):
                 listener.exitFile_input(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFile_input" ):
-                return visitor.visitFile_input(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -425,12 +419,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitSingle_input" ):
                 listener.exitSingle_input(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitSingle_input" ):
-                return visitor.visitSingle_input(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -499,12 +487,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitEval_input" ):
                 listener.exitEval_input(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitEval_input" ):
-                return visitor.visitEval_input(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -561,12 +543,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitStmt" ):
                 listener.exitStmt(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitStmt" ):
-                return visitor.visitStmt(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -625,12 +601,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitSimple_stmt" ):
                 listener.exitSimple_stmt(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitSimple_stmt" ):
-                return visitor.visitSimple_stmt(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -703,12 +673,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitSmall_stmt" ):
                 listener.exitSmall_stmt(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitSmall_stmt" ):
-                return visitor.visitSmall_stmt(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -773,12 +737,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitCompound_stmt" ):
                 listener.exitCompound_stmt(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitCompound_stmt" ):
-                return visitor.visitCompound_stmt(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -858,12 +816,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitIf_stmt" ):
                 listener.exitIf_stmt(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitIf_stmt" ):
-                return visitor.visitIf_stmt(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -946,12 +898,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitWhile_stmt" ):
                 listener.exitWhile_stmt(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitWhile_stmt" ):
-                return visitor.visitWhile_stmt(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1008,12 +954,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitFuncdef" ):
                 listener.exitFuncdef(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFuncdef" ):
-                return visitor.visitFuncdef(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1061,12 +1001,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitParameters" ):
                 listener.exitParameters(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitParameters" ):
-                return visitor.visitParameters(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1119,12 +1053,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitParam_argslist" ):
                 listener.exitParam_argslist(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitParam_argslist" ):
-                return visitor.visitParam_argslist(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1194,12 +1122,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitSuite" ):
                 listener.exitSuite(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitSuite" ):
-                return visitor.visitSuite(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1273,12 +1195,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitExpr_stmt" ):
                 listener.exitExpr_stmt(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr_stmt" ):
-                return visitor.visitExpr_stmt(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1336,12 +1252,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFlow_stmt" ):
                 listener.exitFlow_stmt(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFlow_stmt" ):
-                return visitor.visitFlow_stmt(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1403,12 +1313,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitReturn_stmt" ):
                 listener.exitReturn_stmt(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitReturn_stmt" ):
-                return visitor.visitReturn_stmt(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1456,12 +1360,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitPass_stmt" ):
                 listener.exitPass_stmt(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitPass_stmt" ):
-                return visitor.visitPass_stmt(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1501,12 +1399,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitBreak_stmt" ):
                 listener.exitBreak_stmt(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitBreak_stmt" ):
-                return visitor.visitBreak_stmt(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1545,12 +1437,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitContinue_stmt" ):
                 listener.exitContinue_stmt(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitContinue_stmt" ):
-                return visitor.visitContinue_stmt(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1604,12 +1490,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitTest" ):
                 listener.exitTest(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTest" ):
-                return visitor.visitTest(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1674,12 +1554,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitOr_test" ):
                 listener.exitOr_test(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitOr_test" ):
-                return visitor.visitOr_test(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1742,12 +1616,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitAnd_test" ):
                 listener.exitAnd_test(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAnd_test" ):
-                return visitor.visitAnd_test(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1807,12 +1675,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitNot_test" ):
                 listener.exitNot_test(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitNot_test" ):
-                return visitor.visitNot_test(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -1878,12 +1740,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitComparison" ):
                 listener.exitComparison(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitComparison" ):
-                return visitor.visitComparison(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -1941,12 +1797,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitComp_op" ):
                 listener.exitComp_op(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitComp_op" ):
-                return visitor.visitComp_op(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2061,12 +1911,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitExpr" ):
                 listener.exitExpr(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr" ):
-                return visitor.visitExpr(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2122,12 +1966,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitXor_expr" ):
                 listener.exitXor_expr(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitXor_expr" ):
-                return visitor.visitXor_expr(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2185,12 +2023,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitAnd_expr" ):
                 listener.exitAnd_expr(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAnd_expr" ):
-                return visitor.visitAnd_expr(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2246,12 +2078,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitShift_expr" ):
                 listener.exitShift_expr(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitShift_expr" ):
-                return visitor.visitShift_expr(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2322,12 +2148,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitArith_expr" ):
                 listener.exitArith_expr(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitArith_expr" ):
-                return visitor.visitArith_expr(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2396,12 +2216,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitTerm" ):
                 listener.exitTerm(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitTerm" ):
-                return visitor.visitTerm(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2486,12 +2300,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFactor" ):
                 listener.exitFactor(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFactor" ):
-                return visitor.visitFactor(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2590,12 +2398,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitAtom" ):
                 listener.exitAtom(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAtom" ):
-                return visitor.visitAtom(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2682,12 +2484,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitFuncinvoke" ):
                 listener.exitFuncinvoke(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitFuncinvoke" ):
-                return visitor.visitFuncinvoke(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2743,12 +2539,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitArglist" ):
                 listener.exitArglist(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitArglist" ):
-                return visitor.visitArglist(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2802,12 +2592,6 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitNumber" ):
                 listener.exitNumber(self)
 
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitNumber" ):
-                return visitor.visitNumber(self)
-            else:
-                return visitor.visitChildren(self)
-
 
 
 
@@ -2849,12 +2633,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitInteger" ):
                 listener.exitInteger(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitInteger" ):
-                return visitor.visitInteger(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 
@@ -2899,12 +2677,6 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitString" ):
                 listener.exitString(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitString" ):
-                return visitor.visitString(self)
-            else:
-                return visitor.visitChildren(self)
 
 
 

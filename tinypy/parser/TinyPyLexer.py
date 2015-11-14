@@ -1,4 +1,4 @@
-# Generated from /Users/apple/Development/tiny-py-interpreter/parser/TinyPy.g4 by ANTLR 4.5.1
+# Generated from /Users/apple/Development/tiny-py-interpreter/tinypy/parser/TinyPy.g4 by ANTLR 4.5.1
 from antlr4 import *
 from io import StringIO
 
@@ -287,10 +287,7 @@ class TinyPyLexer(Lexer):
         self._actions = None
         self._predicates = None
 
-
-    def atStartOfInput(self):
-        return self.column == 0 and self.line == 1
-
+     
 
     def action(self, localctx:RuleContext, ruleIndex:int, actionIndex:int):
     	if self._actions is None:
