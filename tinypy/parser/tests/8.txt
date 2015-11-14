@@ -1,5 +1,14 @@
 def function1():
     a = b + c
 
+
+
+
 def function2(argument1, argument2):
+    x = 10
+
+
     return 1337
+
+
+

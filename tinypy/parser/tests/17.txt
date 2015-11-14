@@ -1,0 +1,10 @@
+def foo(bar, baz, qux):
+    a = bar + qux
+    b = baz * a
+    if b > 10:
+      return 10
+    else:
+      return None
+
+while True:
+  print(foo(1,2,3))
