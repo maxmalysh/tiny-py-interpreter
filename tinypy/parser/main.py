@@ -1,3 +1,4 @@
+import fileinput
 import sys
 from pprint import pprint
 
@@ -13,7 +14,9 @@ from TinyPyParser import TinyPyParser
 
 
 if __name__ == '__main__':
-    input_stream = antlr4.FileStream(sys.argv[1])
+    #file = "tests/8.txt"
+    file = sys.argv[1]
+    input_stream = antlr4.FileStream(file)
 
     # Instantiate an run generated lexer
     lexer = CustomLexer(input_stream)
@@ -26,8 +29,8 @@ if __name__ == '__main__':
     try:
         parse_tree = parser.file_input()
     except Exception as e:
-        print("Bailing out. Exception: " + e)
-        exit()
+        #print("Bailing out.")
+        exit(-1)
 
     # Traverse the parse tree
     listener = CustomListener()

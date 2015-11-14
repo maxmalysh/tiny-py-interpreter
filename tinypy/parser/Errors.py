@@ -11,6 +11,10 @@ class IndentationErr(RecognitionException):
         super().__init__(message="unindent does not match any outer indentation level")
         self.line = line
 
+class SingleInputUnfinished(Exception):
+    def __init__(self):
+        super().__init__()
+
 class CustomErrorStrategy(DefaultErrorStrategy):
     def reportError(self, recognizer:Parser, e:RecognitionException):
         if isinstance(e, IndentationErr):

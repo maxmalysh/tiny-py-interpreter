@@ -55,7 +55,7 @@ class AST:
     # Look for box-drawing characters here:
     # https://en.wikipedia.org/wiki/Box-drawing_character
     #
-    def __str__(self):
+    def __str__(self, print_pos=False):
         result = ""
         firstStack = [self]
         childListStack = [firstStack]
@@ -71,8 +71,9 @@ class AST:
                 if isinstance(ast.payload, antlr4.Token):
                     token = ast.payload
 
-                    caption = 'TOKEN[type: %s, text: %s ]' % (
-                        nameFor(token.type), token.text.replace('\n', '\\n')  # , token.line, token.column
+                    position = ", at (%d, %d) " % (token.line, token.column) if print_pos else ""
+                    caption = 'TOKEN[type: %s, text: %s%s]' % (
+                        nameFor(token.type), token.text.replace('\n', '\\n'), position
                     )
                 else:
                     caption = str(ast.payload)
@@ -94,7 +95,6 @@ class AST:
                     childListStack.append(children)
 
         return result
-
 
 def nameFor(tokenType:int):
     if tokenType == -1:

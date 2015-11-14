@@ -46,17 +46,19 @@ class CustomLexer(TinyPyLexer):
     def emitToken(self, token:Token):
         self._token = token
         self.tokens.append(token)
+        self.lastToken = token
+        # import AST; print("%s at [%d, %d]" % (AST.nameFor(token.type), token.line, token.column))
+        # super().emitToken(token)
 
     def nextToken(self):
         # return super().nextToken()
-
         # Check if the end-of-file is ahead and there are still some DEDENTS expected
-        if (self._input.LA(1) == Token.EOF and len(self.indents) != 0):
+        if self._input.LA(1) == Token.EOF and len(self.indents) != 0:
             # Remove any trailing EOF tokens from our buffer
             i = len(self.tokens) - 1
             while i >= 0:
                 if self.tokens[i].type == TinyPyParser.EOF:
-                    self.tokens.remove(i)
+                    del self.tokens[i]
                 i -= 1
 
             # First emit an extra line break that serves as the end of the statement
@@ -86,7 +88,7 @@ class CustomLexer(TinyPyLexer):
     def commonToken(self, _type, text):
         stop = self.getCharIndex() - 1
         start = stop if text == "" else stop - len(text) + 1
-        return CommonToken(self._tokenFactorySourcePair, _type, self.DEFAULT_TOKEN_CHANNEL, start, stop)
+        return CommonToken(self._tokenFactorySourcePair, _type, start=start, stop=stop)
 
     # Calculates the indentation of the provided spaces, taking the
     # following rules into account:
@@ -108,32 +110,48 @@ class CustomLexer(TinyPyLexer):
 
     def newLineAction(self):
         newLine = re.sub("[^\r\n]+", "", self.text)
-        spaces = re.sub("[\r\n]+", "", self.text)
-        codepoint = self._input.LA(1)
-        _next = chr(codepoint if codepoint >=  0 else 0)
+        spaces  = re.sub("[\r\n]+",  "", self.text)
 
-        if self.opened > 0 or _next == '\r' or _next == '\n' or _next == '#':
+        next_codepoint    = self._input.LA(1)
+        _next = chr(next_codepoint if next_codepoint >= 0 else 0)
+
+        if self.opened > 0 or _next == '#' or _next == '\n' or _next == '\r':
             # If we're inside a list or an a blank line, ignore all indents,
             # dedents and line breaks.
             self.skip()
+            return
+
+        self.emitToken(self.commonToken(self.NEWLINE, newLine))
+
+        indent = self.getIndentationCount(spaces)
+        previous = self.indents[-1] if len(self.indents) != 0 else 0
+
+        if indent == previous:
+            # Skip indents of the same size as the present indent-size
+            self.skip()
+        elif indent > previous:
+            self.indents.append(indent)
+            self.emitToken(self.commonToken(TinyPyParser.INDENT, spaces))
         else:
-            self.emitToken(self.commonToken(self.NEWLINE, newLine))
+            # Possibly emit more than 1 DEDENT token.
+            while len(self.indents) != 0 and self.indents[-1] > indent:
+                if indent not in self.indents and indent != 0:
+                    raise IndentationErr(line=self.line)
+                self.emitToken(self.createDedent())
+                self.indents.pop()
 
-            indent = self.getIndentationCount(spaces)
-            previous = self.indents[-1] if len(self.indents) != 0 else 0
+        # Emit an additional newline (which we could have skipped) just before the EOF,
+        # as it is needed for the shell mode (see single_input rule definition)
+        prev_codepoint = self._input.LA(-1)
+        pre_prev_codepoint = self._input.LA(-2)
 
-            #print("[%d, %d] Current: %d, previous: %d | indents: %8s" % (self.line, self.column, indent, previous, self.indents), end='')
+        prev = chr(prev_codepoint if prev_codepoint >= 0 else 0)
+        pre_prev = chr(pre_prev_codepoint if pre_prev_codepoint >= 0 else 0)
 
-            if indent == previous:
-                # Skip indents of the same size as the present indent-size
-                self.skip()
-            elif indent > previous:
-                self.indents.append(indent)
-                self.emitToken(self.commonToken(TinyPyParser.INDENT, spaces))
-            else:
-                # Possibly emit more than 1 DEDENT token.
-                while len(self.indents) != 0 and self.indents[-1] > indent:
-                    if indent not in self.indents and indent != 0:
-                        raise IndentationErr(line=self.line)
-                    self.emitToken(self.createDedent())
-                    self.indents.pop()
+        if next_codepoint == Token.EOF:
+            if (prev == '\n' or prev == '\r') and (pre_prev == '\n' or pre_prev =='\r'):
+                self.emitToken(self.commonToken(self.NEWLINE, newLine))
+
+    def atStartOfInput(self):
+        return self.column == 0 and self.line == 1
+

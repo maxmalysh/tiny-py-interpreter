@@ -7,10 +7,8 @@ options
 
 tokens { INDENT, DEDENT }
 
-@lexer::members {
-def atStartOfInput(self):
-    return self.column == 0 and self.line == 1
-}
+// See @CustomLexer.py
+@lexer::members { }
 
 // https://docs.python.org/2/reference/grammar.html
 // https://docs.python.org/3/reference/grammar.html
