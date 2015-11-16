@@ -1,6 +1,7 @@
 import sys
 
 import antlr4
+from antlr4.tree.Trees import Trees
 
 from parser.CustomLexer import CustomLexer
 from parser.TinyPyParser import TinyPyParser
@@ -11,7 +12,9 @@ from parser import AST
 class InteractiveShell:
     greeting =  "Press Ctrl + C to exit\n"
 
-    def __init__(self):
+    def __init__(self, args):
+        self.args = args
+        self.single_input = ""
         self.readMore = False
         pass
 
@@ -31,21 +34,17 @@ class InteractiveShell:
                 if self.readMore:
                     sys.stdout.write("... ")
                     sys.stdout.flush()
-                    single_input += sys.stdin.readline()
+                    self.single_input += sys.stdin.readline()
                 else:
                     sys.stdout.write(">>> ")
                     sys.stdout.flush()
-                    single_input = sys.stdin.readline()
+                    self.single_input = sys.stdin.readline()
 
-                #print("We have read the following text: [" + single_input.replace('\n', '\\n') + "]")
-                #print("Codepoints: ", [ord(c) for c in single_input])
-
-                input_stream = antlr4.InputStream(single_input)
+                input_stream = antlr4.InputStream(self.single_input)
 
                 # Instantiate and run generated lexer
                 self.lexer = CustomLexer(input_stream)
                 self.tokens = antlr4.CommonTokenStream(self.lexer)
-
 
                 # Setting up error handling stuff
                 error_handler = CustomErrorStrategy()
@@ -53,19 +52,18 @@ class InteractiveShell:
                 buffered_errors = BufferedErrorListener()
                 error_listener.addDelegatee(buffered_errors)
 
+                # Run parser and set error handler
                 self.parser = TinyPyParser(self.tokens)
                 self.parser._errHandler = error_handler
 
+                # Remove default terminal error listener & and our own
                 self.parser.removeErrorListeners()
                 self.parser.addErrorListener(error_listener)
 
                 # Parse input
                 parse_tree = self.parser.single_input()
 
-                # Just debug info
-                #self.checkTokens(error_listener)
-
-
+                # Determine what to do next
                 if error_listener.input_unfinished:
                     # User has not finished his input yet, read the next line and repeat
                     self.readMore = True
@@ -81,38 +79,20 @@ class InteractiveShell:
 
                 # Let's build an AST now...
                 ast = AST.AST(tree=parse_tree)
-                print(ast)
 
-                # String, containing parse tree representation
-                #print(Trees.toStringTree(parse_tree, recog=self.parser))
+                # Print some stuff... (if needed)
+                if self.args.parse_tree:
+                    print(ast)
+
+                if self.args.ast:
+                    parseTreeString = Trees.toStringTree(parse_tree, recog=self.parser)
+                    print(parseTreeString)
 
                 # Evaluate it...
                 # ...
 
             except antlr4.RecognitionException as e:
                 print("Caught" + str(e) )
-
-
-    def checkTokens(self, error_listener):
-        print("Tokens we got so far...")
-        indents = dedents = newline = eofs = 0
-        for token in self.tokens.tokens:
-            print(AST.nameFor(token.type))
-            if token.type == TinyPyParser.INDENT:
-                indents += 1
-            elif token.type == TinyPyParser.DEDENT:
-                dedents += 1
-            elif token.type == TinyPyParser.NEWLINE:
-                newline += 1
-            elif token.type == TinyPyParser.EOF:
-                eofs += 1
-
-        # Simple statement should end with 0 indents, 0 dedents, 1 newline and then EOF
-        # 1-line compound statement should end with NEWLINE, NEWLINE, EOF with 0 indents / dedents
-        # multiline compound statement have 1+ indents/dedents of the same amount and DEDENT-NEWLINE-EOF
-        print("%d | %d | %d | %d" % (indents, dedents, newline, eofs))
-        print("Got %d errors and %d" % (error_listener.errors_encountered, error_listener.input_unfinished))
-
 
     def print_greeting(self):
         print(self.greeting)
