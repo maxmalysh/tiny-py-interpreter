@@ -1,12 +1,11 @@
 import re
-import antlr4
 
 from antlr4.Token import CommonToken
 from antlr4 import *
-from Errors import IndentationErr
 
-from TinyPyLexer import TinyPyLexer
-from TinyPyParser import TinyPyParser
+from parser.Errors import IndentationErr
+from parser.TinyPyLexer import TinyPyLexer
+from parser.TinyPyParser import TinyPyParser
 
 #
 # https://docs.python.org/3/reference/lexical_analysis.html#indentation

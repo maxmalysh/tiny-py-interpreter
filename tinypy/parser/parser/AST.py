@@ -1,7 +1,7 @@
 import antlr4
 from antlr4.tree.Tree import ParseTree
-from TinyPyLexer import TinyPyLexer
-from TinyPyParser import TinyPyParser
+
+from parser.TinyPyParser import TinyPyParser
 
 
 class AST:

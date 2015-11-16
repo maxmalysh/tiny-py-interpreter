@@ -1,0 +1,10 @@
+module Python
+{
+    mod = Module(stmt* body)
+        | Interactive(stmt* body)
+        | Expression(expr body)
+
+
+
+
+}

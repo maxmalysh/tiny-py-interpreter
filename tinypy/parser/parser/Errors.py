@@ -1,12 +1,10 @@
 from antlr4.error.ErrorListener import ErrorListener, ProxyErrorListener
 from antlr4.error.Errors import RecognitionException, ParseCancellationException, InputMismatchException
-from antlr4.error.Errors import CancellationException
-from antlr4.error.ErrorStrategy import BailErrorStrategy, DefaultErrorStrategy
+from antlr4.error.ErrorStrategy import DefaultErrorStrategy
 from antlr4.Parser import Parser
 from antlr4.Token import Token
-import sys
 
-from TinyPyParser import TinyPyParser
+from parser.TinyPyParser import TinyPyParser
 
 
 class IndentationErr(RecognitionException):

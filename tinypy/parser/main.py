@@ -1,16 +1,13 @@
-import fileinput
 import sys
-from pprint import pprint
 
 import antlr4
 from antlr4.tree.Trees import Trees
-from AST import AST
-from Errors import CustomErrorStrategy
 
-import Utils
-from CustomLexer import CustomLexer
-from CustomListener import CustomListener
-from TinyPyParser import TinyPyParser
+from parser.AST import AST
+from parser.Errors import CustomErrorStrategy
+from parser.CustomLexer import CustomLexer
+from parser.CustomListener import CustomListener
+from parser.TinyPyParser import TinyPyParser
 
 
 if __name__ == '__main__':
