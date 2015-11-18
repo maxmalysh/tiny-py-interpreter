@@ -142,21 +142,16 @@ expr        : xor_expr   ( '|' xor_expr )*;
 xor_expr    : and_expr   ( '^' and_expr )*;
 and_expr    : shift_expr ( '&' shift_expr )*;
 shift_expr  : arith_expr ( '<<' arith_expr | '>>' arith_expr)*;
-arith_expr  : term ( '+' term | '-' term)*;
 
-term
-    : factor ( '*' factor
-             | '/' factor
-             | '%' factor
-             )*
-    ;
+arith_expr  : term   (op=( '+' | '-')        term)*;
+term        : factor (op=( '*' | '/' | '%' ) factor)*;
 
 factor
-    : '+' factor
-    | '-' factor
-    | '(' test ')'
-    | funcinvoke
-    | atom
+    : op='+' factor    # unaryExpr
+    | op='-' factor    # unaryExpr
+    | '(' expr ')'     # parenExpr
+    | funcinvoke       # funcInvokExpr
+    | atom             # atomExpr
     ;
 
 atom
