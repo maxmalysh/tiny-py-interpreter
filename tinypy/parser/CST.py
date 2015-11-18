@@ -2,9 +2,23 @@ import antlr4
 from antlr4.tree.Tree import ParseTree
 
 from parser.TinyPyParser import TinyPyParser
+from parser.Utils import nameFor
 
+useless_tokens = [
+    TinyPyParser.NEWLINE,
+    TinyPyParser.EOF,
+    TinyPyParser.COLON,
+    TinyPyParser.COLON,
+    TinyPyParser.OPEN_PAREN,
+    TinyPyParser.CLOSE_PAREN,
+    TinyPyParser.IF,
+    TinyPyParser.ELIF,
+    TinyPyParser.ELSE,
+]
 
-class AST:
+useless_tokens = []
+
+class CstFlattened:
     def __init__(self, parent=None, tree:ParseTree=None, children=None):
         self.payload = self.getPayload(tree)
 
@@ -21,7 +35,7 @@ class AST:
     def addToChildren(self, what):
         self.children.append(what)
 
-    # Determines the payload of this AST: a string in case it's an inner node (which
+    # Determines the payload of this CST: a string in case it's an inner node (which
     # is the name of the parser rule), or a Token in case it is a leaf node.
     def getPayload(self, tree:ParseTree):
         if tree.getChildCount() == 0:
@@ -39,17 +53,17 @@ class AST:
             # We've reached a leaf. We must create a new instance of an AST because
             # the constructor will make sure this new instance is added to its parent's
             # child nodes.
-            AST(ast, tree)
+            CstFlattened(ast, tree)
         elif tree.getChildCount() == 1:
             # We've reached an inner node with a single child: we don't include this in
             # our AST.
             self.walk(tree.getChild(0), ast)
         elif tree.getChildCount() > 1:
-            for i in range(0, tree.getChildCount()):
-                temp = AST(ast, tree.getChild(i))
+            for child in tree.getChildren():
+                temp = CstFlattened(ast, child)
                 if not isinstance(temp.payload, antlr4.Token):
                     # Only traverse down if the payload is not a Token.
-                    self.walk(tree.getChild(i), temp)
+                    self.walk(child, temp)
 
     #
     # Look for box-drawing characters here:
@@ -96,7 +110,18 @@ class AST:
 
         return result
 
-def nameFor(tokenType:int):
-    if tokenType == -1:
-        return 'EOF'
-    return TinyPyParser.symbolicNames[tokenType]
+class CstFiltered(CstFlattened):
+
+    # Don't include NEWLINEs and EOFs in the Tree
+    def walk(self, tree:ParseTree, ast):
+        if tree.getChildCount() > 1:
+            for child in tree.getChildren():
+                # Don't add useless token to tree
+                if isinstance(child.getPayload(), antlr4.Token) and child.symbol.type in useless_tokens:
+                    continue
+                temp = CstFlattened(ast, child)
+                if not isinstance(temp.payload, antlr4.Token):
+                    # Only traverse down if the payload is not a Token.
+                    self.walk(child, temp)
+        else:
+            super().walk(tree, ast)

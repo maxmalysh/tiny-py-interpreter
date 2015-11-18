@@ -6,7 +6,7 @@ from antlr4.tree.Trees import Trees
 from parser.CustomLexer import CustomLexer
 from parser.TinyPyParser import TinyPyParser
 from parser.Errors import CustomErrorStrategy, CustomErrorListener, BufferedErrorListener
-from parser import AST
+from parser import CST
 
 
 class InteractiveShell:
@@ -40,6 +40,7 @@ class InteractiveShell:
                     sys.stdout.flush()
                     self.single_input = sys.stdin.readline()
 
+                #self.single_input = "34 + 45*56 - 0x0A\n"
                 input_stream = antlr4.InputStream(self.single_input)
 
                 # Instantiate and run generated lexer
@@ -77,19 +78,17 @@ class InteractiveShell:
                     # Successfully parsed the input, next time start over
                     self.readMore = False
 
-                # Let's build an AST now...
-                ast = AST.AST(tree=parse_tree)
+                # Build a flattened syntax tree
+                cst = CST.CstFiltered(tree=parse_tree)
 
                 # Print some stuff... (if needed)
-                if self.args.parse_tree:
-                    print(ast)
+                if self.args.cst:
+                    print(cst)
 
-                if self.args.ast:
+                if self.args.parse_tree:
                     parseTreeString = Trees.toStringTree(parse_tree, recog=self.parser)
                     print(parseTreeString)
 
-                # Evaluate it...
-                # ...
 
             except antlr4.RecognitionException as e:
                 print("Caught" + str(e) )

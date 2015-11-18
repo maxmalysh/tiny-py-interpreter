@@ -1,3 +1,4 @@
+from parser.TinyPyParser import TinyPyParser
 
 #
 # Converts Lisp-style s-expression string to python dictionary.
@@ -25,3 +26,8 @@ def sExprToDict(string):
             word = word + c
     return sexp[0]
 
+
+def nameFor(tokenType:int):
+    if tokenType == -1:
+        return 'EOF'
+    return TinyPyParser.symbolicNames[tokenType]
