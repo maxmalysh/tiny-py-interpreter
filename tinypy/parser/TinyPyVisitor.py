@@ -104,28 +104,28 @@ class TinyPyVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#test.
-    def visitTest(self, ctx:TinyPyParser.TestContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by TinyPyParser#or_test.
-    def visitOr_test(self, ctx:TinyPyParser.Or_testContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by TinyPyParser#and_test.
-    def visitAnd_test(self, ctx:TinyPyParser.And_testContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by TinyPyParser#not_test.
-    def visitNot_test(self, ctx:TinyPyParser.Not_testContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by TinyPyParser#comparison.
+    # Visit a parse tree produced by TinyPyParser#Comparison.
     def visitComparison(self, ctx:TinyPyParser.ComparisonContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#OrTest.
+    def visitOrTest(self, ctx:TinyPyParser.OrTestContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#AndTest.
+    def visitAndTest(self, ctx:TinyPyParser.AndTestContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#TestExpr.
+    def visitTestExpr(self, ctx:TinyPyParser.TestExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#NotTest.
+    def visitNotTest(self, ctx:TinyPyParser.NotTestContext):
         return self.visitChildren(ctx)
 
 
@@ -134,33 +134,38 @@ class TinyPyVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#expr.
-    def visitExpr(self, ctx:TinyPyParser.ExprContext):
+    # Visit a parse tree produced by TinyPyParser#MulDivMod.
+    def visitMulDivMod(self, ctx:TinyPyParser.MulDivModContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#xor_expr.
-    def visitXor_expr(self, ctx:TinyPyParser.Xor_exprContext):
+    # Visit a parse tree produced by TinyPyParser#BitXor.
+    def visitBitXor(self, ctx:TinyPyParser.BitXorContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#and_expr.
-    def visitAnd_expr(self, ctx:TinyPyParser.And_exprContext):
+    # Visit a parse tree produced by TinyPyParser#BitOr.
+    def visitBitOr(self, ctx:TinyPyParser.BitOrContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#shift_expr.
-    def visitShift_expr(self, ctx:TinyPyParser.Shift_exprContext):
+    # Visit a parse tree produced by TinyPyParser#AddSub.
+    def visitAddSub(self, ctx:TinyPyParser.AddSubContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#arith_expr.
-    def visitArith_expr(self, ctx:TinyPyParser.Arith_exprContext):
+    # Visit a parse tree produced by TinyPyParser#BitAnd.
+    def visitBitAnd(self, ctx:TinyPyParser.BitAndContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#term.
-    def visitTerm(self, ctx:TinyPyParser.TermContext):
+    # Visit a parse tree produced by TinyPyParser#Shifts.
+    def visitShifts(self, ctx:TinyPyParser.ShiftsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#FactorExpr.
+    def visitFactorExpr(self, ctx:TinyPyParser.FactorExprContext):
         return self.visitChildren(ctx)
 
 

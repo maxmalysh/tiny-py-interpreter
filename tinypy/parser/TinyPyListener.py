@@ -179,48 +179,48 @@ class TinyPyListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by TinyPyParser#test.
-    def enterTest(self, ctx:TinyPyParser.TestContext):
-        pass
-
-    # Exit a parse tree produced by TinyPyParser#test.
-    def exitTest(self, ctx:TinyPyParser.TestContext):
-        pass
-
-
-    # Enter a parse tree produced by TinyPyParser#or_test.
-    def enterOr_test(self, ctx:TinyPyParser.Or_testContext):
-        pass
-
-    # Exit a parse tree produced by TinyPyParser#or_test.
-    def exitOr_test(self, ctx:TinyPyParser.Or_testContext):
-        pass
-
-
-    # Enter a parse tree produced by TinyPyParser#and_test.
-    def enterAnd_test(self, ctx:TinyPyParser.And_testContext):
-        pass
-
-    # Exit a parse tree produced by TinyPyParser#and_test.
-    def exitAnd_test(self, ctx:TinyPyParser.And_testContext):
-        pass
-
-
-    # Enter a parse tree produced by TinyPyParser#not_test.
-    def enterNot_test(self, ctx:TinyPyParser.Not_testContext):
-        pass
-
-    # Exit a parse tree produced by TinyPyParser#not_test.
-    def exitNot_test(self, ctx:TinyPyParser.Not_testContext):
-        pass
-
-
-    # Enter a parse tree produced by TinyPyParser#comparison.
+    # Enter a parse tree produced by TinyPyParser#Comparison.
     def enterComparison(self, ctx:TinyPyParser.ComparisonContext):
         pass
 
-    # Exit a parse tree produced by TinyPyParser#comparison.
+    # Exit a parse tree produced by TinyPyParser#Comparison.
     def exitComparison(self, ctx:TinyPyParser.ComparisonContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#OrTest.
+    def enterOrTest(self, ctx:TinyPyParser.OrTestContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#OrTest.
+    def exitOrTest(self, ctx:TinyPyParser.OrTestContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#AndTest.
+    def enterAndTest(self, ctx:TinyPyParser.AndTestContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#AndTest.
+    def exitAndTest(self, ctx:TinyPyParser.AndTestContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#TestExpr.
+    def enterTestExpr(self, ctx:TinyPyParser.TestExprContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#TestExpr.
+    def exitTestExpr(self, ctx:TinyPyParser.TestExprContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#NotTest.
+    def enterNotTest(self, ctx:TinyPyParser.NotTestContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#NotTest.
+    def exitNotTest(self, ctx:TinyPyParser.NotTestContext):
         pass
 
 
@@ -233,57 +233,66 @@ class TinyPyListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by TinyPyParser#expr.
-    def enterExpr(self, ctx:TinyPyParser.ExprContext):
+    # Enter a parse tree produced by TinyPyParser#MulDivMod.
+    def enterMulDivMod(self, ctx:TinyPyParser.MulDivModContext):
         pass
 
-    # Exit a parse tree produced by TinyPyParser#expr.
-    def exitExpr(self, ctx:TinyPyParser.ExprContext):
-        pass
-
-
-    # Enter a parse tree produced by TinyPyParser#xor_expr.
-    def enterXor_expr(self, ctx:TinyPyParser.Xor_exprContext):
-        pass
-
-    # Exit a parse tree produced by TinyPyParser#xor_expr.
-    def exitXor_expr(self, ctx:TinyPyParser.Xor_exprContext):
+    # Exit a parse tree produced by TinyPyParser#MulDivMod.
+    def exitMulDivMod(self, ctx:TinyPyParser.MulDivModContext):
         pass
 
 
-    # Enter a parse tree produced by TinyPyParser#and_expr.
-    def enterAnd_expr(self, ctx:TinyPyParser.And_exprContext):
+    # Enter a parse tree produced by TinyPyParser#BitXor.
+    def enterBitXor(self, ctx:TinyPyParser.BitXorContext):
         pass
 
-    # Exit a parse tree produced by TinyPyParser#and_expr.
-    def exitAnd_expr(self, ctx:TinyPyParser.And_exprContext):
-        pass
-
-
-    # Enter a parse tree produced by TinyPyParser#shift_expr.
-    def enterShift_expr(self, ctx:TinyPyParser.Shift_exprContext):
-        pass
-
-    # Exit a parse tree produced by TinyPyParser#shift_expr.
-    def exitShift_expr(self, ctx:TinyPyParser.Shift_exprContext):
+    # Exit a parse tree produced by TinyPyParser#BitXor.
+    def exitBitXor(self, ctx:TinyPyParser.BitXorContext):
         pass
 
 
-    # Enter a parse tree produced by TinyPyParser#arith_expr.
-    def enterArith_expr(self, ctx:TinyPyParser.Arith_exprContext):
+    # Enter a parse tree produced by TinyPyParser#BitOr.
+    def enterBitOr(self, ctx:TinyPyParser.BitOrContext):
         pass
 
-    # Exit a parse tree produced by TinyPyParser#arith_expr.
-    def exitArith_expr(self, ctx:TinyPyParser.Arith_exprContext):
+    # Exit a parse tree produced by TinyPyParser#BitOr.
+    def exitBitOr(self, ctx:TinyPyParser.BitOrContext):
         pass
 
 
-    # Enter a parse tree produced by TinyPyParser#term.
-    def enterTerm(self, ctx:TinyPyParser.TermContext):
+    # Enter a parse tree produced by TinyPyParser#AddSub.
+    def enterAddSub(self, ctx:TinyPyParser.AddSubContext):
         pass
 
-    # Exit a parse tree produced by TinyPyParser#term.
-    def exitTerm(self, ctx:TinyPyParser.TermContext):
+    # Exit a parse tree produced by TinyPyParser#AddSub.
+    def exitAddSub(self, ctx:TinyPyParser.AddSubContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#BitAnd.
+    def enterBitAnd(self, ctx:TinyPyParser.BitAndContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#BitAnd.
+    def exitBitAnd(self, ctx:TinyPyParser.BitAndContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#Shifts.
+    def enterShifts(self, ctx:TinyPyParser.ShiftsContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#Shifts.
+    def exitShifts(self, ctx:TinyPyParser.ShiftsContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#FactorExpr.
+    def enterFactorExpr(self, ctx:TinyPyParser.FactorExprContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#FactorExpr.
+    def exitFactorExpr(self, ctx:TinyPyParser.FactorExprContext):
         pass
 
 

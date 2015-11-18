@@ -119,32 +119,36 @@ continue_stmt: CONTINUE;
  *
  * Common stuff: comparisons, arithmetic and logic expressions
  *
+ * Rules "tests" and "expr" from the official grammar were re-written in order
+ * to make AST construction easier; ANTLR handles left recursion for us
+ *
  */
-test        : or_test  ( IF or_test ELSE test )?;
-or_test     : and_test ( OR and_test )*;
-and_test    : not_test ( AND not_test )*;
-not_test    : NOT not_test | comparison;
-comparison  : expr ( comp_op expr )*;
 
-comp_op     : '<' | '>' | '==' | '>=' | '<=' | '<>' | '!='
-            | IN | NOT IN | IS | IS NOT
-            ;
+
+test    : expr                  # TestExpr
+        | expr comp_op expr     # Comparison
+        | NOT test              # NotTest
+        | test AND test         # AndTest
+        | test OR test          # OrTest
+        ;
+
+ comp_op     : '<' | '>' | '==' | '>=' | '<=' | '<>' | '!='
+             | IN | NOT IN | IS | IS NOT
+             ;
 
 //expr_stmt
 //    : testlist_expr  ( '=' ( testlist_expr ) )*
 //    ;
 
-//testlist_expr
-//    : ( expr ) ( ',' ( expr ) )* ','?
-//    ;
 
-expr        : xor_expr   ( '|' xor_expr )*;
-xor_expr    : and_expr   ( '^' and_expr )*;
-and_expr    : shift_expr ( '&' shift_expr )*;
-shift_expr  : arith_expr ( '<<' arith_expr | '>>' arith_expr)*;
-
-arith_expr  : term   (op=( '+' | '-')        term)*;
-term        : factor (op=( '*' | '/' | '%' ) factor)*;
+expr    : factor                            # FactorExpr
+        | expr op=( '*' | '/' | '%' ) expr  # MulDivMod
+        | expr op=( '+' | '-' )       expr  # AddSub
+        | expr op=( '<<' | '>>' )     expr  # Shifts
+        | expr op='&' expr                  # BitAnd
+        | expr op='^' expr                  # BitXor
+        | expr op='|' expr                  # BitOr
+        ;
 
 factor
     : op='+' factor    # unaryExpr

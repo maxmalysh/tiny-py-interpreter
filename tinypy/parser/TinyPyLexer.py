@@ -77,9 +77,9 @@ def serializedATN():
         buf.write("\3\2\2\2m\u0162\3\2\2\2o\u0166\3\2\2\2q\u016e\3\2\2\2")
         buf.write("s\u0172\3\2\2\2u\u0174\3\2\2\2w\u0176\3\2\2\2y\u0178\3")
         buf.write("\2\2\2{\u017a\3\2\2\2}\u018e\3\2\2\2\177\u0190\3\2\2\2")
-        buf.write("\u0081\u0082\7=\2\2\u0082\4\3\2\2\2\u0083\u0084\7~\2\2")
+        buf.write("\u0081\u0082\7=\2\2\u0082\4\3\2\2\2\u0083\u0084\7(\2\2")
         buf.write("\u0084\6\3\2\2\2\u0085\u0086\7`\2\2\u0086\b\3\2\2\2\u0087")
-        buf.write("\u0088\7(\2\2\u0088\n\3\2\2\2\u0089\u008a\7f\2\2\u008a")
+        buf.write("\u0088\7~\2\2\u0088\n\3\2\2\2\u0089\u008a\7f\2\2\u008a")
         buf.write("\u008b\7g\2\2\u008b\u008c\7h\2\2\u008c\f\3\2\2\2\u008d")
         buf.write("\u008e\7t\2\2\u008e\u008f\7g\2\2\u008f\u0090\7v\2\2\u0090")
         buf.write("\u0091\7w\2\2\u0091\u0092\7t\2\2\u0092\u0093\7p\2\2\u0093")
@@ -248,7 +248,7 @@ class TinyPyLexer(Lexer):
     modeNames = [ "DEFAULT_MODE" ]
 
     literalNames = [ "<INVALID>",
-            "';'", "'|'", "'^'", "'&'", "'def'", "'return'", "'from'", "'import'", 
+            "';'", "'&'", "'^'", "'|'", "'def'", "'return'", "'from'", "'import'", 
             "'as'", "'del'", "'pass'", "'break'", "'continue'", "'if'", 
             "'elif'", "'else'", "'while'", "'for'", "'in'", "'or'", "'and'", 
             "'not'", "'is'", "'None'", "'True'", "'False'", "'('", "')'", 
