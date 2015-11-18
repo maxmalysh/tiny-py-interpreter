@@ -36,8 +36,9 @@ def eval_string(input_string, args=None):
     from parser.CustomVisitor import CustomVisitor
 
     visitor = CustomVisitor()
-    ast = visitor.visitSingle_input(parse_tree)
+    ast = visitor.visitEval_input(parse_tree)
     print(ast)
+    print(ast.eval())
 
     if not args:
         return
