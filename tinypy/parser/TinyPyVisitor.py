@@ -1,9 +1,9 @@
-# Generated from /Users/apple/Development/tiny-py-interpreter/parser/TinyPy.g4 by ANTLR 4.5.1
+# Generated from /Users/apple/Development/tiny-py-interpreter/tinypy/parser/TinyPy.g4 by ANTLR 4.5.1
 from antlr4 import *
 if __name__ is not None and "." in __name__:
-    from TinyPyParser import TinyPyParser
+    from .TinyPyParser import TinyPyParser
 else:
-    from parser.TinyPyParser import TinyPyParser
+    from TinyPyParser import TinyPyParser
 
 # This class defines a complete generic visitor for a parse tree produced by TinyPyParser.
 
@@ -164,8 +164,23 @@ class TinyPyVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#factor.
-    def visitFactor(self, ctx:TinyPyParser.FactorContext):
+    # Visit a parse tree produced by TinyPyParser#unaryExpr.
+    def visitUnaryExpr(self, ctx:TinyPyParser.UnaryExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#parenExpr.
+    def visitParenExpr(self, ctx:TinyPyParser.ParenExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#funcInvokExpr.
+    def visitFuncInvokExpr(self, ctx:TinyPyParser.FuncInvokExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#atomExpr.
+    def visitAtomExpr(self, ctx:TinyPyParser.AtomExprContext):
         return self.visitChildren(ctx)
 
 

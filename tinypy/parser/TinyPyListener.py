@@ -1,9 +1,9 @@
 # Generated from /Users/apple/Development/tiny-py-interpreter/tinypy/parser/TinyPy.g4 by ANTLR 4.5.1
 from antlr4 import *
 if __name__ is not None and "." in __name__:
-    from parser.TinyPyParser import TinyPyParser
+    from .TinyPyParser import TinyPyParser
 else:
-    from parser.TinyPyParser import TinyPyParser
+    from TinyPyParser import TinyPyParser
 
 # This class defines a complete listener for a parse tree produced by TinyPyParser.
 class TinyPyListener(ParseTreeListener):
@@ -287,12 +287,39 @@ class TinyPyListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by TinyPyParser#factor.
-    def enterFactor(self, ctx:TinyPyParser.FactorContext):
+    # Enter a parse tree produced by TinyPyParser#unaryExpr.
+    def enterUnaryExpr(self, ctx:TinyPyParser.UnaryExprContext):
         pass
 
-    # Exit a parse tree produced by TinyPyParser#factor.
-    def exitFactor(self, ctx:TinyPyParser.FactorContext):
+    # Exit a parse tree produced by TinyPyParser#unaryExpr.
+    def exitUnaryExpr(self, ctx:TinyPyParser.UnaryExprContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#parenExpr.
+    def enterParenExpr(self, ctx:TinyPyParser.ParenExprContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#parenExpr.
+    def exitParenExpr(self, ctx:TinyPyParser.ParenExprContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#funcInvokExpr.
+    def enterFuncInvokExpr(self, ctx:TinyPyParser.FuncInvokExprContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#funcInvokExpr.
+    def exitFuncInvokExpr(self, ctx:TinyPyParser.FuncInvokExprContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#atomExpr.
+    def enterAtomExpr(self, ctx:TinyPyParser.AtomExprContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#atomExpr.
+    def exitAtomExpr(self, ctx:TinyPyParser.AtomExprContext):
         pass
 
 

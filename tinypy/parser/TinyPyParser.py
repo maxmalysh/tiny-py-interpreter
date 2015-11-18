@@ -6,7 +6,7 @@ from io import StringIO
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\39")
-        buf.write("\u016c\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\u0166\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -34,15 +34,15 @@ def serializedATN():
         buf.write("\33\u010b\13\33\3\34\3\34\3\34\7\34\u0110\n\34\f\34\16")
         buf.write("\34\u0113\13\34\3\35\3\35\3\35\7\35\u0118\n\35\f\35\16")
         buf.write("\35\u011b\13\35\3\36\3\36\3\36\3\36\3\36\7\36\u0122\n")
-        buf.write("\36\f\36\16\36\u0125\13\36\3\37\3\37\3\37\3\37\3\37\7")
-        buf.write("\37\u012c\n\37\f\37\16\37\u012f\13\37\3 \3 \3 \3 \3 \3")
-        buf.write(" \3 \7 \u0138\n \f \16 \u013b\13 \3!\3!\3!\3!\3!\3!\3")
-        buf.write("!\3!\3!\3!\5!\u0147\n!\3\"\3\"\3\"\6\"\u014c\n\"\r\"\16")
-        buf.write("\"\u014d\3\"\3\"\3\"\5\"\u0153\n\"\3#\3#\3#\5#\u0158\n")
-        buf.write("#\3#\3#\3$\3$\3$\7$\u015f\n$\f$\16$\u0162\13$\3$\3$\3")
-        buf.write("%\3%\3&\3&\3\'\3\'\3\'\2\2(\2\4\6\b\n\f\16\20\22\24\26")
-        buf.write("\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJL\2\3\3\2\64")
-        buf.write("\65\u0180\2R\3\2\2\2\4\\\3\2\2\2\6^\3\2\2\2\bi\3\2\2\2")
+        buf.write("\36\f\36\16\36\u0125\13\36\3\37\3\37\3\37\7\37\u012a\n")
+        buf.write("\37\f\37\16\37\u012d\13\37\3 \3 \3 \7 \u0132\n \f \16")
+        buf.write(" \u0135\13 \3!\3!\3!\3!\3!\3!\3!\3!\3!\3!\5!\u0141\n!")
+        buf.write("\3\"\3\"\3\"\6\"\u0146\n\"\r\"\16\"\u0147\3\"\3\"\3\"")
+        buf.write("\5\"\u014d\n\"\3#\3#\3#\5#\u0152\n#\3#\3#\3$\3$\3$\7$")
+        buf.write("\u0159\n$\f$\16$\u015c\13$\3$\3$\3%\3%\3&\3&\3\'\3\'\3")
+        buf.write("\'\2\2(\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*")
+        buf.write(",.\60\62\64\668:<>@BDFHJL\2\5\3\2%&\4\2\"\"\'(\3\2\64")
+        buf.write("\65\u0177\2R\3\2\2\2\4\\\3\2\2\2\6^\3\2\2\2\bi\3\2\2\2")
         buf.write("\nk\3\2\2\2\f{\3\2\2\2\16\u0080\3\2\2\2\20\u0082\3\2\2")
         buf.write("\2\22\u0095\3\2\2\2\24\u009a\3\2\2\2\26\u00a0\3\2\2\2")
         buf.write("\30\u00aa\3\2\2\2\32\u00b9\3\2\2\2\34\u00bb\3\2\2\2\36")
@@ -50,9 +50,9 @@ def serializedATN():
         buf.write("\2\2\2&\u00cd\3\2\2\2(\u00cf\3\2\2\2*\u00d7\3\2\2\2,\u00df")
         buf.write("\3\2\2\2.\u00ea\3\2\2\2\60\u00ec\3\2\2\2\62\u0102\3\2")
         buf.write("\2\2\64\u0104\3\2\2\2\66\u010c\3\2\2\28\u0114\3\2\2\2")
-        buf.write(":\u011c\3\2\2\2<\u0126\3\2\2\2>\u0130\3\2\2\2@\u0146\3")
-        buf.write("\2\2\2B\u0152\3\2\2\2D\u0154\3\2\2\2F\u0160\3\2\2\2H\u0165")
-        buf.write("\3\2\2\2J\u0167\3\2\2\2L\u0169\3\2\2\2NQ\7\35\2\2OQ\5")
+        buf.write(":\u011c\3\2\2\2<\u0126\3\2\2\2>\u012e\3\2\2\2@\u0140\3")
+        buf.write("\2\2\2B\u014c\3\2\2\2D\u014e\3\2\2\2F\u015a\3\2\2\2H\u015f")
+        buf.write("\3\2\2\2J\u0161\3\2\2\2L\u0163\3\2\2\2NQ\7\35\2\2OQ\5")
         buf.write("\b\5\2PN\3\2\2\2PO\3\2\2\2QT\3\2\2\2RP\3\2\2\2RS\3\2\2")
         buf.write("\2SU\3\2\2\2TR\3\2\2\2UV\7\2\2\3V\3\3\2\2\2W]\7\35\2\2")
         buf.write("X]\5\n\6\2YZ\5\16\b\2Z[\7\35\2\2[]\3\2\2\2\\W\3\2\2\2")
@@ -136,40 +136,37 @@ def serializedATN():
         buf.write("\u011f\u0120\7!\2\2\u0120\u0122\5<\37\2\u0121\u011d\3")
         buf.write("\2\2\2\u0121\u011f\3\2\2\2\u0122\u0125\3\2\2\2\u0123\u0121")
         buf.write("\3\2\2\2\u0123\u0124\3\2\2\2\u0124;\3\2\2\2\u0125\u0123")
-        buf.write("\3\2\2\2\u0126\u012d\5> \2\u0127\u0128\7%\2\2\u0128\u012c")
-        buf.write("\5> \2\u0129\u012a\7&\2\2\u012a\u012c\5> \2\u012b\u0127")
-        buf.write("\3\2\2\2\u012b\u0129\3\2\2\2\u012c\u012f\3\2\2\2\u012d")
-        buf.write("\u012b\3\2\2\2\u012d\u012e\3\2\2\2\u012e=\3\2\2\2\u012f")
-        buf.write("\u012d\3\2\2\2\u0130\u0139\5@!\2\u0131\u0132\7\"\2\2\u0132")
-        buf.write("\u0138\5@!\2\u0133\u0134\7\'\2\2\u0134\u0138\5@!\2\u0135")
-        buf.write("\u0136\7(\2\2\u0136\u0138\5@!\2\u0137\u0131\3\2\2\2\u0137")
-        buf.write("\u0133\3\2\2\2\u0137\u0135\3\2\2\2\u0138\u013b\3\2\2\2")
-        buf.write("\u0139\u0137\3\2\2\2\u0139\u013a\3\2\2\2\u013a?\3\2\2")
-        buf.write("\2\u013b\u0139\3\2\2\2\u013c\u013d\7%\2\2\u013d\u0147")
-        buf.write("\5@!\2\u013e\u013f\7&\2\2\u013f\u0147\5@!\2\u0140\u0141")
-        buf.write("\7\36\2\2\u0141\u0142\5(\25\2\u0142\u0143\7\37\2\2\u0143")
-        buf.write("\u0147\3\2\2\2\u0144\u0147\5D#\2\u0145\u0147\5B\"\2\u0146")
-        buf.write("\u013c\3\2\2\2\u0146\u013e\3\2\2\2\u0146\u0140\3\2\2\2")
-        buf.write("\u0146\u0144\3\2\2\2\u0146\u0145\3\2\2\2\u0147A\3\2\2")
-        buf.write("\2\u0148\u0153\7\62\2\2\u0149\u0153\5H%\2\u014a\u014c")
-        buf.write("\5L\'\2\u014b\u014a\3\2\2\2\u014c\u014d\3\2\2\2\u014d")
-        buf.write("\u014b\3\2\2\2\u014d\u014e\3\2\2\2\u014e\u0153\3\2\2\2")
-        buf.write("\u014f\u0153\7\32\2\2\u0150\u0153\7\33\2\2\u0151\u0153")
-        buf.write("\7\34\2\2\u0152\u0148\3\2\2\2\u0152\u0149\3\2\2\2\u0152")
-        buf.write("\u014b\3\2\2\2\u0152\u014f\3\2\2\2\u0152\u0150\3\2\2\2")
-        buf.write("\u0152\u0151\3\2\2\2\u0153C\3\2\2\2\u0154\u0155\7\62\2")
-        buf.write("\2\u0155\u0157\7\36\2\2\u0156\u0158\5F$\2\u0157\u0156")
-        buf.write("\3\2\2\2\u0157\u0158\3\2\2\2\u0158\u0159\3\2\2\2\u0159")
-        buf.write("\u015a\7\37\2\2\u015aE\3\2\2\2\u015b\u015c\5(\25\2\u015c")
-        buf.write("\u015d\7\60\2\2\u015d\u015f\3\2\2\2\u015e\u015b\3\2\2")
-        buf.write("\2\u015f\u0162\3\2\2\2\u0160\u015e\3\2\2\2\u0160\u0161")
-        buf.write("\3\2\2\2\u0161\u0163\3\2\2\2\u0162\u0160\3\2\2\2\u0163")
-        buf.write("\u0164\5(\25\2\u0164G\3\2\2\2\u0165\u0166\5J&\2\u0166")
-        buf.write("I\3\2\2\2\u0167\u0168\t\2\2\2\u0168K\3\2\2\2\u0169\u016a")
-        buf.write("\7\63\2\2\u016aM\3\2\2\2(PR\\bipt{\u0080\u008d\u0093\u00a2")
-        buf.write("\u00aa\u00b5\u00b9\u00be\u00c3\u00c7\u00d5\u00dc\u00e4")
-        buf.write("\u00ea\u00f2\u0102\u0109\u0111\u0119\u0121\u0123\u012b")
-        buf.write("\u012d\u0137\u0139\u0146\u014d\u0152\u0157\u0160")
+        buf.write("\3\2\2\2\u0126\u012b\5> \2\u0127\u0128\t\2\2\2\u0128\u012a")
+        buf.write("\5> \2\u0129\u0127\3\2\2\2\u012a\u012d\3\2\2\2\u012b\u0129")
+        buf.write("\3\2\2\2\u012b\u012c\3\2\2\2\u012c=\3\2\2\2\u012d\u012b")
+        buf.write("\3\2\2\2\u012e\u0133\5@!\2\u012f\u0130\t\3\2\2\u0130\u0132")
+        buf.write("\5@!\2\u0131\u012f\3\2\2\2\u0132\u0135\3\2\2\2\u0133\u0131")
+        buf.write("\3\2\2\2\u0133\u0134\3\2\2\2\u0134?\3\2\2\2\u0135\u0133")
+        buf.write("\3\2\2\2\u0136\u0137\7%\2\2\u0137\u0141\5@!\2\u0138\u0139")
+        buf.write("\7&\2\2\u0139\u0141\5@!\2\u013a\u013b\7\36\2\2\u013b\u013c")
+        buf.write("\5\64\33\2\u013c\u013d\7\37\2\2\u013d\u0141\3\2\2\2\u013e")
+        buf.write("\u0141\5D#\2\u013f\u0141\5B\"\2\u0140\u0136\3\2\2\2\u0140")
+        buf.write("\u0138\3\2\2\2\u0140\u013a\3\2\2\2\u0140\u013e\3\2\2\2")
+        buf.write("\u0140\u013f\3\2\2\2\u0141A\3\2\2\2\u0142\u014d\7\62\2")
+        buf.write("\2\u0143\u014d\5H%\2\u0144\u0146\5L\'\2\u0145\u0144\3")
+        buf.write("\2\2\2\u0146\u0147\3\2\2\2\u0147\u0145\3\2\2\2\u0147\u0148")
+        buf.write("\3\2\2\2\u0148\u014d\3\2\2\2\u0149\u014d\7\32\2\2\u014a")
+        buf.write("\u014d\7\33\2\2\u014b\u014d\7\34\2\2\u014c\u0142\3\2\2")
+        buf.write("\2\u014c\u0143\3\2\2\2\u014c\u0145\3\2\2\2\u014c\u0149")
+        buf.write("\3\2\2\2\u014c\u014a\3\2\2\2\u014c\u014b\3\2\2\2\u014d")
+        buf.write("C\3\2\2\2\u014e\u014f\7\62\2\2\u014f\u0151\7\36\2\2\u0150")
+        buf.write("\u0152\5F$\2\u0151\u0150\3\2\2\2\u0151\u0152\3\2\2\2\u0152")
+        buf.write("\u0153\3\2\2\2\u0153\u0154\7\37\2\2\u0154E\3\2\2\2\u0155")
+        buf.write("\u0156\5(\25\2\u0156\u0157\7\60\2\2\u0157\u0159\3\2\2")
+        buf.write("\2\u0158\u0155\3\2\2\2\u0159\u015c\3\2\2\2\u015a\u0158")
+        buf.write("\3\2\2\2\u015a\u015b\3\2\2\2\u015b\u015d\3\2\2\2\u015c")
+        buf.write("\u015a\3\2\2\2\u015d\u015e\5(\25\2\u015eG\3\2\2\2\u015f")
+        buf.write("\u0160\5J&\2\u0160I\3\2\2\2\u0161\u0162\t\4\2\2\u0162")
+        buf.write("K\3\2\2\2\u0163\u0164\7\63\2\2\u0164M\3\2\2\2&PR\\bip")
+        buf.write("t{\u0080\u008d\u0093\u00a2\u00aa\u00b5\u00b9\u00be\u00c3")
+        buf.write("\u00c7\u00d5\u00dc\u00e4\u00ea\u00f2\u0102\u0109\u0111")
+        buf.write("\u0119\u0121\u0123\u012b\u0133\u0140\u0147\u014c\u0151")
+        buf.write("\u015a")
         return buf.getvalue()
 
 
@@ -350,6 +347,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitFile_input" ):
                 listener.exitFile_input(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFile_input" ):
+                return visitor.visitFile_input(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -419,6 +422,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitSingle_input" ):
                 listener.exitSingle_input(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSingle_input" ):
+                return visitor.visitSingle_input(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -487,6 +496,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitEval_input" ):
                 listener.exitEval_input(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitEval_input" ):
+                return visitor.visitEval_input(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -543,6 +558,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitStmt" ):
                 listener.exitStmt(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitStmt" ):
+                return visitor.visitStmt(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -601,6 +622,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitSimple_stmt" ):
                 listener.exitSimple_stmt(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSimple_stmt" ):
+                return visitor.visitSimple_stmt(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -673,6 +700,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitSmall_stmt" ):
                 listener.exitSmall_stmt(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSmall_stmt" ):
+                return visitor.visitSmall_stmt(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -737,6 +770,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitCompound_stmt" ):
                 listener.exitCompound_stmt(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitCompound_stmt" ):
+                return visitor.visitCompound_stmt(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -816,6 +855,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitIf_stmt" ):
                 listener.exitIf_stmt(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitIf_stmt" ):
+                return visitor.visitIf_stmt(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -898,6 +943,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitWhile_stmt" ):
                 listener.exitWhile_stmt(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitWhile_stmt" ):
+                return visitor.visitWhile_stmt(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -954,6 +1005,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitFuncdef" ):
                 listener.exitFuncdef(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFuncdef" ):
+                return visitor.visitFuncdef(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1001,6 +1058,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitParameters" ):
                 listener.exitParameters(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParameters" ):
+                return visitor.visitParameters(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1053,6 +1116,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitParam_argslist" ):
                 listener.exitParam_argslist(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParam_argslist" ):
+                return visitor.visitParam_argslist(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1122,6 +1191,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitSuite" ):
                 listener.exitSuite(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitSuite" ):
+                return visitor.visitSuite(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1195,6 +1270,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitExpr_stmt" ):
                 listener.exitExpr_stmt(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpr_stmt" ):
+                return visitor.visitExpr_stmt(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1252,6 +1333,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitFlow_stmt" ):
                 listener.exitFlow_stmt(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFlow_stmt" ):
+                return visitor.visitFlow_stmt(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1313,6 +1400,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitReturn_stmt" ):
                 listener.exitReturn_stmt(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitReturn_stmt" ):
+                return visitor.visitReturn_stmt(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1360,6 +1453,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitPass_stmt" ):
                 listener.exitPass_stmt(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPass_stmt" ):
+                return visitor.visitPass_stmt(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1399,6 +1498,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitBreak_stmt" ):
                 listener.exitBreak_stmt(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitBreak_stmt" ):
+                return visitor.visitBreak_stmt(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1437,6 +1542,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitContinue_stmt" ):
                 listener.exitContinue_stmt(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitContinue_stmt" ):
+                return visitor.visitContinue_stmt(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1490,6 +1601,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitTest" ):
                 listener.exitTest(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTest" ):
+                return visitor.visitTest(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1554,6 +1671,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitOr_test" ):
                 listener.exitOr_test(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitOr_test" ):
+                return visitor.visitOr_test(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1616,6 +1739,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitAnd_test" ):
                 listener.exitAnd_test(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAnd_test" ):
+                return visitor.visitAnd_test(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1675,6 +1804,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitNot_test" ):
                 listener.exitNot_test(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitNot_test" ):
+                return visitor.visitNot_test(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1740,6 +1875,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitComparison" ):
                 listener.exitComparison(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComparison" ):
+                return visitor.visitComparison(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1797,6 +1938,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitComp_op" ):
                 listener.exitComp_op(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitComp_op" ):
+                return visitor.visitComp_op(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1911,6 +2058,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitExpr" ):
                 listener.exitExpr(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExpr" ):
+                return visitor.visitExpr(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -1966,6 +2119,12 @@ class TinyPyParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitXor_expr" ):
                 listener.exitXor_expr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitXor_expr" ):
+                return visitor.visitXor_expr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2023,6 +2182,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitAnd_expr" ):
                 listener.exitAnd_expr(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAnd_expr" ):
+                return visitor.visitAnd_expr(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2079,6 +2244,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitShift_expr" ):
                 listener.exitShift_expr(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitShift_expr" ):
+                return visitor.visitShift_expr(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2129,6 +2300,7 @@ class TinyPyParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+            self.op = None # Token
 
         def term(self, i:int=None):
             if i is None:
@@ -2148,6 +2320,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitArith_expr" ):
                 listener.exitArith_expr(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitArith_expr" ):
+                return visitor.visitArith_expr(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2160,28 +2338,20 @@ class TinyPyParser ( Parser ):
             self.enterOuterAlt(localctx, 1)
             self.state = 292
             self.term()
-            self.state = 299
+            self.state = 297
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==TinyPyParser.ADD or _la==TinyPyParser.MINUS:
-                self.state = 297
-                token = self._input.LA(1)
-                if token in [TinyPyParser.ADD]:
-                    self.state = 293
-                    self.match(TinyPyParser.ADD)
-                    self.state = 294
-                    self.term()
-
-                elif token in [TinyPyParser.MINUS]:
-                    self.state = 295
-                    self.match(TinyPyParser.MINUS)
-                    self.state = 296
-                    self.term()
-
+                self.state = 293
+                localctx.op = self._input.LT(1)
+                _la = self._input.LA(1)
+                if not(_la==TinyPyParser.ADD or _la==TinyPyParser.MINUS):
+                    localctx.op = self._errHandler.recoverInline(self)
                 else:
-                    raise NoViableAltException(self)
-
-                self.state = 301
+                    self.consume()
+                self.state = 294
+                self.term()
+                self.state = 299
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2198,6 +2368,7 @@ class TinyPyParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+            self.op = None # Token
 
         def factor(self, i:int=None):
             if i is None:
@@ -2217,6 +2388,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitTerm" ):
                 listener.exitTerm(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitTerm" ):
+                return visitor.visitTerm(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2227,36 +2404,22 @@ class TinyPyParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 302
+            self.state = 300
             self.factor()
-            self.state = 311
+            self.state = 305
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TinyPyParser.STAR) | (1 << TinyPyParser.DIV) | (1 << TinyPyParser.MOD))) != 0):
-                self.state = 309
-                token = self._input.LA(1)
-                if token in [TinyPyParser.STAR]:
-                    self.state = 303
-                    self.match(TinyPyParser.STAR)
-                    self.state = 304
-                    self.factor()
-
-                elif token in [TinyPyParser.DIV]:
-                    self.state = 305
-                    self.match(TinyPyParser.DIV)
-                    self.state = 306
-                    self.factor()
-
-                elif token in [TinyPyParser.MOD]:
-                    self.state = 307
-                    self.match(TinyPyParser.MOD)
-                    self.state = 308
-                    self.factor()
-
+                self.state = 301
+                localctx.op = self._input.LT(1)
+                _la = self._input.LA(1)
+                if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TinyPyParser.STAR) | (1 << TinyPyParser.DIV) | (1 << TinyPyParser.MOD))) != 0)):
+                    localctx.op = self._errHandler.recoverInline(self)
                 else:
-                    raise NoViableAltException(self)
-
-                self.state = 313
+                    self.consume()
+                self.state = 302
+                self.factor()
+                self.state = 307
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -2274,33 +2437,115 @@ class TinyPyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
+
+        def getRuleIndex(self):
+            return TinyPyParser.RULE_factor
+
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class UnaryExprContext(FactorContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a TinyPyParser.FactorContext
+            super().__init__(parser)
+            self.op = None # Token
+            self.copyFrom(ctx)
+
         def factor(self):
             return self.getTypedRuleContext(TinyPyParser.FactorContext,0)
 
 
-        def test(self):
-            return self.getTypedRuleContext(TinyPyParser.TestContext,0)
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterUnaryExpr" ):
+                listener.enterUnaryExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitUnaryExpr" ):
+                listener.exitUnaryExpr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitUnaryExpr" ):
+                return visitor.visitUnaryExpr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
-        def funcinvoke(self):
-            return self.getTypedRuleContext(TinyPyParser.FuncinvokeContext,0)
+    class AtomExprContext(FactorContext):
 
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a TinyPyParser.FactorContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
 
         def atom(self):
             return self.getTypedRuleContext(TinyPyParser.AtomContext,0)
 
 
-        def getRuleIndex(self):
-            return TinyPyParser.RULE_factor
-
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterFactor" ):
-                listener.enterFactor(self)
+            if hasattr( listener, "enterAtomExpr" ):
+                listener.enterAtomExpr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitFactor" ):
-                listener.exitFactor(self)
+            if hasattr( listener, "exitAtomExpr" ):
+                listener.exitAtomExpr(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAtomExpr" ):
+                return visitor.visitAtomExpr(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class FuncInvokExprContext(FactorContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a TinyPyParser.FactorContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def funcinvoke(self):
+            return self.getTypedRuleContext(TinyPyParser.FuncinvokeContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterFuncInvokExpr" ):
+                listener.enterFuncInvokExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitFuncInvokExpr" ):
+                listener.exitFuncInvokExpr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFuncInvokExpr" ):
+                return visitor.visitFuncInvokExpr(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class ParenExprContext(FactorContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a TinyPyParser.FactorContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self):
+            return self.getTypedRuleContext(TinyPyParser.ExprContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterParenExpr" ):
+                listener.enterParenExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitParenExpr" ):
+                listener.exitParenExpr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParenExpr" ):
+                return visitor.visitParenExpr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -2309,43 +2554,48 @@ class TinyPyParser ( Parser ):
         localctx = TinyPyParser.FactorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 62, self.RULE_factor)
         try:
-            self.state = 324
-            la_ = self._interp.adaptivePredict(self._input,33,self._ctx)
+            self.state = 318
+            la_ = self._interp.adaptivePredict(self._input,31,self._ctx)
             if la_ == 1:
+                localctx = TinyPyParser.UnaryExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 314
-                self.match(TinyPyParser.ADD)
-                self.state = 315
+                self.state = 308
+                localctx.op = self.match(TinyPyParser.ADD)
+                self.state = 309
                 self.factor()
                 pass
 
             elif la_ == 2:
+                localctx = TinyPyParser.UnaryExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
-                self.state = 316
-                self.match(TinyPyParser.MINUS)
-                self.state = 317
+                self.state = 310
+                localctx.op = self.match(TinyPyParser.MINUS)
+                self.state = 311
                 self.factor()
                 pass
 
             elif la_ == 3:
+                localctx = TinyPyParser.ParenExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
-                self.state = 318
+                self.state = 312
                 self.match(TinyPyParser.OPEN_PAREN)
-                self.state = 319
-                self.test()
-                self.state = 320
+                self.state = 313
+                self.expr()
+                self.state = 314
                 self.match(TinyPyParser.CLOSE_PAREN)
                 pass
 
             elif la_ == 4:
+                localctx = TinyPyParser.FuncInvokExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
-                self.state = 322
+                self.state = 316
                 self.funcinvoke()
                 pass
 
             elif la_ == 5:
+                localctx = TinyPyParser.AtomExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 5)
-                self.state = 323
+                self.state = 317
                 self.atom()
                 pass
 
@@ -2398,6 +2648,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitAtom" ):
                 listener.exitAtom(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAtom" ):
+                return visitor.visitAtom(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2407,27 +2663,27 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 64, self.RULE_atom)
         self._la = 0 # Token type
         try:
-            self.state = 336
+            self.state = 330
             token = self._input.LA(1)
             if token in [TinyPyParser.NAME]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 326
+                self.state = 320
                 self.match(TinyPyParser.NAME)
 
             elif token in [TinyPyParser.DECIMAL_INTEGER, TinyPyParser.HEX_INTEGER]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 327
+                self.state = 321
                 self.number()
 
             elif token in [TinyPyParser.STRING_LITERAL]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 329 
+                self.state = 323 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while True:
-                    self.state = 328
+                    self.state = 322
                     self.string()
-                    self.state = 331 
+                    self.state = 325 
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
                     if not (_la==TinyPyParser.STRING_LITERAL):
@@ -2436,17 +2692,17 @@ class TinyPyParser ( Parser ):
 
             elif token in [TinyPyParser.NONE]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 333
+                self.state = 327
                 self.match(TinyPyParser.NONE)
 
             elif token in [TinyPyParser.TRUE]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 334
+                self.state = 328
                 self.match(TinyPyParser.TRUE)
 
             elif token in [TinyPyParser.FALSE]:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 335
+                self.state = 329
                 self.match(TinyPyParser.FALSE)
 
             else:
@@ -2484,6 +2740,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitFuncinvoke" ):
                 listener.exitFuncinvoke(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitFuncinvoke" ):
+                return visitor.visitFuncinvoke(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2494,18 +2756,18 @@ class TinyPyParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 338
+            self.state = 332
             self.match(TinyPyParser.NAME)
-            self.state = 339
+            self.state = 333
             self.match(TinyPyParser.OPEN_PAREN)
-            self.state = 341
+            self.state = 335
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TinyPyParser.NOT) | (1 << TinyPyParser.NONE) | (1 << TinyPyParser.TRUE) | (1 << TinyPyParser.FALSE) | (1 << TinyPyParser.OPEN_PAREN) | (1 << TinyPyParser.ADD) | (1 << TinyPyParser.MINUS) | (1 << TinyPyParser.NAME) | (1 << TinyPyParser.STRING_LITERAL) | (1 << TinyPyParser.DECIMAL_INTEGER) | (1 << TinyPyParser.HEX_INTEGER))) != 0):
-                self.state = 340
+                self.state = 334
                 self.arglist()
 
 
-            self.state = 343
+            self.state = 337
             self.match(TinyPyParser.CLOSE_PAREN)
         except RecognitionException as re:
             localctx.exception = re
@@ -2539,6 +2801,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitArglist" ):
                 listener.exitArglist(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitArglist" ):
+                return visitor.visitArglist(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2548,20 +2816,20 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 68, self.RULE_arglist)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 350
+            self.state = 344
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,37,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,35,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 345
+                    self.state = 339
                     self.test()
-                    self.state = 346
+                    self.state = 340
                     self.match(TinyPyParser.COMMA) 
-                self.state = 352
+                self.state = 346
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,37,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,35,self._ctx)
 
-            self.state = 353
+            self.state = 347
             self.test()
         except RecognitionException as re:
             localctx.exception = re
@@ -2592,6 +2860,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitNumber" ):
                 listener.exitNumber(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitNumber" ):
+                return visitor.visitNumber(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2601,7 +2875,7 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 70, self.RULE_number)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 355
+            self.state = 349
             self.integer()
         except RecognitionException as re:
             localctx.exception = re
@@ -2634,6 +2908,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitInteger" ):
                 listener.exitInteger(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitInteger" ):
+                return visitor.visitInteger(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2644,7 +2924,7 @@ class TinyPyParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 357
+            self.state = 351
             _la = self._input.LA(1)
             if not(_la==TinyPyParser.DECIMAL_INTEGER or _la==TinyPyParser.HEX_INTEGER):
                 self._errHandler.recoverInline(self)
@@ -2678,6 +2958,12 @@ class TinyPyParser ( Parser ):
             if hasattr( listener, "exitString" ):
                 listener.exitString(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitString" ):
+                return visitor.visitString(self)
+            else:
+                return visitor.visitChildren(self)
+
 
 
 
@@ -2687,7 +2973,7 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 74, self.RULE_string)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 359
+            self.state = 353
             self.match(TinyPyParser.STRING_LITERAL)
         except RecognitionException as re:
             localctx.exception = re
