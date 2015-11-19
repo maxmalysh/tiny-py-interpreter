@@ -10,7 +10,7 @@ from parser import CST
 
 
 class InteractiveShell:
-    greeting =  "Press Ctrl + C to exit\n"
+    greeting =  "Call exit() to quit\n"
 
     def __init__(self, args):
         self.args = args
@@ -89,9 +89,31 @@ class InteractiveShell:
                     parseTreeString = Trees.toStringTree(parse_tree, recog=self.parser)
                     print(parseTreeString)
 
+                # Evaluate it...
+                from parser.CustomVisitor import CustomVisitor
+
+                visitor = CustomVisitor()
+                ast = visitor.visitSingle_input(parse_tree)
+                if ast == None:
+                    continue
+
+                results = ast.eval()
+
+                if results != None:
+                    for result in results:
+                        if result != None:
+                            print(result)
 
             except antlr4.RecognitionException as e:
                 print("Caught" + str(e) )
+            ##
+            ## Add here our own super class of the own exception system
+            ##
+            except KeyboardInterrupt as e:
+                print("\n" + e.__class__.__name__)
+                print("Type exit() to quit")
+            except Exception as e:
+                print(e.__class__.__name__ + ": " + str(e))
 
     def print_greeting(self):
         print(self.greeting)

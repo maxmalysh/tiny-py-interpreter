@@ -9,6 +9,12 @@ class CustomVisitor(TinyPyVisitor):
     def __init__(self):
         super().__init__()
 
+
+    #
+    # TODO: add this:
+    # def buildFrom(self, input, startRule)
+    #
+
     # def aggregateResult(self, aggregate, nextResult):
     #     if (aggregate is not list or aggregate is not tuple):
     #         return [aggregate, nextResult]
@@ -23,21 +29,67 @@ class CustomVisitor(TinyPyVisitor):
 
 
     #
-    # Starting rules
+    # Start rules
     #
     def visitEval_input(self, ctx:TinyPyParser.Eval_inputContext):
-        return self.visit(ctx.test())
+        return ast.EvalExpression(self.visit(ctx.test()))
 
+    def visitSingle_input(self, ctx:TinyPyParser.Single_inputContext):
+        if ctx.simple_stmt() != None:
+            return ast.Interactive(self.visit(ctx.simple_stmt()))
+        elif ctx.compound_stmt() != None:
+            return ast.Interactive(self.visit(ctx.compound_stmt()))
+
+        return None
+
+    def visitFile_input(self, ctx:TinyPyParser.File_inputContext):
+        i = 0
+        statements = []
+
+        while i < len(ctx.children):
+            statement =  self.visit(ctx.stmt(i))
+            if statement != None:
+                statements.append(statement)
+
+        return ast.Module(body=statements)
+
+    #
+    # Base statements
+    #
+    def visitSimple_stmt(self, ctx:TinyPyParser.Simple_stmtContext):
+        i = 0
+        statements = []
+
+        for smallStmt in ctx.small_stmt():
+            statement = self.visit(smallStmt)
+            if statement != None:
+                statements.append(statement)
+
+
+        # while i < len(ctx.children):
+        #     statement =  self.visit(ctx.small_stmt(i))
+        #     if statement != None:
+        #         statements.append(statement)
+
+        return statements
 
 
     #
+    # Compound statements
     #
+
+
+    #
+    # Small statements
     #
 
+    def visitExprStmtAssign(self, ctx:TinyPyParser.ExprStmtAssignContext):
+        name = ctx.NAME().getText()
+        expr = self.visit(ctx.expr())
 
+        nameNode = ast.Name(id=name, ctx=ast.Name.Context.Store)
 
-
-
+        return ast.AssignStmt(target=nameNode, value=expr)
 
     #
     # Arithmetic
@@ -76,13 +128,10 @@ class CustomVisitor(TinyPyVisitor):
     #
     def visitUnaryExpr(self, ctx:TinyPyParser.UnaryExprContext):
         operand = ctx.factor().accept(self)
-        return ast.UnaryOp(op=ctx.op.getText(), operand=operand)
+        return ast.UnaryOp(op=ctx.op.text, operand=operand)
 
     def visitParenExpr(self, ctx:TinyPyParser.ParenExprContext):
         return self.visit(ctx.expr())
-
-    def visitFuncInvokExpr(self, ctx:TinyPyParser.FuncInvokExprContext):
-        raise NotImplementedError()
 
     def visitAtom(self, ctx:TinyPyParser.AtomContext):
         if ctx.NONE() != None:
@@ -92,19 +141,28 @@ class CustomVisitor(TinyPyVisitor):
         elif ctx.FALSE() != None:
             return ast.NameConstant('False')
         elif ctx.NAME() != None:
-            # FIXME (context should be fixed!!!)
-            return ast.Name(id=ctx.NAME().getText(), ctx=ctx)
+            return ast.Name(id=ctx.NAME().getText(), ctx=ast.Name.Context.Load)
         else:
             return self.visitChildren(ctx)
+
+
+    def visitFuncinvoke(self, ctx:TinyPyParser.FuncinvokeContext):
+        name = ctx.NAME().getText()
+        args = []
+
+        if ctx.arglist() != None:
+            for argStmt in ctx.arglist().test():
+                arg = self.visit(argStmt)
+                if arg != None:
+                    args.append(arg)
+
+        funcName = ast.Name(name, ast.Name.Context.Load)
+        return ast.CallExpr(func=funcName, args=args)
+
 
     def visitNumber(self, ctx:TinyPyParser.NumberContext):
          return self.visitChildren(ctx)
 
-    def visitString(self, ctx:TinyPyParser.StringContext):
-        if ctx.STRING_LITERAL() != None:
-            return ast.Str(ctx.STRING_LITERAL().getText())
-        else:
-            raise ValueError()
 
     def visitInteger(self, ctx:TinyPyParser.IntegerContext):
         if ctx.DECIMAL_INTEGER() != None:
@@ -115,6 +173,14 @@ class CustomVisitor(TinyPyVisitor):
             return ast.Num(hex)
         else:
             raise ValueError()
+
+    def visitString(self, ctx:TinyPyParser.StringContext):
+        node = ctx.STRING_LITERAL()
+        if node != None:
+            text = node.getText()[1:-1]
+            return ast.Str(text)
+
+        raise ValueError()
 
 
 class CleaningVisitor(TinyPyParser):

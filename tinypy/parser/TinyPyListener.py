@@ -125,12 +125,21 @@ class TinyPyListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by TinyPyParser#expr_stmt.
-    def enterExpr_stmt(self, ctx:TinyPyParser.Expr_stmtContext):
+    # Enter a parse tree produced by TinyPyParser#ExprStmtExpr.
+    def enterExprStmtExpr(self, ctx:TinyPyParser.ExprStmtExprContext):
         pass
 
-    # Exit a parse tree produced by TinyPyParser#expr_stmt.
-    def exitExpr_stmt(self, ctx:TinyPyParser.Expr_stmtContext):
+    # Exit a parse tree produced by TinyPyParser#ExprStmtExpr.
+    def exitExprStmtExpr(self, ctx:TinyPyParser.ExprStmtExprContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#ExprStmtAssign.
+    def enterExprStmtAssign(self, ctx:TinyPyParser.ExprStmtAssignContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#ExprStmtAssign.
+    def exitExprStmtAssign(self, ctx:TinyPyParser.ExprStmtAssignContext):
         pass
 
 

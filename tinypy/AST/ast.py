@@ -4,7 +4,18 @@ from enum import Enum
 # Some useful stuff here:
 # http://greentreesnakes.readthedocs.org/en/latest/index.html
 # https://docs.python.org/3/reference/expressions.html#calls
+# https://docs.python.org/3/reference/executionmodel.html#naming
+#
 
+nameMemory = {
+    'print' : print,
+    'input' : input,
+    'exit'  : exit,
+    'len'   : len,
+    'str'   : str,
+    'int'   : int,
+    'float' : float,
+}
 
 class AST(object):
     def eval(self):
@@ -28,8 +39,18 @@ class Interactive(AST):
         self.body = body
 
     def eval(self):
-        for stmt in self.body:
-            stmt.eval()
+        return [stmt.eval() for stmt in self.body]
+        #for stmt in self.body:
+        #    stmt.eval()
+
+
+class EvalExpression(AST):
+    def __init__(self, body):
+        super().__init__()
+        self.body = body
+
+    def eval(self):
+        return self.body.eval()
 
 """ Base node types """
 
@@ -62,10 +83,15 @@ class ReturnStmt(Statement):
 # Multiple nodes in targets represents assigning the same value to each.
 # Unpacking is represented by putting a Tuple or List within targets.
 class AssignStmt(Statement):
-    def __init__(self, targets, value:Expression):
+    def __init__(self, target, value:Expression):
         super().__init__()
-        self.targets = targets
+        self.target = target
         self.value = value
+
+    def eval(self):
+        lValue = self.target.eval()
+        rValue = self.value.eval()
+        nameMemory[lValue] = rValue
 
 
 class WhileStmt(Statement):
@@ -78,10 +104,10 @@ class IfStmt(Statement):
         super().__init__()
 
 
-class ExprStmt(Statement):
-    def __init__(self, value:Expression):
-        super().__init__()
-        self.value = value
+# class ExprStmt(Statement):
+#     def __init__(self, value:Expression):
+#         super().__init__()
+#         self.value = value
 
 """ Expressions begin here """
 
@@ -141,11 +167,13 @@ class UnaryOp(Expression):
 class CallExpr(Expression):
     def __init__(self, func, args):
         super().__init__()
-        self.func = func
+        self.func = func   # name
         self.args = args
 
     def eval(self):
-        raise NotImplementedError()
+        func = self.func.eval()
+        evalArgs = [ arg.eval() for arg in self.args ]
+        func(*evalArgs)
 
 #
 # Leaf values
@@ -191,8 +219,21 @@ class NameConstant(Expression):
 #     @ctx is one of the following types: @Load / @Store / @Del
 #
 class Name(Expression):
-    def __init__(self, id, ctx):
+    class Context(Enum):
+        Load = 1
+        Store = 2
+        Del = 3
+
+    def __init__(self, id, ctx:Context):
         super().__init__()
         self.id = id
         self.ctx = ctx
+
+    def eval(self):
+        if self.ctx == Name.Context.Load:
+            return nameMemory[self.id]
+        elif self.ctx == Name.Context.Store:
+            return self.id
+        else:
+            raise NotImplementedError()
 

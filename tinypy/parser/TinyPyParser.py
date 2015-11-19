@@ -6,7 +6,7 @@ from io import StringIO
 def serializedATN():
     with StringIO() as buf:
         buf.write("\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\39")
-        buf.write("\u012b\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
+        buf.write("\u012c\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
         buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
         buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
         buf.write("\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31")
@@ -20,125 +20,126 @@ def serializedATN():
         buf.write("\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\13\3\f\3\f\5\f\u0091")
         buf.write("\n\f\3\f\3\f\3\r\3\r\7\r\u0097\n\r\f\r\16\r\u009a\13\r")
         buf.write("\3\r\3\r\3\16\3\16\3\16\3\16\6\16\u00a2\n\16\r\16\16\16")
-        buf.write("\u00a3\3\16\3\16\5\16\u00a8\n\16\3\17\3\17\3\17\5\17\u00ad")
-        buf.write("\n\17\3\20\3\20\3\20\5\20\u00b2\n\20\3\21\3\21\5\21\u00b6")
-        buf.write("\n\21\3\22\3\22\3\23\3\23\3\24\3\24\3\25\3\25\3\25\3\25")
-        buf.write("\3\25\3\25\3\25\3\25\5\25\u00c6\n\25\3\25\3\25\3\25\3")
-        buf.write("\25\3\25\3\25\7\25\u00ce\n\25\f\25\16\25\u00d1\13\25\3")
-        buf.write("\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26")
-        buf.write("\3\26\3\26\5\26\u00e0\n\26\3\27\3\27\3\27\3\27\3\27\3")
-        buf.write("\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27")
-        buf.write("\3\27\3\27\3\27\3\27\3\27\7\27\u00f7\n\27\f\27\16\27\u00fa")
-        buf.write("\13\27\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3")
-        buf.write("\30\5\30\u0106\n\30\3\31\3\31\3\31\6\31\u010b\n\31\r\31")
-        buf.write("\16\31\u010c\3\31\3\31\3\31\5\31\u0112\n\31\3\32\3\32")
-        buf.write("\3\32\5\32\u0117\n\32\3\32\3\32\3\33\3\33\3\33\7\33\u011e")
-        buf.write("\n\33\f\33\16\33\u0121\13\33\3\33\3\33\3\34\3\34\3\35")
-        buf.write("\3\35\3\36\3\36\3\36\2\4(,\37\2\4\6\b\n\f\16\20\22\24")
-        buf.write("\26\30\32\34\36 \"$&(*,.\60\62\64\668:\2\6\4\2\"\"\'(")
-        buf.write("\3\2%&\3\2 !\3\2\64\65\u0143\2@\3\2\2\2\4J\3\2\2\2\6L")
-        buf.write("\3\2\2\2\bW\3\2\2\2\nY\3\2\2\2\fi\3\2\2\2\16n\3\2\2\2")
-        buf.write("\20p\3\2\2\2\22\u0083\3\2\2\2\24\u0088\3\2\2\2\26\u008e")
-        buf.write("\3\2\2\2\30\u0098\3\2\2\2\32\u00a7\3\2\2\2\34\u00a9\3")
-        buf.write("\2\2\2\36\u00b1\3\2\2\2 \u00b3\3\2\2\2\"\u00b7\3\2\2\2")
-        buf.write("$\u00b9\3\2\2\2&\u00bb\3\2\2\2(\u00c5\3\2\2\2*\u00df\3")
-        buf.write("\2\2\2,\u00e1\3\2\2\2.\u0105\3\2\2\2\60\u0111\3\2\2\2")
-        buf.write("\62\u0113\3\2\2\2\64\u011f\3\2\2\2\66\u0124\3\2\2\28\u0126")
-        buf.write("\3\2\2\2:\u0128\3\2\2\2<?\7\35\2\2=?\5\b\5\2><\3\2\2\2")
-        buf.write(">=\3\2\2\2?B\3\2\2\2@>\3\2\2\2@A\3\2\2\2AC\3\2\2\2B@\3")
-        buf.write("\2\2\2CD\7\2\2\3D\3\3\2\2\2EK\7\35\2\2FK\5\n\6\2GH\5\16")
-        buf.write("\b\2HI\7\35\2\2IK\3\2\2\2JE\3\2\2\2JF\3\2\2\2JG\3\2\2")
-        buf.write("\2K\5\3\2\2\2LP\5(\25\2MO\7\35\2\2NM\3\2\2\2OR\3\2\2\2")
-        buf.write("PN\3\2\2\2PQ\3\2\2\2QS\3\2\2\2RP\3\2\2\2ST\7\2\2\3T\7")
-        buf.write("\3\2\2\2UX\5\n\6\2VX\5\16\b\2WU\3\2\2\2WV\3\2\2\2X\t\3")
-        buf.write("\2\2\2Y^\5\f\7\2Z[\7\3\2\2[]\5\f\7\2\\Z\3\2\2\2]`\3\2")
-        buf.write("\2\2^\\\3\2\2\2^_\3\2\2\2_b\3\2\2\2`^\3\2\2\2ac\7\3\2")
-        buf.write("\2ba\3\2\2\2bc\3\2\2\2cd\3\2\2\2de\7\35\2\2e\13\3\2\2")
-        buf.write("\2fj\5\34\17\2gj\5\36\20\2hj\5\"\22\2if\3\2\2\2ig\3\2")
-        buf.write("\2\2ih\3\2\2\2j\r\3\2\2\2ko\5\20\t\2lo\5\22\n\2mo\5\24")
-        buf.write("\13\2nk\3\2\2\2nl\3\2\2\2nm\3\2\2\2o\17\3\2\2\2pq\7\20")
-        buf.write("\2\2qr\5(\25\2rs\7\61\2\2s{\5\32\16\2tu\7\21\2\2uv\5(")
-        buf.write("\25\2vw\7\61\2\2wx\5\32\16\2xz\3\2\2\2yt\3\2\2\2z}\3\2")
-        buf.write("\2\2{y\3\2\2\2{|\3\2\2\2|\u0081\3\2\2\2}{\3\2\2\2~\177")
-        buf.write("\7\22\2\2\177\u0080\7\61\2\2\u0080\u0082\5\32\16\2\u0081")
-        buf.write("~\3\2\2\2\u0081\u0082\3\2\2\2\u0082\21\3\2\2\2\u0083\u0084")
-        buf.write("\7\23\2\2\u0084\u0085\5(\25\2\u0085\u0086\7\61\2\2\u0086")
-        buf.write("\u0087\5\32\16\2\u0087\23\3\2\2\2\u0088\u0089\7\7\2\2")
-        buf.write("\u0089\u008a\7\62\2\2\u008a\u008b\5\26\f\2\u008b\u008c")
-        buf.write("\7\61\2\2\u008c\u008d\5\32\16\2\u008d\25\3\2\2\2\u008e")
-        buf.write("\u0090\7\36\2\2\u008f\u0091\5\30\r\2\u0090\u008f\3\2\2")
-        buf.write("\2\u0090\u0091\3\2\2\2\u0091\u0092\3\2\2\2\u0092\u0093")
-        buf.write("\7\37\2\2\u0093\27\3\2\2\2\u0094\u0095\7\62\2\2\u0095")
-        buf.write("\u0097\7\60\2\2\u0096\u0094\3\2\2\2\u0097\u009a\3\2\2")
-        buf.write("\2\u0098\u0096\3\2\2\2\u0098\u0099\3\2\2\2\u0099\u009b")
-        buf.write("\3\2\2\2\u009a\u0098\3\2\2\2\u009b\u009c\7\62\2\2\u009c")
-        buf.write("\31\3\2\2\2\u009d\u00a8\5\n\6\2\u009e\u009f\7\35\2\2\u009f")
-        buf.write("\u00a1\78\2\2\u00a0\u00a2\5\b\5\2\u00a1\u00a0\3\2\2\2")
-        buf.write("\u00a2\u00a3\3\2\2\2\u00a3\u00a1\3\2\2\2\u00a3\u00a4\3")
-        buf.write("\2\2\2\u00a4\u00a5\3\2\2\2\u00a5\u00a6\79\2\2\u00a6\u00a8")
-        buf.write("\3\2\2\2\u00a7\u009d\3\2\2\2\u00a7\u009e\3\2\2\2\u00a8")
-        buf.write("\33\3\2\2\2\u00a9\u00ac\5,\27\2\u00aa\u00ab\7$\2\2\u00ab")
-        buf.write("\u00ad\5,\27\2\u00ac\u00aa\3\2\2\2\u00ac\u00ad\3\2\2\2")
-        buf.write("\u00ad\35\3\2\2\2\u00ae\u00b2\5 \21\2\u00af\u00b2\5$\23")
-        buf.write("\2\u00b0\u00b2\5&\24\2\u00b1\u00ae\3\2\2\2\u00b1\u00af")
-        buf.write("\3\2\2\2\u00b1\u00b0\3\2\2\2\u00b2\37\3\2\2\2\u00b3\u00b5")
-        buf.write("\7\b\2\2\u00b4\u00b6\5(\25\2\u00b5\u00b4\3\2\2\2\u00b5")
-        buf.write("\u00b6\3\2\2\2\u00b6!\3\2\2\2\u00b7\u00b8\7\r\2\2\u00b8")
-        buf.write("#\3\2\2\2\u00b9\u00ba\7\16\2\2\u00ba%\3\2\2\2\u00bb\u00bc")
-        buf.write("\7\17\2\2\u00bc\'\3\2\2\2\u00bd\u00be\b\25\1\2\u00be\u00bf")
-        buf.write("\7\30\2\2\u00bf\u00c6\5(\25\5\u00c0\u00c6\5,\27\2\u00c1")
-        buf.write("\u00c2\5,\27\2\u00c2\u00c3\5*\26\2\u00c3\u00c4\5,\27\2")
-        buf.write("\u00c4\u00c6\3\2\2\2\u00c5\u00bd\3\2\2\2\u00c5\u00c0\3")
-        buf.write("\2\2\2\u00c5\u00c1\3\2\2\2\u00c6\u00cf\3\2\2\2\u00c7\u00c8")
-        buf.write("\f\4\2\2\u00c8\u00c9\7\27\2\2\u00c9\u00ce\5(\25\5\u00ca")
-        buf.write("\u00cb\f\3\2\2\u00cb\u00cc\7\26\2\2\u00cc\u00ce\5(\25")
-        buf.write("\4\u00cd\u00c7\3\2\2\2\u00cd\u00ca\3\2\2\2\u00ce\u00d1")
-        buf.write("\3\2\2\2\u00cf\u00cd\3\2\2\2\u00cf\u00d0\3\2\2\2\u00d0")
-        buf.write(")\3\2\2\2\u00d1\u00cf\3\2\2\2\u00d2\u00e0\7)\2\2\u00d3")
-        buf.write("\u00e0\7*\2\2\u00d4\u00e0\7+\2\2\u00d5\u00e0\7,\2\2\u00d6")
-        buf.write("\u00e0\7-\2\2\u00d7\u00e0\7.\2\2\u00d8\u00e0\7/\2\2\u00d9")
-        buf.write("\u00e0\7\25\2\2\u00da\u00db\7\30\2\2\u00db\u00e0\7\25")
-        buf.write("\2\2\u00dc\u00e0\7\31\2\2\u00dd\u00de\7\31\2\2\u00de\u00e0")
-        buf.write("\7\30\2\2\u00df\u00d2\3\2\2\2\u00df\u00d3\3\2\2\2\u00df")
-        buf.write("\u00d4\3\2\2\2\u00df\u00d5\3\2\2\2\u00df\u00d6\3\2\2\2")
-        buf.write("\u00df\u00d7\3\2\2\2\u00df\u00d8\3\2\2\2\u00df\u00d9\3")
-        buf.write("\2\2\2\u00df\u00da\3\2\2\2\u00df\u00dc\3\2\2\2\u00df\u00dd")
-        buf.write("\3\2\2\2\u00e0+\3\2\2\2\u00e1\u00e2\b\27\1\2\u00e2\u00e3")
-        buf.write("\5.\30\2\u00e3\u00f8\3\2\2\2\u00e4\u00e5\f\b\2\2\u00e5")
-        buf.write("\u00e6\t\2\2\2\u00e6\u00f7\5,\27\t\u00e7\u00e8\f\7\2\2")
-        buf.write("\u00e8\u00e9\t\3\2\2\u00e9\u00f7\5,\27\b\u00ea\u00eb\f")
-        buf.write("\6\2\2\u00eb\u00ec\t\4\2\2\u00ec\u00f7\5,\27\7\u00ed\u00ee")
-        buf.write("\f\5\2\2\u00ee\u00ef\7\4\2\2\u00ef\u00f7\5,\27\6\u00f0")
-        buf.write("\u00f1\f\4\2\2\u00f1\u00f2\7\5\2\2\u00f2\u00f7\5,\27\5")
-        buf.write("\u00f3\u00f4\f\3\2\2\u00f4\u00f5\7\6\2\2\u00f5\u00f7\5")
-        buf.write(",\27\4\u00f6\u00e4\3\2\2\2\u00f6\u00e7\3\2\2\2\u00f6\u00ea")
-        buf.write("\3\2\2\2\u00f6\u00ed\3\2\2\2\u00f6\u00f0\3\2\2\2\u00f6")
-        buf.write("\u00f3\3\2\2\2\u00f7\u00fa\3\2\2\2\u00f8\u00f6\3\2\2\2")
-        buf.write("\u00f8\u00f9\3\2\2\2\u00f9-\3\2\2\2\u00fa\u00f8\3\2\2")
-        buf.write("\2\u00fb\u00fc\7%\2\2\u00fc\u0106\5.\30\2\u00fd\u00fe")
-        buf.write("\7&\2\2\u00fe\u0106\5.\30\2\u00ff\u0100\7\36\2\2\u0100")
-        buf.write("\u0101\5,\27\2\u0101\u0102\7\37\2\2\u0102\u0106\3\2\2")
-        buf.write("\2\u0103\u0106\5\62\32\2\u0104\u0106\5\60\31\2\u0105\u00fb")
-        buf.write("\3\2\2\2\u0105\u00fd\3\2\2\2\u0105\u00ff\3\2\2\2\u0105")
-        buf.write("\u0103\3\2\2\2\u0105\u0104\3\2\2\2\u0106/\3\2\2\2\u0107")
-        buf.write("\u0112\7\62\2\2\u0108\u0112\5\66\34\2\u0109\u010b\5:\36")
-        buf.write("\2\u010a\u0109\3\2\2\2\u010b\u010c\3\2\2\2\u010c\u010a")
-        buf.write("\3\2\2\2\u010c\u010d\3\2\2\2\u010d\u0112\3\2\2\2\u010e")
-        buf.write("\u0112\7\32\2\2\u010f\u0112\7\33\2\2\u0110\u0112\7\34")
-        buf.write("\2\2\u0111\u0107\3\2\2\2\u0111\u0108\3\2\2\2\u0111\u010a")
-        buf.write("\3\2\2\2\u0111\u010e\3\2\2\2\u0111\u010f\3\2\2\2\u0111")
-        buf.write("\u0110\3\2\2\2\u0112\61\3\2\2\2\u0113\u0114\7\62\2\2\u0114")
-        buf.write("\u0116\7\36\2\2\u0115\u0117\5\64\33\2\u0116\u0115\3\2")
-        buf.write("\2\2\u0116\u0117\3\2\2\2\u0117\u0118\3\2\2\2\u0118\u0119")
-        buf.write("\7\37\2\2\u0119\63\3\2\2\2\u011a\u011b\5(\25\2\u011b\u011c")
-        buf.write("\7\60\2\2\u011c\u011e\3\2\2\2\u011d\u011a\3\2\2\2\u011e")
-        buf.write("\u0121\3\2\2\2\u011f\u011d\3\2\2\2\u011f\u0120\3\2\2\2")
-        buf.write("\u0120\u0122\3\2\2\2\u0121\u011f\3\2\2\2\u0122\u0123\5")
-        buf.write("(\25\2\u0123\65\3\2\2\2\u0124\u0125\58\35\2\u0125\67\3")
-        buf.write("\2\2\2\u0126\u0127\t\5\2\2\u01279\3\2\2\2\u0128\u0129")
-        buf.write("\7\63\2\2\u0129;\3\2\2\2\37>@JPW^bin{\u0081\u0090\u0098")
-        buf.write("\u00a3\u00a7\u00ac\u00b1\u00b5\u00c5\u00cd\u00cf\u00df")
-        buf.write("\u00f6\u00f8\u0105\u010c\u0111\u0116\u011f")
+        buf.write("\u00a3\3\16\3\16\5\16\u00a8\n\16\3\17\3\17\3\17\3\17\5")
+        buf.write("\17\u00ae\n\17\3\20\3\20\3\20\5\20\u00b3\n\20\3\21\3\21")
+        buf.write("\5\21\u00b7\n\21\3\22\3\22\3\23\3\23\3\24\3\24\3\25\3")
+        buf.write("\25\3\25\3\25\3\25\3\25\3\25\3\25\5\25\u00c7\n\25\3\25")
+        buf.write("\3\25\3\25\3\25\3\25\3\25\7\25\u00cf\n\25\f\25\16\25\u00d2")
+        buf.write("\13\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3")
+        buf.write("\26\3\26\3\26\3\26\5\26\u00e1\n\26\3\27\3\27\3\27\3\27")
+        buf.write("\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27")
+        buf.write("\3\27\3\27\3\27\3\27\3\27\3\27\7\27\u00f8\n\27\f\27\16")
+        buf.write("\27\u00fb\13\27\3\30\3\30\3\30\3\30\3\30\3\30\3\30\3\30")
+        buf.write("\3\30\3\30\5\30\u0107\n\30\3\31\3\31\3\31\6\31\u010c\n")
+        buf.write("\31\r\31\16\31\u010d\3\31\3\31\3\31\5\31\u0113\n\31\3")
+        buf.write("\32\3\32\3\32\5\32\u0118\n\32\3\32\3\32\3\33\3\33\3\33")
+        buf.write("\7\33\u011f\n\33\f\33\16\33\u0122\13\33\3\33\3\33\3\34")
+        buf.write("\3\34\3\35\3\35\3\36\3\36\3\36\2\4(,\37\2\4\6\b\n\f\16")
+        buf.write("\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:\2\6\4")
+        buf.write("\2\"\"\'(\3\2%&\3\2 !\3\2\64\65\u0144\2@\3\2\2\2\4J\3")
+        buf.write("\2\2\2\6L\3\2\2\2\bW\3\2\2\2\nY\3\2\2\2\fi\3\2\2\2\16")
+        buf.write("n\3\2\2\2\20p\3\2\2\2\22\u0083\3\2\2\2\24\u0088\3\2\2")
+        buf.write("\2\26\u008e\3\2\2\2\30\u0098\3\2\2\2\32\u00a7\3\2\2\2")
+        buf.write("\34\u00ad\3\2\2\2\36\u00b2\3\2\2\2 \u00b4\3\2\2\2\"\u00b8")
+        buf.write("\3\2\2\2$\u00ba\3\2\2\2&\u00bc\3\2\2\2(\u00c6\3\2\2\2")
+        buf.write("*\u00e0\3\2\2\2,\u00e2\3\2\2\2.\u0106\3\2\2\2\60\u0112")
+        buf.write("\3\2\2\2\62\u0114\3\2\2\2\64\u0120\3\2\2\2\66\u0125\3")
+        buf.write("\2\2\28\u0127\3\2\2\2:\u0129\3\2\2\2<?\7\35\2\2=?\5\b")
+        buf.write("\5\2><\3\2\2\2>=\3\2\2\2?B\3\2\2\2@>\3\2\2\2@A\3\2\2\2")
+        buf.write("AC\3\2\2\2B@\3\2\2\2CD\7\2\2\3D\3\3\2\2\2EK\7\35\2\2F")
+        buf.write("K\5\n\6\2GH\5\16\b\2HI\7\35\2\2IK\3\2\2\2JE\3\2\2\2JF")
+        buf.write("\3\2\2\2JG\3\2\2\2K\5\3\2\2\2LP\5(\25\2MO\7\35\2\2NM\3")
+        buf.write("\2\2\2OR\3\2\2\2PN\3\2\2\2PQ\3\2\2\2QS\3\2\2\2RP\3\2\2")
+        buf.write("\2ST\7\2\2\3T\7\3\2\2\2UX\5\n\6\2VX\5\16\b\2WU\3\2\2\2")
+        buf.write("WV\3\2\2\2X\t\3\2\2\2Y^\5\f\7\2Z[\7\3\2\2[]\5\f\7\2\\")
+        buf.write("Z\3\2\2\2]`\3\2\2\2^\\\3\2\2\2^_\3\2\2\2_b\3\2\2\2`^\3")
+        buf.write("\2\2\2ac\7\3\2\2ba\3\2\2\2bc\3\2\2\2cd\3\2\2\2de\7\35")
+        buf.write("\2\2e\13\3\2\2\2fj\5\34\17\2gj\5\36\20\2hj\5\"\22\2if")
+        buf.write("\3\2\2\2ig\3\2\2\2ih\3\2\2\2j\r\3\2\2\2ko\5\20\t\2lo\5")
+        buf.write("\22\n\2mo\5\24\13\2nk\3\2\2\2nl\3\2\2\2nm\3\2\2\2o\17")
+        buf.write("\3\2\2\2pq\7\20\2\2qr\5(\25\2rs\7\61\2\2s{\5\32\16\2t")
+        buf.write("u\7\21\2\2uv\5(\25\2vw\7\61\2\2wx\5\32\16\2xz\3\2\2\2")
+        buf.write("yt\3\2\2\2z}\3\2\2\2{y\3\2\2\2{|\3\2\2\2|\u0081\3\2\2")
+        buf.write("\2}{\3\2\2\2~\177\7\22\2\2\177\u0080\7\61\2\2\u0080\u0082")
+        buf.write("\5\32\16\2\u0081~\3\2\2\2\u0081\u0082\3\2\2\2\u0082\21")
+        buf.write("\3\2\2\2\u0083\u0084\7\23\2\2\u0084\u0085\5(\25\2\u0085")
+        buf.write("\u0086\7\61\2\2\u0086\u0087\5\32\16\2\u0087\23\3\2\2\2")
+        buf.write("\u0088\u0089\7\7\2\2\u0089\u008a\7\62\2\2\u008a\u008b")
+        buf.write("\5\26\f\2\u008b\u008c\7\61\2\2\u008c\u008d\5\32\16\2\u008d")
+        buf.write("\25\3\2\2\2\u008e\u0090\7\36\2\2\u008f\u0091\5\30\r\2")
+        buf.write("\u0090\u008f\3\2\2\2\u0090\u0091\3\2\2\2\u0091\u0092\3")
+        buf.write("\2\2\2\u0092\u0093\7\37\2\2\u0093\27\3\2\2\2\u0094\u0095")
+        buf.write("\7\62\2\2\u0095\u0097\7\60\2\2\u0096\u0094\3\2\2\2\u0097")
+        buf.write("\u009a\3\2\2\2\u0098\u0096\3\2\2\2\u0098\u0099\3\2\2\2")
+        buf.write("\u0099\u009b\3\2\2\2\u009a\u0098\3\2\2\2\u009b\u009c\7")
+        buf.write("\62\2\2\u009c\31\3\2\2\2\u009d\u00a8\5\n\6\2\u009e\u009f")
+        buf.write("\7\35\2\2\u009f\u00a1\78\2\2\u00a0\u00a2\5\b\5\2\u00a1")
+        buf.write("\u00a0\3\2\2\2\u00a2\u00a3\3\2\2\2\u00a3\u00a1\3\2\2\2")
+        buf.write("\u00a3\u00a4\3\2\2\2\u00a4\u00a5\3\2\2\2\u00a5\u00a6\7")
+        buf.write("9\2\2\u00a6\u00a8\3\2\2\2\u00a7\u009d\3\2\2\2\u00a7\u009e")
+        buf.write("\3\2\2\2\u00a8\33\3\2\2\2\u00a9\u00ae\5,\27\2\u00aa\u00ab")
+        buf.write("\7\62\2\2\u00ab\u00ac\7$\2\2\u00ac\u00ae\5,\27\2\u00ad")
+        buf.write("\u00a9\3\2\2\2\u00ad\u00aa\3\2\2\2\u00ae\35\3\2\2\2\u00af")
+        buf.write("\u00b3\5 \21\2\u00b0\u00b3\5$\23\2\u00b1\u00b3\5&\24\2")
+        buf.write("\u00b2\u00af\3\2\2\2\u00b2\u00b0\3\2\2\2\u00b2\u00b1\3")
+        buf.write("\2\2\2\u00b3\37\3\2\2\2\u00b4\u00b6\7\b\2\2\u00b5\u00b7")
+        buf.write("\5(\25\2\u00b6\u00b5\3\2\2\2\u00b6\u00b7\3\2\2\2\u00b7")
+        buf.write("!\3\2\2\2\u00b8\u00b9\7\r\2\2\u00b9#\3\2\2\2\u00ba\u00bb")
+        buf.write("\7\16\2\2\u00bb%\3\2\2\2\u00bc\u00bd\7\17\2\2\u00bd\'")
+        buf.write("\3\2\2\2\u00be\u00bf\b\25\1\2\u00bf\u00c0\7\30\2\2\u00c0")
+        buf.write("\u00c7\5(\25\5\u00c1\u00c7\5,\27\2\u00c2\u00c3\5,\27\2")
+        buf.write("\u00c3\u00c4\5*\26\2\u00c4\u00c5\5,\27\2\u00c5\u00c7\3")
+        buf.write("\2\2\2\u00c6\u00be\3\2\2\2\u00c6\u00c1\3\2\2\2\u00c6\u00c2")
+        buf.write("\3\2\2\2\u00c7\u00d0\3\2\2\2\u00c8\u00c9\f\4\2\2\u00c9")
+        buf.write("\u00ca\7\27\2\2\u00ca\u00cf\5(\25\5\u00cb\u00cc\f\3\2")
+        buf.write("\2\u00cc\u00cd\7\26\2\2\u00cd\u00cf\5(\25\4\u00ce\u00c8")
+        buf.write("\3\2\2\2\u00ce\u00cb\3\2\2\2\u00cf\u00d2\3\2\2\2\u00d0")
+        buf.write("\u00ce\3\2\2\2\u00d0\u00d1\3\2\2\2\u00d1)\3\2\2\2\u00d2")
+        buf.write("\u00d0\3\2\2\2\u00d3\u00e1\7)\2\2\u00d4\u00e1\7*\2\2\u00d5")
+        buf.write("\u00e1\7+\2\2\u00d6\u00e1\7,\2\2\u00d7\u00e1\7-\2\2\u00d8")
+        buf.write("\u00e1\7.\2\2\u00d9\u00e1\7/\2\2\u00da\u00e1\7\25\2\2")
+        buf.write("\u00db\u00dc\7\30\2\2\u00dc\u00e1\7\25\2\2\u00dd\u00e1")
+        buf.write("\7\31\2\2\u00de\u00df\7\31\2\2\u00df\u00e1\7\30\2\2\u00e0")
+        buf.write("\u00d3\3\2\2\2\u00e0\u00d4\3\2\2\2\u00e0\u00d5\3\2\2\2")
+        buf.write("\u00e0\u00d6\3\2\2\2\u00e0\u00d7\3\2\2\2\u00e0\u00d8\3")
+        buf.write("\2\2\2\u00e0\u00d9\3\2\2\2\u00e0\u00da\3\2\2\2\u00e0\u00db")
+        buf.write("\3\2\2\2\u00e0\u00dd\3\2\2\2\u00e0\u00de\3\2\2\2\u00e1")
+        buf.write("+\3\2\2\2\u00e2\u00e3\b\27\1\2\u00e3\u00e4\5.\30\2\u00e4")
+        buf.write("\u00f9\3\2\2\2\u00e5\u00e6\f\b\2\2\u00e6\u00e7\t\2\2\2")
+        buf.write("\u00e7\u00f8\5,\27\t\u00e8\u00e9\f\7\2\2\u00e9\u00ea\t")
+        buf.write("\3\2\2\u00ea\u00f8\5,\27\b\u00eb\u00ec\f\6\2\2\u00ec\u00ed")
+        buf.write("\t\4\2\2\u00ed\u00f8\5,\27\7\u00ee\u00ef\f\5\2\2\u00ef")
+        buf.write("\u00f0\7\4\2\2\u00f0\u00f8\5,\27\6\u00f1\u00f2\f\4\2\2")
+        buf.write("\u00f2\u00f3\7\5\2\2\u00f3\u00f8\5,\27\5\u00f4\u00f5\f")
+        buf.write("\3\2\2\u00f5\u00f6\7\6\2\2\u00f6\u00f8\5,\27\4\u00f7\u00e5")
+        buf.write("\3\2\2\2\u00f7\u00e8\3\2\2\2\u00f7\u00eb\3\2\2\2\u00f7")
+        buf.write("\u00ee\3\2\2\2\u00f7\u00f1\3\2\2\2\u00f7\u00f4\3\2\2\2")
+        buf.write("\u00f8\u00fb\3\2\2\2\u00f9\u00f7\3\2\2\2\u00f9\u00fa\3")
+        buf.write("\2\2\2\u00fa-\3\2\2\2\u00fb\u00f9\3\2\2\2\u00fc\u00fd")
+        buf.write("\7%\2\2\u00fd\u0107\5.\30\2\u00fe\u00ff\7&\2\2\u00ff\u0107")
+        buf.write("\5.\30\2\u0100\u0101\7\36\2\2\u0101\u0102\5,\27\2\u0102")
+        buf.write("\u0103\7\37\2\2\u0103\u0107\3\2\2\2\u0104\u0107\5\62\32")
+        buf.write("\2\u0105\u0107\5\60\31\2\u0106\u00fc\3\2\2\2\u0106\u00fe")
+        buf.write("\3\2\2\2\u0106\u0100\3\2\2\2\u0106\u0104\3\2\2\2\u0106")
+        buf.write("\u0105\3\2\2\2\u0107/\3\2\2\2\u0108\u0113\7\62\2\2\u0109")
+        buf.write("\u0113\5\66\34\2\u010a\u010c\5:\36\2\u010b\u010a\3\2\2")
+        buf.write("\2\u010c\u010d\3\2\2\2\u010d\u010b\3\2\2\2\u010d\u010e")
+        buf.write("\3\2\2\2\u010e\u0113\3\2\2\2\u010f\u0113\7\32\2\2\u0110")
+        buf.write("\u0113\7\33\2\2\u0111\u0113\7\34\2\2\u0112\u0108\3\2\2")
+        buf.write("\2\u0112\u0109\3\2\2\2\u0112\u010b\3\2\2\2\u0112\u010f")
+        buf.write("\3\2\2\2\u0112\u0110\3\2\2\2\u0112\u0111\3\2\2\2\u0113")
+        buf.write("\61\3\2\2\2\u0114\u0115\7\62\2\2\u0115\u0117\7\36\2\2")
+        buf.write("\u0116\u0118\5\64\33\2\u0117\u0116\3\2\2\2\u0117\u0118")
+        buf.write("\3\2\2\2\u0118\u0119\3\2\2\2\u0119\u011a\7\37\2\2\u011a")
+        buf.write("\63\3\2\2\2\u011b\u011c\5(\25\2\u011c\u011d\7\60\2\2\u011d")
+        buf.write("\u011f\3\2\2\2\u011e\u011b\3\2\2\2\u011f\u0122\3\2\2\2")
+        buf.write("\u0120\u011e\3\2\2\2\u0120\u0121\3\2\2\2\u0121\u0123\3")
+        buf.write("\2\2\2\u0122\u0120\3\2\2\2\u0123\u0124\5(\25\2\u0124\65")
+        buf.write("\3\2\2\2\u0125\u0126\58\35\2\u0126\67\3\2\2\2\u0127\u0128")
+        buf.write("\t\5\2\2\u01289\3\2\2\2\u0129\u012a\7\63\2\2\u012a;\3")
+        buf.write("\2\2\2\37>@JPW^bin{\u0081\u0090\u0098\u00a3\u00a7\u00ad")
+        buf.write("\u00b2\u00b6\u00c6\u00ce\u00d0\u00e0\u00f7\u00f9\u0106")
+        buf.write("\u010d\u0112\u0117\u0120")
         return buf.getvalue()
 
 
@@ -1214,30 +1215,66 @@ class TinyPyParser ( Parser ):
             super().__init__(parent, invokingState)
             self.parser = parser
 
-        def expr(self, i:int=None):
-            if i is None:
-                return self.getTypedRuleContexts(TinyPyParser.ExprContext)
-            else:
-                return self.getTypedRuleContext(TinyPyParser.ExprContext,i)
-
 
         def getRuleIndex(self):
             return TinyPyParser.RULE_expr_stmt
 
+     
+        def copyFrom(self, ctx:ParserRuleContext):
+            super().copyFrom(ctx)
+
+
+
+    class ExprStmtAssignContext(Expr_stmtContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a TinyPyParser.Expr_stmtContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def NAME(self):
+            return self.getToken(TinyPyParser.NAME, 0)
+        def expr(self):
+            return self.getTypedRuleContext(TinyPyParser.ExprContext,0)
+
+
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterExpr_stmt" ):
-                listener.enterExpr_stmt(self)
+            if hasattr( listener, "enterExprStmtAssign" ):
+                listener.enterExprStmtAssign(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitExpr_stmt" ):
-                listener.exitExpr_stmt(self)
+            if hasattr( listener, "exitExprStmtAssign" ):
+                listener.exitExprStmtAssign(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitExpr_stmt" ):
-                return visitor.visitExpr_stmt(self)
+            if hasattr( visitor, "visitExprStmtAssign" ):
+                return visitor.visitExprStmtAssign(self)
             else:
                 return visitor.visitChildren(self)
 
+
+    class ExprStmtExprContext(Expr_stmtContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a TinyPyParser.Expr_stmtContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self):
+            return self.getTypedRuleContext(TinyPyParser.ExprContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterExprStmtExpr" ):
+                listener.enterExprStmtExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitExprStmtExpr" ):
+                listener.exitExprStmtExpr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExprStmtExpr" ):
+                return visitor.visitExprStmtExpr(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
@@ -1245,18 +1282,26 @@ class TinyPyParser ( Parser ):
 
         localctx = TinyPyParser.Expr_stmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 26, self.RULE_expr_stmt)
-        self._la = 0 # Token type
         try:
-            self.enterOuterAlt(localctx, 1)
-            self.state = 167
-            self.expr(0)
-            self.state = 170
-            _la = self._input.LA(1)
-            if _la==TinyPyParser.ASSIGN:
-                self.state = 168
-                self.match(TinyPyParser.ASSIGN)
-                self.state = 169
+            self.state = 171
+            la_ = self._interp.adaptivePredict(self._input,15,self._ctx)
+            if la_ == 1:
+                localctx = TinyPyParser.ExprStmtExprContext(self, localctx)
+                self.enterOuterAlt(localctx, 1)
+                self.state = 167
                 self.expr(0)
+                pass
+
+            elif la_ == 2:
+                localctx = TinyPyParser.ExprStmtAssignContext(self, localctx)
+                self.enterOuterAlt(localctx, 2)
+                self.state = 168
+                self.match(TinyPyParser.NAME)
+                self.state = 169
+                self.match(TinyPyParser.ASSIGN)
+                self.state = 170
+                self.expr(0)
+                pass
 
 
         except RecognitionException as re:
@@ -1310,21 +1355,21 @@ class TinyPyParser ( Parser ):
         localctx = TinyPyParser.Flow_stmtContext(self, self._ctx, self.state)
         self.enterRule(localctx, 28, self.RULE_flow_stmt)
         try:
-            self.state = 175
+            self.state = 176
             token = self._input.LA(1)
             if token in [TinyPyParser.RETURN]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 172
+                self.state = 173
                 self.return_stmt()
 
             elif token in [TinyPyParser.BREAK]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 173
+                self.state = 174
                 self.break_stmt()
 
             elif token in [TinyPyParser.CONTINUE]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 174
+                self.state = 175
                 self.continue_stmt()
 
             else:
@@ -1378,12 +1423,12 @@ class TinyPyParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 177
+            self.state = 178
             self.match(TinyPyParser.RETURN)
-            self.state = 179
+            self.state = 180
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TinyPyParser.NOT) | (1 << TinyPyParser.NONE) | (1 << TinyPyParser.TRUE) | (1 << TinyPyParser.FALSE) | (1 << TinyPyParser.OPEN_PAREN) | (1 << TinyPyParser.ADD) | (1 << TinyPyParser.MINUS) | (1 << TinyPyParser.NAME) | (1 << TinyPyParser.STRING_LITERAL) | (1 << TinyPyParser.DECIMAL_INTEGER) | (1 << TinyPyParser.HEX_INTEGER))) != 0):
-                self.state = 178
+                self.state = 179
                 self.test(0)
 
 
@@ -1430,7 +1475,7 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 32, self.RULE_pass_stmt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 181
+            self.state = 182
             self.match(TinyPyParser.PASS)
         except RecognitionException as re:
             localctx.exception = re
@@ -1475,7 +1520,7 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_break_stmt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 183
+            self.state = 184
             self.match(TinyPyParser.BREAK)
         except RecognitionException as re:
             localctx.exception = re
@@ -1520,7 +1565,7 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 36, self.RULE_continue_stmt)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 185
+            self.state = 186
             self.match(TinyPyParser.CONTINUE)
         except RecognitionException as re:
             localctx.exception = re
@@ -1698,16 +1743,16 @@ class TinyPyParser ( Parser ):
         self.enterRecursionRule(localctx, 38, self.RULE_test, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 195
+            self.state = 196
             la_ = self._interp.adaptivePredict(self._input,18,self._ctx)
             if la_ == 1:
                 localctx = TinyPyParser.NotTestContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 188
-                self.match(TinyPyParser.NOT)
                 self.state = 189
+                self.match(TinyPyParser.NOT)
+                self.state = 190
                 self.test(3)
                 pass
 
@@ -1715,7 +1760,7 @@ class TinyPyParser ( Parser ):
                 localctx = TinyPyParser.TestExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 190
+                self.state = 191
                 self.expr(0)
                 pass
 
@@ -1723,17 +1768,17 @@ class TinyPyParser ( Parser ):
                 localctx = TinyPyParser.ComparisonContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 191
-                self.expr(0)
                 self.state = 192
-                self.comp_op()
+                self.expr(0)
                 self.state = 193
+                self.comp_op()
+                self.state = 194
                 self.expr(0)
                 pass
 
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 205
+            self.state = 206
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -1741,36 +1786,36 @@ class TinyPyParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 203
+                    self.state = 204
                     la_ = self._interp.adaptivePredict(self._input,19,self._ctx)
                     if la_ == 1:
                         localctx = TinyPyParser.AndTestContext(self, TinyPyParser.TestContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_test)
-                        self.state = 197
+                        self.state = 198
                         if not self.precpred(self._ctx, 2):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                        self.state = 198
-                        self.match(TinyPyParser.AND)
                         self.state = 199
+                        self.match(TinyPyParser.AND)
+                        self.state = 200
                         self.test(3)
                         pass
 
                     elif la_ == 2:
                         localctx = TinyPyParser.OrTestContext(self, TinyPyParser.TestContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_test)
-                        self.state = 200
+                        self.state = 201
                         if not self.precpred(self._ctx, 1):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
-                        self.state = 201
-                        self.match(TinyPyParser.OR)
                         self.state = 202
+                        self.match(TinyPyParser.OR)
+                        self.state = 203
                         self.test(2)
                         pass
 
              
-                self.state = 207
+                self.state = 208
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,20,self._ctx)
 
@@ -1822,75 +1867,75 @@ class TinyPyParser ( Parser ):
         localctx = TinyPyParser.Comp_opContext(self, self._ctx, self.state)
         self.enterRule(localctx, 40, self.RULE_comp_op)
         try:
-            self.state = 221
+            self.state = 222
             la_ = self._interp.adaptivePredict(self._input,21,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 208
+                self.state = 209
                 self.match(TinyPyParser.LESS_THAN)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 209
+                self.state = 210
                 self.match(TinyPyParser.GREATER_THAN)
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 210
+                self.state = 211
                 self.match(TinyPyParser.EQUALS)
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 211
+                self.state = 212
                 self.match(TinyPyParser.GT_EQ)
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 212
+                self.state = 213
                 self.match(TinyPyParser.LT_EQ)
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 213
+                self.state = 214
                 self.match(TinyPyParser.NOT_EQ_1)
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 214
+                self.state = 215
                 self.match(TinyPyParser.NOT_EQ_2)
                 pass
 
             elif la_ == 8:
                 self.enterOuterAlt(localctx, 8)
-                self.state = 215
+                self.state = 216
                 self.match(TinyPyParser.IN)
                 pass
 
             elif la_ == 9:
                 self.enterOuterAlt(localctx, 9)
-                self.state = 216
-                self.match(TinyPyParser.NOT)
                 self.state = 217
+                self.match(TinyPyParser.NOT)
+                self.state = 218
                 self.match(TinyPyParser.IN)
                 pass
 
             elif la_ == 10:
                 self.enterOuterAlt(localctx, 10)
-                self.state = 218
+                self.state = 219
                 self.match(TinyPyParser.IS)
                 pass
 
             elif la_ == 11:
                 self.enterOuterAlt(localctx, 11)
-                self.state = 219
-                self.match(TinyPyParser.IS)
                 self.state = 220
+                self.match(TinyPyParser.IS)
+                self.state = 221
                 self.match(TinyPyParser.NOT)
                 pass
 
@@ -2132,10 +2177,10 @@ class TinyPyParser ( Parser ):
             self._ctx = localctx
             _prevctx = localctx
 
-            self.state = 224
+            self.state = 225
             self.factor()
             self._ctx.stop = self._input.LT(-1)
-            self.state = 246
+            self.state = 247
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,23,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -2143,103 +2188,103 @@ class TinyPyParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 244
+                    self.state = 245
                     la_ = self._interp.adaptivePredict(self._input,22,self._ctx)
                     if la_ == 1:
                         localctx = TinyPyParser.MulDivModContext(self, TinyPyParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 226
+                        self.state = 227
                         if not self.precpred(self._ctx, 6):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
-                        self.state = 227
+                        self.state = 228
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
                         if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TinyPyParser.STAR) | (1 << TinyPyParser.DIV) | (1 << TinyPyParser.MOD))) != 0)):
                             localctx.op = self._errHandler.recoverInline(self)
                         else:
                             self.consume()
-                        self.state = 228
+                        self.state = 229
                         self.expr(7)
                         pass
 
                     elif la_ == 2:
                         localctx = TinyPyParser.AddSubContext(self, TinyPyParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 229
+                        self.state = 230
                         if not self.precpred(self._ctx, 5):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
-                        self.state = 230
+                        self.state = 231
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
                         if not(_la==TinyPyParser.ADD or _la==TinyPyParser.MINUS):
                             localctx.op = self._errHandler.recoverInline(self)
                         else:
                             self.consume()
-                        self.state = 231
+                        self.state = 232
                         self.expr(6)
                         pass
 
                     elif la_ == 3:
                         localctx = TinyPyParser.ShiftsContext(self, TinyPyParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 232
+                        self.state = 233
                         if not self.precpred(self._ctx, 4):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                        self.state = 233
+                        self.state = 234
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
                         if not(_la==TinyPyParser.LEFT_SHIFT or _la==TinyPyParser.RIGHT_SHIFT):
                             localctx.op = self._errHandler.recoverInline(self)
                         else:
                             self.consume()
-                        self.state = 234
+                        self.state = 235
                         self.expr(5)
                         pass
 
                     elif la_ == 4:
                         localctx = TinyPyParser.BitAndContext(self, TinyPyParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 235
+                        self.state = 236
                         if not self.precpred(self._ctx, 3):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                        self.state = 236
-                        localctx.op = self.match(TinyPyParser.T__1)
                         self.state = 237
+                        localctx.op = self.match(TinyPyParser.T__1)
+                        self.state = 238
                         self.expr(4)
                         pass
 
                     elif la_ == 5:
                         localctx = TinyPyParser.BitXorContext(self, TinyPyParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 238
+                        self.state = 239
                         if not self.precpred(self._ctx, 2):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                        self.state = 239
-                        localctx.op = self.match(TinyPyParser.T__2)
                         self.state = 240
+                        localctx.op = self.match(TinyPyParser.T__2)
+                        self.state = 241
                         self.expr(3)
                         pass
 
                     elif la_ == 6:
                         localctx = TinyPyParser.BitOrContext(self, TinyPyParser.ExprContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 241
+                        self.state = 242
                         if not self.precpred(self._ctx, 1):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 1)")
-                        self.state = 242
-                        localctx.op = self.match(TinyPyParser.T__3)
                         self.state = 243
+                        localctx.op = self.match(TinyPyParser.T__3)
+                        self.state = 244
                         self.expr(2)
                         pass
 
              
-                self.state = 248
+                self.state = 249
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,23,self._ctx)
 
@@ -2374,48 +2419,48 @@ class TinyPyParser ( Parser ):
         localctx = TinyPyParser.FactorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 44, self.RULE_factor)
         try:
-            self.state = 259
+            self.state = 260
             la_ = self._interp.adaptivePredict(self._input,24,self._ctx)
             if la_ == 1:
                 localctx = TinyPyParser.UnaryExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 249
-                localctx.op = self.match(TinyPyParser.ADD)
                 self.state = 250
+                localctx.op = self.match(TinyPyParser.ADD)
+                self.state = 251
                 self.factor()
                 pass
 
             elif la_ == 2:
                 localctx = TinyPyParser.UnaryExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
-                self.state = 251
-                localctx.op = self.match(TinyPyParser.MINUS)
                 self.state = 252
+                localctx.op = self.match(TinyPyParser.MINUS)
+                self.state = 253
                 self.factor()
                 pass
 
             elif la_ == 3:
                 localctx = TinyPyParser.ParenExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
-                self.state = 253
-                self.match(TinyPyParser.OPEN_PAREN)
                 self.state = 254
-                self.expr(0)
+                self.match(TinyPyParser.OPEN_PAREN)
                 self.state = 255
+                self.expr(0)
+                self.state = 256
                 self.match(TinyPyParser.CLOSE_PAREN)
                 pass
 
             elif la_ == 4:
                 localctx = TinyPyParser.FuncInvokExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
-                self.state = 257
+                self.state = 258
                 self.funcinvoke()
                 pass
 
             elif la_ == 5:
                 localctx = TinyPyParser.AtomExprContext(self, localctx)
                 self.enterOuterAlt(localctx, 5)
-                self.state = 258
+                self.state = 259
                 self.atom()
                 pass
 
@@ -2482,48 +2527,48 @@ class TinyPyParser ( Parser ):
         localctx = TinyPyParser.AtomContext(self, self._ctx, self.state)
         self.enterRule(localctx, 46, self.RULE_atom)
         try:
-            self.state = 271
+            self.state = 272
             token = self._input.LA(1)
             if token in [TinyPyParser.NAME]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 261
+                self.state = 262
                 self.match(TinyPyParser.NAME)
 
             elif token in [TinyPyParser.DECIMAL_INTEGER, TinyPyParser.HEX_INTEGER]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 262
+                self.state = 263
                 self.number()
 
             elif token in [TinyPyParser.STRING_LITERAL]:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 264 
+                self.state = 265 
                 self._errHandler.sync(self)
                 _alt = 1
                 while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                     if _alt == 1:
-                        self.state = 263
+                        self.state = 264
                         self.string()
 
                     else:
                         raise NoViableAltException(self)
-                    self.state = 266 
+                    self.state = 267 
                     self._errHandler.sync(self)
                     _alt = self._interp.adaptivePredict(self._input,25,self._ctx)
 
 
             elif token in [TinyPyParser.NONE]:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 268
+                self.state = 269
                 self.match(TinyPyParser.NONE)
 
             elif token in [TinyPyParser.TRUE]:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 269
+                self.state = 270
                 self.match(TinyPyParser.TRUE)
 
             elif token in [TinyPyParser.FALSE]:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 270
+                self.state = 271
                 self.match(TinyPyParser.FALSE)
 
             else:
@@ -2577,18 +2622,18 @@ class TinyPyParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 273
-            self.match(TinyPyParser.NAME)
             self.state = 274
+            self.match(TinyPyParser.NAME)
+            self.state = 275
             self.match(TinyPyParser.OPEN_PAREN)
-            self.state = 276
+            self.state = 277
             _la = self._input.LA(1)
             if (((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << TinyPyParser.NOT) | (1 << TinyPyParser.NONE) | (1 << TinyPyParser.TRUE) | (1 << TinyPyParser.FALSE) | (1 << TinyPyParser.OPEN_PAREN) | (1 << TinyPyParser.ADD) | (1 << TinyPyParser.MINUS) | (1 << TinyPyParser.NAME) | (1 << TinyPyParser.STRING_LITERAL) | (1 << TinyPyParser.DECIMAL_INTEGER) | (1 << TinyPyParser.HEX_INTEGER))) != 0):
-                self.state = 275
+                self.state = 276
                 self.arglist()
 
 
-            self.state = 278
+            self.state = 279
             self.match(TinyPyParser.CLOSE_PAREN)
         except RecognitionException as re:
             localctx.exception = re
@@ -2637,20 +2682,20 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 50, self.RULE_arglist)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 285
+            self.state = 286
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,28,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
-                    self.state = 280
-                    self.test(0)
                     self.state = 281
+                    self.test(0)
+                    self.state = 282
                     self.match(TinyPyParser.COMMA) 
-                self.state = 287
+                self.state = 288
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,28,self._ctx)
 
-            self.state = 288
+            self.state = 289
             self.test(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -2696,7 +2741,7 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 52, self.RULE_number)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 290
+            self.state = 291
             self.integer()
         except RecognitionException as re:
             localctx.exception = re
@@ -2745,7 +2790,7 @@ class TinyPyParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 292
+            self.state = 293
             _la = self._input.LA(1)
             if not(_la==TinyPyParser.DECIMAL_INTEGER or _la==TinyPyParser.HEX_INTEGER):
                 self._errHandler.recoverInline(self)
@@ -2794,7 +2839,7 @@ class TinyPyParser ( Parser ):
         self.enterRule(localctx, 56, self.RULE_string)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 294
+            self.state = 295
             self.match(TinyPyParser.STRING_LITERAL)
         except RecognitionException as re:
             localctx.exception = re

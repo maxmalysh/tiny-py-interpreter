@@ -102,7 +102,12 @@ suite
  */
 
 expr_stmt
-    : expr ('=' expr)?;
+    : expr              # ExprStmtExpr
+    | NAME '=' expr     # ExprStmtAssign
+    ;
+
+//expr_stmt
+//    : expr ('=' expr)?;
 
 flow_stmt
     : return_stmt

@@ -74,8 +74,13 @@ class TinyPyVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by TinyPyParser#expr_stmt.
-    def visitExpr_stmt(self, ctx:TinyPyParser.Expr_stmtContext):
+    # Visit a parse tree produced by TinyPyParser#ExprStmtExpr.
+    def visitExprStmtExpr(self, ctx:TinyPyParser.ExprStmtExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#ExprStmtAssign.
+    def visitExprStmtAssign(self, ctx:TinyPyParser.ExprStmtAssignContext):
         return self.visitChildren(ctx)
 
 
