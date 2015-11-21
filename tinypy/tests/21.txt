@@ -1,0 +1,4 @@
+- (True and True)
+
+
+- (not False and 3 > 2 > 1)

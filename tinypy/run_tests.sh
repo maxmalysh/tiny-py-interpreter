@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Just a temporary solution for testing
-for i in `seq 1 20`;
+for i in `seq 1 22`;
 do
     path=tests/$i.txt
     echo $path
