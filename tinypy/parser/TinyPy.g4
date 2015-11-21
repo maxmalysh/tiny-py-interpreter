@@ -72,9 +72,14 @@ compound_stmt
  *
  */
 
-if_stmt
-    : IF test ':' suite ( ELIF test ':' suite )* ( ELSE ':' suite )?
-    ;
+if_stmt:
+    IF test ':' suite if_elif* if_else?;
+
+if_elif:
+    ELIF test ':' suite;
+
+if_else:
+    ELSE ':' suite;
 
 while_stmt
     : WHILE test ':' suite //( ELSE ':' suite )?
@@ -102,12 +107,18 @@ suite
  */
 
 expr_stmt
-    : expr              # ExprStmtExpr
-    | NAME '=' expr     # ExprStmtAssign
+    : test                # ExprStmtExpr
+    | NAME '=' test       # ExprStmtAssign
+    | NAME augassign test # ExprStmtAugmented
     ;
 
+augassign : '+=' | '-=' | '*=' | '/=' | '%='
+          | '<<=' | '>>=' | '&=' | '|=' | '^='
+          ;
 //expr_stmt
-//    : expr ('=' expr)?;
+//    : testlist_expr  ( '=' ( testlist_expr ) )*
+//    ;
+
 
 flow_stmt
     : return_stmt
@@ -131,19 +142,15 @@ continue_stmt: CONTINUE;
 
 
 test    : expr                  # TestExpr
-        | expr comp_op expr     # Comparison
+        | test comp_op test     # Comparison
         | NOT test              # NotTest
         | test AND test         # AndTest
         | test OR test          # OrTest
         ;
 
- comp_op     : '<' | '>' | '==' | '>=' | '<=' | '<>' | '!='
-             | IN | NOT IN | IS | IS NOT
-             ;
-
-//expr_stmt
-//    : testlist_expr  ( '=' ( testlist_expr ) )*
-//    ;
+comp_op     : '<' | '>' | '==' | '>=' | '<=' | '<>' | '!='
+            | IN | NOT IN | IS | IS NOT
+            ;
 
 
 expr    : factor                            # FactorExpr
@@ -158,13 +165,13 @@ expr    : factor                            # FactorExpr
 factor
     : op='+' factor    # unaryExpr
     | op='-' factor    # unaryExpr
-    | '(' expr ')'     # parenExpr
-    | funcinvoke       # funcInvokExpr
+    | '(' test ')'     # parenExpr
     | atom             # atomExpr
     ;
 
 atom
     : NAME
+    | funcinvoke
     | number
     | string+
     | NONE
@@ -187,12 +194,17 @@ arglist
 
 number
     : integer
-//    | FLOAT_NUMBER
+    | FLOAT_NUMBER
     ;
 
 integer
     : DECIMAL_INTEGER
     | HEX_INTEGER
+    ;
+
+FLOAT_NUMBER
+    : POINT_FLOAT
+    | EXPONENT_FLOAT
     ;
 
 string
@@ -237,6 +249,9 @@ NEWLINE
       { self.newLineAction() }
     ;
 
+COMMA  : ',';
+COLON  : ':';
+
 OPEN_PAREN  : '(' { self.opened += 1 };
 CLOSE_PAREN : ')' { self.opened -= 1 };
 
@@ -250,6 +265,9 @@ ADD    : '+';
 MINUS  : '-';
 DIV    : '/';
 MOD    : '%';
+OR_OP  : '|';
+XOR    : '^';
+AND_OP : '&';
 
 LESS_THAN    : '<';
 GREATER_THAN : '>';
@@ -259,9 +277,20 @@ LT_EQ        : '<=';
 NOT_EQ_1     : '<>';
 NOT_EQ_2     : '!=';
 
-COMMA  : ',';
-COLON  : ':';
 
+ADD_ASSIGN : '+=';
+SUB_ASSIGN : '-=';
+MULT_ASSIGN : '*=';
+AT_ASSIGN : '@=';
+DIV_ASSIGN : '/=';
+MOD_ASSIGN : '%=';
+AND_ASSIGN : '&=';
+OR_ASSIGN : '|=';
+XOR_ASSIGN : '^=';
+LEFT_SHIFT_ASSIGN : '<<=';
+RIGHT_SHIFT_ASSIGN : '>>=';
+POWER_ASSIGN : '**=';
+IDIV_ASSIGN : '//=';
 
 NAME
     : ID_START ID_CONTINUE*;
@@ -283,9 +312,11 @@ UNKNOWN_CHAR
     : .
     ;
 
+CYRILLIC_RANGE : [\u0400-\u04FF] ;
+
 fragment SPACES: [ \t]+;
 fragment COMMENT: '#' ~[\r\n]*;
-fragment ID_START: '_' | [A-Z] | [a-z];
+fragment ID_START: '_' | [A-Z] | [a-z] | CYRILLIC_RANGE;
 fragment ID_CONTINUE: ID_START | [0-9];
 
 fragment NON_ZERO_DIGIT : [1-9];
@@ -302,6 +333,17 @@ fragment STRING_ESCAPE_SEQ
     : '\\' .
     ;
 
+fragment POINT_FLOAT
+    : INT_PART? FRACTION
+    | INT_PART '.'
+    ;
 
 
+fragment EXPONENT_FLOAT
+    : ( INT_PART | POINT_FLOAT ) EXPONENT
+    ;
+
+fragment INT_PART: DIGIT+;
+fragment FRACTION: '.' DIGIT+;
+fragment EXPONENT: [eE] [+-]? DIGIT+;
 
