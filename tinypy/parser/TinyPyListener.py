@@ -80,6 +80,24 @@ class TinyPyListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TinyPyParser#if_elif.
+    def enterIf_elif(self, ctx:TinyPyParser.If_elifContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#if_elif.
+    def exitIf_elif(self, ctx:TinyPyParser.If_elifContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#if_else.
+    def enterIf_else(self, ctx:TinyPyParser.If_elseContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#if_else.
+    def exitIf_else(self, ctx:TinyPyParser.If_elseContext):
+        pass
+
+
     # Enter a parse tree produced by TinyPyParser#while_stmt.
     def enterWhile_stmt(self, ctx:TinyPyParser.While_stmtContext):
         pass
@@ -140,6 +158,24 @@ class TinyPyListener(ParseTreeListener):
 
     # Exit a parse tree produced by TinyPyParser#ExprStmtAssign.
     def exitExprStmtAssign(self, ctx:TinyPyParser.ExprStmtAssignContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#ExprStmtAugmented.
+    def enterExprStmtAugmented(self, ctx:TinyPyParser.ExprStmtAugmentedContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#ExprStmtAugmented.
+    def exitExprStmtAugmented(self, ctx:TinyPyParser.ExprStmtAugmentedContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#augassign.
+    def enterAugassign(self, ctx:TinyPyParser.AugassignContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#augassign.
+    def exitAugassign(self, ctx:TinyPyParser.AugassignContext):
         pass
 
 
@@ -320,15 +356,6 @@ class TinyPyListener(ParseTreeListener):
 
     # Exit a parse tree produced by TinyPyParser#parenExpr.
     def exitParenExpr(self, ctx:TinyPyParser.ParenExprContext):
-        pass
-
-
-    # Enter a parse tree produced by TinyPyParser#funcInvokExpr.
-    def enterFuncInvokExpr(self, ctx:TinyPyParser.FuncInvokExprContext):
-        pass
-
-    # Exit a parse tree produced by TinyPyParser#funcInvokExpr.
-    def exitFuncInvokExpr(self, ctx:TinyPyParser.FuncInvokExprContext):
         pass
 
 

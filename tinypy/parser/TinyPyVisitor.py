@@ -49,6 +49,16 @@ class TinyPyVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by TinyPyParser#if_elif.
+    def visitIf_elif(self, ctx:TinyPyParser.If_elifContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#if_else.
+    def visitIf_else(self, ctx:TinyPyParser.If_elseContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by TinyPyParser#while_stmt.
     def visitWhile_stmt(self, ctx:TinyPyParser.While_stmtContext):
         return self.visitChildren(ctx)
@@ -81,6 +91,16 @@ class TinyPyVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by TinyPyParser#ExprStmtAssign.
     def visitExprStmtAssign(self, ctx:TinyPyParser.ExprStmtAssignContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#ExprStmtAugmented.
+    def visitExprStmtAugmented(self, ctx:TinyPyParser.ExprStmtAugmentedContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#augassign.
+    def visitAugassign(self, ctx:TinyPyParser.AugassignContext):
         return self.visitChildren(ctx)
 
 
@@ -181,11 +201,6 @@ class TinyPyVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by TinyPyParser#parenExpr.
     def visitParenExpr(self, ctx:TinyPyParser.ParenExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by TinyPyParser#funcInvokExpr.
-    def visitFuncInvokExpr(self, ctx:TinyPyParser.FuncInvokExprContext):
         return self.visitChildren(ctx)
 
 
