@@ -90,7 +90,7 @@ class InteractiveShell:
                     print(parseTreeString)
 
                 # Evaluate it...
-                from parser.CustomVisitor import CustomVisitor
+                from AST.AstBuilder import CustomVisitor
 
                 visitor = CustomVisitor()
                 ast = visitor.visitSingle_input(parse_tree)
@@ -99,21 +99,25 @@ class InteractiveShell:
 
                 results = ast.eval()
 
+                #
+                # We should change this! We should remove all lists,
+                # flatten the result onto the single list
+                #
                 if results != None:
-                    for result in results:
-                        if result != None:
-                            print(result)
+                    for statement in results:
+                        if statement != None:
+                            sys.displayhook(statement)
 
             except antlr4.RecognitionException as e:
                 print("Caught" + str(e) )
             ##
             ## Add here our own super class of the own exception system
             ##
-            except KeyboardInterrupt as e:
-                print("\n" + e.__class__.__name__)
-                print("Type exit() to quit")
-            except Exception as e:
-                print(e.__class__.__name__ + ": " + str(e))
+            #except KeyboardInterrupt as e:
+            #    print("\n" + e.__class__.__name__)
+            #    print("Type exit() to quit")
+            #except Exception as e:
+            #    print(e.__class__.__name__ + ": " + str(e))
 
     def print_greeting(self):
         print(self.greeting)

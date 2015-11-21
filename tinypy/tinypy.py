@@ -1,4 +1,3 @@
-import sys
 import argparse
 
 import antlr4
@@ -33,7 +32,7 @@ def eval_string(input_string, args=None):
     walker.walk(listener, parse_tree)
 
     # Evaluate it...
-    from parser.CustomVisitor import CustomVisitor
+    from AST.AstBuilder import CustomVisitor
 
     visitor = CustomVisitor()
     ast = visitor.visitEval_input(parse_tree)
@@ -54,7 +53,30 @@ def eval_string(input_string, args=None):
         print(cst)
 
 
+#
+# TODO (current scope):
+# 1. Add IF to the visitor
+# 2. Add IF to the AST (check it)
+# 3. Add WHILE to the visitor
+# 4. Append to the lists of the statements on the highest level (or somewhere in the middle)
+# 5. Refactor visitor
+# 6. Refactor AST
+#
+#
+# TODO:
+# 1. Intelligent display hook for the shell mode
+# 2. Proper memory management & variable scope handling
+# 3. Exception handling
+# 4. Unit tests
+# 5. Change stdin/stdout reads to the input / print
+#
 
+#
+# Known problems:
+# 1) Unicode characters are not erased properly (have to use input() instead of sys.stdin)
+# 2) Statement evaluation resulsts are passed to the displayhook as a nested structure
+#
+#
 if __name__ == '__main__':
     argParser = argparse.ArgumentParser()
     argParser.add_argument('filename', type=str, nargs='?',
