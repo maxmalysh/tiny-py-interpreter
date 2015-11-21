@@ -3,11 +3,11 @@ import sys
 import antlr4
 from antlr4.tree.Trees import Trees
 
+from AST.builder.Builder import CustomVisitor
 from parser.CustomLexer import CustomLexer
 from parser.TinyPyParser import TinyPyParser
 from parser.Errors import CustomErrorStrategy, CustomErrorListener, BufferedErrorListener
 from parser import CST
-
 
 class InteractiveShell:
     greeting =  "Call exit() to quit\n"
@@ -17,16 +17,6 @@ class InteractiveShell:
         self.single_input = ""
         self.readMore = False
         pass
-
-
-    def reset_recognizers(self, input_stream):
-        # Instantiate an run generated lexer
-        self.lexer = CustomLexer(input_stream)
-        self.tokens = antlr4.CommonTokenStream(self.lexer)
-
-        # Instantiate and run generated parser
-        self.parser = TinyPyParser(self.tokens)
-        self.parser._errHandler = CustomErrorStrategy()
 
     def loop(self):
         while True:
@@ -40,7 +30,6 @@ class InteractiveShell:
                     sys.stdout.flush()
                     self.single_input = sys.stdin.readline()
 
-                #self.single_input = "34 + 45*56 - 0x0A\n"
                 input_stream = antlr4.InputStream(self.single_input)
 
                 # Instantiate and run generated lexer
@@ -90,8 +79,6 @@ class InteractiveShell:
                     print(parseTreeString)
 
                 # Evaluate it...
-                from AST.AstBuilder import CustomVisitor
-
                 visitor = CustomVisitor()
                 ast = visitor.visitSingle_input(parse_tree)
                 if ast == None:

@@ -1,7 +1,9 @@
 from parser.TinyPyParser import TinyPyParser
 from parser.TinyPyVisitor import TinyPyVisitor
-import AST.ast as ast
 
+import AST.ast as ast
+import AST.expr
+import AST.stmt
 
 class ExprVisitorMixin(TinyPyVisitor):
 
@@ -13,37 +15,37 @@ class ExprVisitorMixin(TinyPyVisitor):
         left  = self.visit(ctx.test(0))
         right = self.visit(ctx.test(1))
         op = ctx.comp_op().getText()
-        return ast.BinaryComp(left=left, right=right, op=op)
+        return AST.expr.BinaryComp(left=left, right=right, op=op)
 
     def visitNotTest(self, ctx:TinyPyParser.NotTestContext):
         test = self.visit(ctx.test())
-        return ast.UnaryComp(operand=test, op=ast.Compare.Op.NOT)
+        return AST.expr.UnaryComp(operand=test, op=AST.expr.Compare.Op.NOT)
 
     def visitAndTest(self, ctx:TinyPyParser.AndTestContext):
         left  = self.visit(ctx.test(0))
         right = self.visit(ctx.test(1))
-        return ast.BinaryComp(left=left, right=right, op=ast.Compare.Op.AND)
+        return AST.expr.BinaryComp(left=left, right=right, op=AST.expr.Compare.Op.AND)
 
     def visitOrTest(self, ctx:TinyPyParser.AndTestContext):
         left  = self.visit(ctx.test(0))
         right = self.visit(ctx.test(1))
-        return ast.BinaryComp(left=left, right=right, op=ast.Compare.Op.OR)
+        return AST.expr.BinaryComp(left=left, right=right, op=AST.expr.Compare.Op.OR)
 
     #
     # Arithmetic (@expr rule)
     #
 
     binaryExprTable = {
-        TinyPyParser.ADD         : ast.AddOp,
-        TinyPyParser.MINUS       : ast.SubOp,
-        TinyPyParser.STAR        : ast.MultOp,
-        TinyPyParser.DIV         : ast.DivOp,
-        TinyPyParser.MOD         : ast.ModOp,
-        TinyPyParser.LEFT_SHIFT  : ast.LshiftOp,
-        TinyPyParser.RIGHT_SHIFT : ast.RshiftOp,
-        TinyPyParser.AND_OP      : ast.BitAndOp,
-        TinyPyParser.XOR         : ast.BitXorOp,
-        TinyPyParser.OR_OP       : ast.BitOrOp,
+        TinyPyParser.ADD         : AST.expr.AddOp,
+        TinyPyParser.MINUS       : AST.expr.SubOp,
+        TinyPyParser.STAR        : AST.expr.MultOp,
+        TinyPyParser.DIV         : AST.expr.DivOp,
+        TinyPyParser.MOD         : AST.expr.ModOp,
+        TinyPyParser.LEFT_SHIFT  : AST.expr.LshiftOp,
+        TinyPyParser.RIGHT_SHIFT : AST.expr.RshiftOp,
+        TinyPyParser.AND_OP      : AST.expr.BitAndOp,
+        TinyPyParser.XOR         : AST.expr.BitXorOp,
+        TinyPyParser.OR_OP       : AST.expr.BitOrOp,
     }
 
     def visitGenericExpr(self, ctx):
@@ -79,7 +81,7 @@ class ExprVisitorMixin(TinyPyVisitor):
 
     def visitUnaryExpr(self, ctx:TinyPyParser.UnaryExprContext):
         operand = ctx.factor().accept(self)
-        return ast.UnaryOp(op=ctx.op.text, operand=operand)
+        return AST.expr.UnaryOp(op=ctx.op.text, operand=operand)
 
 
     def visitParenExpr(self, ctx:TinyPyParser.ParenExprContext):
@@ -88,13 +90,13 @@ class ExprVisitorMixin(TinyPyVisitor):
 
     def visitAtom(self, ctx:TinyPyParser.AtomContext):
         if ctx.NONE() != None:
-            return ast.NameConstant('None')
+            return AST.expr.NameConstant('None')
         elif ctx.TRUE() != None:
-            return ast.NameConstant('True')
+            return AST.expr.NameConstant('True')
         elif ctx.FALSE() != None:
-            return ast.NameConstant('False')
+            return AST.expr.NameConstant('False')
         elif ctx.NAME() != None:
-            return ast.Name(id=ctx.NAME().getText(), ctx=ast.Name.Context.Load)
+            return AST.expr.Name(id=ctx.NAME().getText(), ctx=AST.expr.Name.Context.Load)
 
         # Visit funcinvoke / number / string
         return self.visitChildren(ctx)
@@ -114,8 +116,8 @@ class ExprVisitorMixin(TinyPyVisitor):
                 if arg != None:
                     args.append(arg)
 
-        funcName = ast.Name(name, ast.Name.Context.Load)
-        return ast.CallExpr(func=funcName, args=args)
+        funcName = AST.stmt.Name(name, AST.stmt.Name.Context.Load)
+        return AST.expr.CallExpr(func=funcName, args=args)
 
     #
     # Strings and numbers
@@ -127,18 +129,18 @@ class ExprVisitorMixin(TinyPyVisitor):
 
         elif ctx.FLOAT_NUMBER() != None:
             number = float(ctx.FLOAT_NUMBER().getText())
-            return ast.Num(number)
+            return AST.expr.Num(number)
 
         raise ValueError()
 
     def visitInteger(self, ctx:TinyPyParser.IntegerContext):
         if ctx.DECIMAL_INTEGER() != None:
             decimal = int(ctx.DECIMAL_INTEGER().getText())
-            return ast.Num(decimal)
+            return AST.expr.Num(decimal)
 
         elif ctx.HEX_INTEGER() != None:
             hex = int(ctx.HEX_INTEGER().getText(), 16)
-            return ast.Num(hex)
+            return AST.expr.Num(hex)
 
         raise ValueError()
 
@@ -146,6 +148,6 @@ class ExprVisitorMixin(TinyPyVisitor):
         node = ctx.STRING_LITERAL()
         if node != None:
             text = node.getText()[1:-1]
-            return ast.Str(text)
+            return AST.expr.Str(text)
 
         raise ValueError()

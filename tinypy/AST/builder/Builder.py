@@ -1,6 +1,5 @@
-import collections
-from AST.ExprVisitor import ExprVisitorMixin
-from AST.StmtVisitor import StmtVisitorMixin
+from AST.builder.ExprVisitor import ExprVisitorMixin
+from AST.builder.StmtVisitor import StmtVisitorMixin
 
 from parser.TinyPyParser import TinyPyParser
 from parser.TinyPyVisitor import TinyPyVisitor
@@ -10,11 +9,20 @@ from AST import ast
 class CustomVisitor(StmtVisitorMixin, ExprVisitorMixin, TinyPyVisitor):
 
     #
-    # Start rules
     #
-    def visitEval_input(self, ctx:TinyPyParser.Eval_inputContext):
-        return ast.EvalExpression(self.visit(ctx.test()))
+    #
+    def visitFile_input(self, ctx:TinyPyParser.File_inputContext):
+        statements = []
 
+        for stmt in ctx.stmt():
+            statement =  self.visit(stmt)
+            if statement != None:
+                if type(statement) is list:
+                    statements += statement
+                else:
+                    statements.append(statement)
+
+        return ast.Module(body=statements)
 
 
     #
@@ -29,16 +37,12 @@ class CustomVisitor(StmtVisitorMixin, ExprVisitorMixin, TinyPyVisitor):
 
         return None
 
-    def visitFile_input(self, ctx:TinyPyParser.File_inputContext):
-        i = 0
-        statements = []
+    #
+    # Eval single expression (call to the eval() function)
+    #
+    def visitEval_input(self, ctx:TinyPyParser.Eval_inputContext):
+        return ast.EvalExpression(self.visit(ctx.test()))
 
-        while i < len(ctx.children):
-            statement =  self.visit(ctx.stmt(i))
-            if statement != None:
-                statements.append(statement)
-
-        return ast.Module(body=statements)
 
 
     #

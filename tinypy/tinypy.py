@@ -2,6 +2,7 @@ import argparse
 
 import antlr4
 from antlr4.tree.Trees import Trees
+from AST.builder.Builder import CustomVisitor
 
 from parser.CST import CstFlattened, CstFiltered
 from parser.Errors import CustomErrorStrategy
@@ -32,7 +33,7 @@ def eval_string(input_string, args=None):
     walker.walk(listener, parse_tree)
 
     # Evaluate it...
-    from AST.AstBuilder import CustomVisitor
+    from AST.Builder import CustomVisitor
 
     visitor = CustomVisitor()
     ast = visitor.visitEval_input(parse_tree)
@@ -134,6 +135,13 @@ if __name__ == '__main__':
         if args.cst:
             print(cst)
 
+        # Evaluate it...
+        visitor = CustomVisitor()
+        ast = visitor.visitFile_input(parse_tree)
 
+        if ast == None:
+            exit()
+
+        ast.eval()
 
 

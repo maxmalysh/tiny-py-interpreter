@@ -1,8 +1,8 @@
 from parser.TinyPyParser import TinyPyParser
 from parser.TinyPyVisitor import TinyPyVisitor
+
 import AST.ast as ast
-
-
+import AST.stmt
 
 class StmtVisitorMixin(TinyPyVisitor):
 
@@ -55,14 +55,31 @@ class StmtVisitorMixin(TinyPyVisitor):
             nodeSuite = self.visit(node.suite())
             # FIXME - PUT ELIF CONDITIONS TO THE ORELSE
 
-        return ast.IfStmt(test=test, body=suite, orelse=orelse)
+        return AST.stmt.IfStmt(test=test, body=suite, orelse=orelse)
 
 
     def visitWhile_stmt(self, ctx:TinyPyParser.While_stmtContext):
         test = self.visit(ctx.test())
         suite = self.visit(ctx.suite())
 
-        return ast.WhileStmt(test=test, body=suite, orelse=[])
+        return AST.stmt.WhileStmt(test=test, body=suite, orelse=[])
+
+
+    def visitFuncdef(self, ctx:TinyPyParser.FuncdefContext):
+        name = ctx.NAME().getText()
+        suite = self.visit(ctx.suite())
+
+        param_ctx = ctx.parameters().param_argslist()
+        params = []
+
+        if param_ctx != None:
+            for name in param_ctx.NAME():
+                params.append(name.getText())
+
+        #
+        # FIXME
+        #
+        return super().visitFuncdef(ctx)
 
     #
     # Small statements
@@ -72,9 +89,9 @@ class StmtVisitorMixin(TinyPyVisitor):
         name = ctx.NAME().getText()
         expr = self.visit(ctx.test())
 
-        nameNode = ast.Name(id=name, ctx=ast.Name.Context.Store)
+        nameNode = AST.stmt.Name(id=name, ctx=AST.stmt.Name.Context.Store)
 
-        return ast.AssignStmt(target=nameNode, value=expr)
+        return AST.stmt.AssignStmt(target=nameNode, value=expr)
 
 
     def visitExprStmtAugmented(self, ctx:TinyPyParser.ExprStmtAugmentedContext):
@@ -82,5 +99,5 @@ class StmtVisitorMixin(TinyPyVisitor):
         value = self.visit(ctx.test())
         op = ctx.augassign().getText()
 
-        return ast.AugAssignStmt(name=name, value=value, op=op)
+        return AST.stmt.AugAssignStmt(name=name, value=value, op=op)
 
