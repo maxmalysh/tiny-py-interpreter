@@ -1,3 +1,4 @@
+from enum import Enum
 from AST.ast import Statement, Expression
 from AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, BitAndOp, BitOrOp, BitXorOp, LshiftOp, RshiftOp, Name
 
@@ -13,7 +14,6 @@ import runtime.Errors
 # Actually, we'll need to set new (and then back an old one) when evaluating only functions,
 # as there are no scoping rules for other statements; thus, @Name expression will need to check
 # only single global variable - current namepsace
-import runtime.Memory
 
 
 class FunctionDef(Statement):
@@ -42,22 +42,22 @@ class FunctionDef(Statement):
             for pair in zip (self.args, args):
                 namespace.set(name=pair[0], value=pair[1])
 
+            returnValue = None
+
             for stmt in self.body:
-                stmt.eval()
+                res = stmt.eval()
+                if isinstance(res, ControlFlowMark) and res.type == ControlFlowMark.Type.Return:
+                    returnValue = res.toEval.eval()
+                    break
 
             runtime.Memory.CurrentNamespace = previousNamespace
-            return None # FIXME: return if got ReturnStmt
+            return returnValue
 
 
         # Finally, write the function container to the memory
         # Call to the container will trigger eval of body
         previousNamespace.set(self.name, container)
         return None
-
-
-class ReturnStmt(Statement):
-    def __init__(self):
-        super().__init__()
 
 
 #
@@ -140,20 +140,42 @@ class AugAssignStmt(AssignStmt):
         super().__init__(target=nameNodeStore, value=binOp)
 
 
+#
+# Control flow statements
+#
+
+class ReturnStmt(Statement):
+    def __init__(self, expr):
+        super().__init__()
+        self.expr = expr
+
+    def eval(self):
+        return ControlFlowMark(ControlFlowMark.Type.Return, self.expr)
+
+class PassStmt(Statement):
+    def eval(self):
+        return None
+
+class ContinueStmt(Statement):
+    def eval(self):
+        return ControlFlowMark(ControlFlowMark.Type.Continue)
+
+class BreakStmt(Statement):
+    def eval(self):
+        return ControlFlowMark(ControlFlowMark.Type.Break)
+
+class ControlFlowMark():
+
+    class Type(Enum):
+        Return   = 1
+        Break    = 2
+        Continue = 3
+
+    def __init__(self, type, toEval=None):
+        self.type = type
+        self.toEval = toEval
 
 
-
-
-
-
-# class ExprStmt(Statement):
-#     def __init__(self, value:Expression):
-#         super().__init__()
-#         self.value = value
-
-#class PassStmt(Statement):
-#    def eval(self):
-#        return None
 
 
 

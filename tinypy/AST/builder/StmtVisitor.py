@@ -8,8 +8,6 @@ class StmtVisitorMixin(TinyPyVisitor):
     #
     # Base statements
     #
-
-    # Returns list of statements
     def visitSimple_stmt(self, ctx:TinyPyParser.Simple_stmtContext):
         statements = []
 
@@ -20,12 +18,9 @@ class StmtVisitorMixin(TinyPyVisitor):
 
         return statements
 
-
     #
     # Compound statements
     #
-
-
     def visitSuite(self, ctx:TinyPyParser.SuiteContext):
         if ctx.simple_stmt() != None:
             return self.visit(ctx.simple_stmt())
@@ -80,7 +75,6 @@ class StmtVisitorMixin(TinyPyVisitor):
     #
     # Small statements
     #
-
     def visitExprStmtAssign(self, ctx:TinyPyParser.ExprStmtAssignContext):
         name = ctx.NAME().getText()
         expr = self.visit(ctx.test())
@@ -96,4 +90,21 @@ class StmtVisitorMixin(TinyPyVisitor):
         op = ctx.augassign().getText()
 
         return AST.stmt.AugAssignStmt(name=name, value=value, op=op)
+
+    #
+    # Control flow statements
+    #
+    def visitReturn_stmt(self, ctx:TinyPyParser.Return_stmtContext):
+        test = self.visit(ctx.test())
+        return AST.stmt.ReturnStmt(expr=test)
+
+    def visitPass_stmt(self, ctx:TinyPyParser.Pass_stmtContext):
+        return AST.stmt.PassStmt()
+
+    def visitBreak_stmt(self, ctx:TinyPyParser.Break_stmtContext):
+        return AST.stmt.BreakStmt()
+
+    def visitContinue_stmt(self, ctx:TinyPyParser.Continue_stmtContext):
+        return AST.stmt.ContinueStmt()
+
 
