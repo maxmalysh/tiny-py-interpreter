@@ -3,12 +3,12 @@ import operator
 
 from AST.ast import Expression
 
+import runtime.Memory
+import runtime.Errors
 
 #
 # Binary operations
 #
-import runtime.Memory
-
 
 class BinOp(Expression):
     def __init__(self, left:Expression, right:Expression):
@@ -34,9 +34,9 @@ class DivOp(BinOp):
         right = self.right.eval()
 
         if right == 0:
-            raise ZeroDivisionError()
+            raise runtime.Errors.ZeroDivisionError()
 
-        return  left/right
+        return left / right
 
 class ModOp(BinOp):
     def eval(self):

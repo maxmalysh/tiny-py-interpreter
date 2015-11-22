@@ -10,3 +10,9 @@ class MemoryError(BaseRuntimeException):
 class NameError(MemoryError):
     pass
 
+class ArithmeticError(BaseRuntimeException):
+    pass
+
+class ZeroDivisionError(ArithmeticError):
+    def __init__(self):
+        super().__init__("division by zero")
