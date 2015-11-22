@@ -18,6 +18,8 @@ class Module(AST):
         self.body = body
 
     def eval(self):
+        if type(self.body) is not list:
+            self.body.eval()
         for stmt in self.body:
             stmt.eval()
 
@@ -53,9 +55,4 @@ class Expression(AST):
 class Statement(AST):
     def __init__(self):
         super().__init__()
-
-
-
-
-
 

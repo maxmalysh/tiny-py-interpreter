@@ -44,10 +44,15 @@ class StmtVisitorMixin(TinyPyVisitor):
         if ctx.if_else() != None:
             orelse = self.visit(ctx.if_else().suite())
 
-        for node in ctx.if_elif():
-            nodeTest = self.visit(node.test())
-            nodeSuite = self.visit(node.suite())
-            # FIXME - PUT ELIF CONDITIONS TO THE ORELSE
+        if ctx.if_elif() != None and len(ctx.if_elif()) >= 1:
+            elifNodes = ctx.if_elif().copy()
+            elifNodes.reverse()
+
+            for node in elifNodes:
+                nodeTest = self.visit(node.test())
+                nodeSuite = self.visit(node.suite())
+
+                orelse = [AST.stmt.IfStmt(test=nodeTest, body=nodeSuite, orelse=orelse)]
 
         return AST.stmt.IfStmt(test=test, body=suite, orelse=orelse)
 
