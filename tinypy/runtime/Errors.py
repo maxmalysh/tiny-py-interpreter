@@ -19,3 +19,8 @@ class ArithmeticError(BaseRuntimeException):
 class ZeroDivisionError(ArithmeticError):
     def __init__(self):
         super().__init__("division by zero")
+
+class SyntaxError(BaseRuntimeException):
+    pass
+
+

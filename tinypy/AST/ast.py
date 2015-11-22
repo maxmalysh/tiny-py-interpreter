@@ -5,8 +5,6 @@
 # https://docs.python.org/3/reference/executionmodel.html#naming
 #
 
-
-
 class AST(object):
     def eval(self):
         raise NotImplementedError()
@@ -43,7 +41,6 @@ class EvalExpression(AST):
 
     def eval(self):
         return self.body.eval()
-
 
 
 """ Base node types """

@@ -95,7 +95,11 @@ class StmtVisitorMixin(TinyPyVisitor):
     # Control flow statements
     #
     def visitReturn_stmt(self, ctx:TinyPyParser.Return_stmtContext):
-        test = self.visit(ctx.test())
+        test = None
+
+        if ctx.test() != None:
+            test = self.visit(ctx.test())
+
         return AST.stmt.ReturnStmt(expr=test)
 
     def visitPass_stmt(self, ctx:TinyPyParser.Pass_stmtContext):
