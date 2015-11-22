@@ -1,7 +1,6 @@
 from parser.TinyPyParser import TinyPyParser
 from parser.TinyPyVisitor import TinyPyVisitor
 
-import AST.ast as ast
 import AST.stmt
 
 class StmtVisitorMixin(TinyPyVisitor):
@@ -73,13 +72,10 @@ class StmtVisitorMixin(TinyPyVisitor):
         params = []
 
         if param_ctx != None:
-            for name in param_ctx.NAME():
-                params.append(name.getText())
+            for argName in param_ctx.NAME():
+                params.append(argName.getText())
 
-        #
-        # FIXME
-        #
-        return super().visitFuncdef(ctx)
+        return AST.stmt.FunctionDef(name=name, args=params, body=suite)
 
     #
     # Small statements

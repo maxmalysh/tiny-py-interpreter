@@ -10,6 +10,9 @@ class MemoryError(BaseRuntimeException):
 class NameError(MemoryError):
     pass
 
+class TypeError(BaseRuntimeException):
+    pass
+
 class ArithmeticError(BaseRuntimeException):
     pass
 

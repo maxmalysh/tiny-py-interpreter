@@ -3,11 +3,10 @@
 #
 # Looks like we have to pass namespace instance to every @Name node;
 # Alternatively, we can make every node being able to retreive namespace by its own.
-# How? Probably, enclosing statement should provide such API, so we'll pass the enclosing statements
+# How? Probably, enclosing statement should provide such API, so we'll pass enclosing statements
 # as arguments for expressions, and @Expression will have a method "retrieve namespace"
 #
 import runtime.Errors
-
 
 class Namespace:
 

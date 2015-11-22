@@ -1,11 +1,58 @@
-from enum import Enum
 from AST.ast import Statement, Expression
 from AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, BitAndOp, BitOrOp, BitXorOp, LshiftOp, RshiftOp, Name
 
-import AST.ast
-from AST.ast import Namespace
+import runtime.Memory
+import runtime.Errors
+
+#
+# Every function has name which is written to the outer namespace.
+# For the top-level function definitions, the outer namespace is the global namespace.
+# For nested functions its the namespace of the outer function.
+#
+# Another way is to set current namespace during the evaluation of ANY *STATEMENT*
+# Actually, we'll need to set new (and then back an old one) when evaluating only functions,
+# as there are no scoping rules for other statements; thus, @Name expression will need to check
+# only single global variable - current namepsace
+import runtime.Memory
 
 
+class FunctionDef(Statement):
+    def __init__(self, name, args:[], body:[]):
+        super().__init__()
+        self.name = name
+        self.args = args
+        self.body = body
+
+    def getNamespace(self) -> runtime.Memory.Namespace:
+        return runtime.Memory.CurrentNamespace
+
+    def eval(self):
+
+        previousNamespace = self.getNamespace()
+        namespace = runtime.Memory.Namespace(outerScope=previousNamespace)
+
+        def container(*args):
+            runtime.Memory.CurrentNamespace = namespace
+
+            if len(args) != len(self.args):
+                message = "%s() takes %d positional arguments but %d were given" % \
+                          (self.name, len(self.args), len(args))
+                raise runtime.Errors.TypeError(message)
+
+            for pair in zip (self.args, args):
+                namespace.set(name=pair[0], value=pair[1])
+
+            for stmt in self.body:
+                stmt.eval()
+
+            runtime.Memory.CurrentNamespace = previousNamespace
+            return None # FIXME: return if got ReturnStmt
+
+
+        # Finally, write the function container to the memory
+        # Call to the container will trigger eval of body
+        previousNamespace.set(self.name, container)
+        return None
 
 
 class ReturnStmt(Statement):
@@ -67,7 +114,7 @@ class AssignStmt(Statement):
     def eval(self):
         lValue = self.target.eval()
         rValue = self.value.eval()
-        Namespace.INSTANCE.content[lValue] = rValue
+        runtime.Memory.CurrentNamespace.set(name=lValue, value=rValue)
 
 
 

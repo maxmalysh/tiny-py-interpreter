@@ -166,7 +166,6 @@ class Name(Expression):
         super().__init__()
         self.id = id
         self.ctx = ctx
-        self.nameSpace = runtime.Memory.CurrentNamespace
 
     def eval(self):
         if self.ctx == Name.Context.Load:
@@ -177,7 +176,8 @@ class Name(Expression):
             raise NotImplementedError()
 
     def getNamespace(self):
-        return self.nameSpace
+        # Problem: we're very loosely coupled.
+        return runtime.Memory.CurrentNamespace
 #
 # Function call
 #     @param func is the function, which will often be a Name object.

@@ -1,0 +1,9 @@
+x = int(input("x = "))
+y = int(input("y = "))
+
+while y != 0:
+    hey = x
+    x = y
+    y = hey % y
+
+print("GCD is %d" % x)
