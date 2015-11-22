@@ -6,42 +6,6 @@
 #
 
 
-class Namespace:
-
-    builtInFunctions = {
-        'print' : print,
-        'input' : input,
-        'exit'  : exit,
-        'len'   : len,
-        'str'   : str,
-        'int'   : int,
-        'float' : float,
-        'type'  : type,
-    }
-
-    def __init__(self, outerScope):
-        self.outerScope = outerScope
-        self.content = {}
-
-    def get(self, name):
-        # search in current scope
-        try:
-            return self.content[name]
-        except KeyError:
-            return self.outerScope.get(name)
-        finally:
-            # FIXME: replace by own runtime exception
-            raise NameError()
-
-    def set(self, name):
-        pass
-
-
-
-    INSTANCE = None
-
-Namespace.INSTANCE = Namespace(None)
-Namespace.INSTANCE.content.update(Namespace.builtInFunctions)
 
 class AST(object):
     def eval(self):

@@ -8,6 +8,7 @@ from parser.CustomLexer import CustomLexer
 from parser.TinyPyParser import TinyPyParser
 from parser.Errors import CustomErrorStrategy, CustomErrorListener, BufferedErrorListener
 from parser import CST
+import runtime.Errors
 
 class InteractiveShell:
     greeting =  "Call exit() to quit\n"
@@ -97,6 +98,8 @@ class InteractiveShell:
 
             except antlr4.RecognitionException as e:
                 print("Caught" + str(e) )
+            except runtime.Errors.BaseRuntimeException as e:
+                print(e.__class__.__name__ + ": " + str(e))
             ##
             ## Add here our own super class of the own exception system
             ##

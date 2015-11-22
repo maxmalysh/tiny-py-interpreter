@@ -1,12 +1,14 @@
 from enum import Enum
 import operator
 
-from AST.ast import Expression, Namespace
-import AST.ast
+from AST.ast import Expression
+
 
 #
 # Binary operations
 #
+import runtime.Memory
+
 
 class BinOp(Expression):
     def __init__(self, left:Expression, right:Expression):
@@ -164,15 +166,18 @@ class Name(Expression):
         super().__init__()
         self.id = id
         self.ctx = ctx
+        self.nameSpace = runtime.Memory.CurrentNamespace
 
     def eval(self):
         if self.ctx == Name.Context.Load:
-            return Namespace.INSTANCE.content[self.id]
+            return self.getNamespace().get(name=self.id)
         elif self.ctx == Name.Context.Store:
             return self.id
         else:
             raise NotImplementedError()
 
+    def getNamespace(self):
+        return self.nameSpace
 #
 # Function call
 #     @param func is the function, which will often be a Name object.
