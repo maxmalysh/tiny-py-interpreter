@@ -142,6 +142,14 @@ class ExprVisitorMixin(TinyPyVisitor):
             hex = int(ctx.HEX_INTEGER().getText(), 16)
             return AST.expr.Num(hex)
 
+        elif ctx.BIN_INTEGER() != None:
+            bin = int(ctx.BIN_INTEGER().getText(), 2)
+            return AST.expr.Num(bin)
+
+        elif ctx.OCT_INTEGER() != None:
+            oct = int(ctx.OCT_INTEGER().getText(), 8)
+            return AST.expr.Num(oct)
+
         raise ValueError()
 
     def visitString(self, ctx:TinyPyParser.StringContext):

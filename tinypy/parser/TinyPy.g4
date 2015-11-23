@@ -58,6 +58,7 @@ simple_stmt
 small_stmt
     : expr_stmt
 //    | import_stmt
+//    | del_stmt
     | flow_stmt
     | pass_stmt;
 
@@ -199,7 +200,9 @@ number
 
 integer
     : DECIMAL_INTEGER
+    | OCT_INTEGER
     | HEX_INTEGER
+    | BIN_INTEGER
     ;
 
 FLOAT_NUMBER
@@ -304,6 +307,12 @@ DECIMAL_INTEGER
 HEX_INTEGER
     : '0' [xX] HEX_DIGIT+;
 
+OCT_INTEGER
+    : '0' [oO] OCT_DIGIT+;
+
+BIN_INTEGER
+    : '0' [bB] BIN_DIGIT+;
+
 SKIP
     : ( SPACES | COMMENT ) -> skip
     ;
@@ -323,6 +332,7 @@ fragment NON_ZERO_DIGIT : [1-9];
 fragment DIGIT          : [0-9];
 fragment OCT_DIGIT      : [0-7];
 fragment HEX_DIGIT      : [0-9a-fA-F];
+fragment BIN_DIGIT      : [01];
 
 fragment SHORT_STRING
     : '\'' ( STRING_ESCAPE_SEQ | ~[\\\r\n'] )* '\''
