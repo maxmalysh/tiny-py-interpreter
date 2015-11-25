@@ -188,6 +188,72 @@ class AugAssignStmt(AssignStmt):
         super().__init__(target=nameNodeStore, value=binOp)
 
 
+
+"""
+# Attribute access (e.g., name.attribute)
+#   @value is a node, typically a Name.
+#   @attr is a bare string giving the name of the attribute
+#   @ctx is Load, Store or Del according to how the attribute is acted on.
+"""
+class Attribute(Statement):
+    class Context(Enum):
+        Load = 1
+        Store = 2
+        Del = 3
+
+    class Wrapper():
+        def __init__(self, name, attr):
+            self.name = name
+            self.attr = attr
+
+    def __init__(self, value, attr, ctx):
+        super().__init__()
+        self.value = value
+        self.attr = attr
+        self.ctx = ctx
+
+    def eval(self):
+        value = self.value.eval()
+
+        if self.ctx == Attribute.Context.Load:
+            if hasattr(value, self.attr):
+                return getattr(value, self.attr)
+            else:
+                msg = "object has no attribute %s" % self.attr
+                raise runtime.Errors.AttributeError(msg)
+        elif self.ctx == Attribute.Context.Store:
+            # Builtin function or method? AttributeError
+            # Is instance of object? Write value
+            # Is instance of function container? Write value
+            # Otherwise raise an error
+            if isinstance(value, object):
+                if value.__class__.__module__ == 'builtins':
+                    raise runtime.Errors.ArithmeticError("writing to attributes of built-in objects is not supported")
+                elif callable(value):
+                    return Attribute.Wrapper(self.value, self.attr)
+
+
+
+class Subscript(Statement):
+    def __init__(self, value, slice, ctx):
+        super().__init__()
+        self.value = value
+        self.slice = slice
+        self.ctx = ctx
+
+class Index(Statement):
+    def __init__(self, value):
+        super().__init__()
+        self.value = value
+
+class Slice(Statement):
+    def __init__(self, lower, upper, step):
+        super().__init__()
+        self.lower = lower
+        self.upper = upper
+        self.step = step
+
+
 """
 # Control flow statements.
 # Each statement returns corresponding @ControlFlowMark as a result of evaluation.

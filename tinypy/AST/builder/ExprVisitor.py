@@ -95,11 +95,33 @@ class ExprVisitorMixin(TinyPyVisitor):
             return AST.expr.NameConstant('True')
         elif ctx.FALSE() != None:
             return AST.expr.NameConstant('False')
-        elif ctx.NAME() != None:
-            return AST.expr.Name(id=ctx.NAME().getText(), ctx=AST.expr.Name.Context.Load)
 
-        # Visit funcinvoke / number / string
+        if ctx.dictorsetmaker() != None:
+            return self.visit(ctx.dictorsetmaker())
+
+        # Visit other nodes:  nameaccess / number / string
         return self.visitChildren(ctx)
+
+
+    #
+    # Name access
+    #
+
+    def visitPlainName(self, ctx:TinyPyParser.PlainNameContext):
+        return AST.expr.Name(id=ctx.NAME().getText(), ctx=AST.expr.Name.Context.Load)
+
+    def visitFuncInvoke(self, ctx:TinyPyParser.FuncInvokeContext):
+        name = ctx.NAME().getText()
+        args = []
+
+        if ctx.arglist() != None:
+            for argStmt in ctx.arglist().test():
+                arg = self.visit(argStmt)
+                if arg != None:
+                    args.append(arg)
+
+        funcName = AST.stmt.Name(name, AST.stmt.Name.Context.Load)
+        return AST.expr.CallExpr(func=funcName, args=args)
 
 
     #

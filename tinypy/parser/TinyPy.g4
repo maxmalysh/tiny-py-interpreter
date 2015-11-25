@@ -171,13 +171,20 @@ factor
     ;
 
 atom
-    : NAME
-    | funcinvoke
+    : '{' dictorsetmaker? '}'
+    | nameaccess
     | number
     | string+
     | NONE
     | TRUE
     | FALSE
+    ;
+
+nameaccess
+    : NAME                          # PlainName
+    | NAME '(' arglist? ')'         # FuncInvoke
+    | NAME '.' nameaccess           # DottedName // This won't work for a.attr.attr!
+    | NAME '[' subscriptlist ']'    # SubName
     ;
 
 funcinvoke
@@ -186,6 +193,34 @@ funcinvoke
 
 arglist
     : (test ',')* test
+    ;
+
+subscriptlist
+    : subscript ( ',' subscript )* ','?
+    ;
+
+subscript
+    : test
+    | test? ':' test? sliceop?
+    ;
+
+sliceop
+    : ':' test?
+    ;
+
+dictorsetmaker
+    : dictormaker ','?
+    | setmaker ','?
+    ;
+
+dictormaker
+    : test ':' test                 # DictMakerTest
+    | dictormaker ',' dictormaker   # DictMakerPair
+    ;
+
+setmaker
+    : test                      # SetMakerTest
+    | setmaker ',' setmaker     # SetMakerPair
     ;
 /**
  *
