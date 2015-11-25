@@ -55,29 +55,22 @@ def eval_string(input_string, args=None):
 
 
 #
-# TODO (current scope):
-# 1. Add IF to the visitor
-# 2. Add IF to the AST (check it)
-# 3. Add WHILE to the visitor
-# 4. Append to the lists of the statements on the highest level (or somewhere in the middle)
-# 5. Refactor visitor
-# 6. Refactor AST
-#
-#
 # TODO:
-# 1. Intelligent display hook for the shell mode
-# 2. Proper memory management & variable scope handling
-# 3. Exception handling
-# 4. Unit tests
-# 5. Change stdin/stdout reads to the input / print
+# * Probably add lists and dicts (check what we should change in the grammar)
+# * Exception handling
+# * Unit tests
+# * Change stdin/stdout reads to the input / print
+# * Refactor different input source handling (file / shell)
+# * Manually read files (don't forget unicode!)
+# * Add exceptions (to the parser) for break / continue outside of loops and return outside of function definition
 #
 
 #
 # Known problems:
-# 1) Unicode characters are not erased properly (have to use input() instead of sys.stdin)
-# 2) Statement evaluation resulsts are passed to the displayhook as a nested structure
+# * Unicode characters are not erased properly (have to use input() instead of sys.stdin)
+# * When reading from file, there should be no attempt to evaluate the parse tree, if minor errors were encountered
 #
-#
+
 if __name__ == '__main__':
     argParser = argparse.ArgumentParser()
     argParser.add_argument('filename', type=str, nargs='?',

@@ -7,17 +7,16 @@ from antlr4.Token import Token
 from parser.TinyPyParser import TinyPyParser
 
 
-#
-# TODO: make this happen once
-#
 class IndentationErr(RecognitionException):
     def __init__(self, line):
         super().__init__(message="unindent does not match any outer indentation level")
         self.line = line
 
+
 class SingleInputUnfinished(RecognitionException):
     def __init__(self):
         super().__init__()
+
 
 class CustomErrorStrategy(DefaultErrorStrategy):
 
@@ -37,7 +36,6 @@ class CustomErrorStrategy(DefaultErrorStrategy):
         offendingToken.line = e.line
         offendingToken.column = 0
         recognizer.notifyErrorListeners(e.message, offendingToken, e)
-
 
 
 class CustomErrorListener(ProxyErrorListener):
