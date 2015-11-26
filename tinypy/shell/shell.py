@@ -95,6 +95,8 @@ class InteractiveShell:
                     for statement in results:
                         if statement != None:
                             sys.displayhook(statement)
+                #if results != None:
+                #    sys.displayhook(results)
 
             except antlr4.RecognitionException as e:
                 print("Caught" + str(e) )

@@ -4,6 +4,8 @@
 # https://docs.python.org/3/reference/expressions.html#calls
 # https://docs.python.org/3/reference/executionmodel.html#naming
 #
+from runtime.Memory import Namespace
+
 
 class AST(object):
     def eval(self):

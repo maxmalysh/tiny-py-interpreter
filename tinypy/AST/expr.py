@@ -194,6 +194,44 @@ class CallExpr(Expression):
         evalArgs = [ arg.eval() for arg in self.args ]
         return func(*evalArgs)
 
+#
+# Collections
+#
+class DictContainer(Expression):
+    def __init__(self, containerValue:dict):
+        super().__init__()
+        self.containerValue = containerValue
+
+    def eval(self):
+        return self.containerValue
+        #for pair in self.containerValue:
+
+
+    def copy(self):
+        return self.containerValue.copy()
+
+    def update(self, right):
+        return self.containerValue.update(right)
+
+
+
+class ListContainer(Expression):
+    def __init__(self, listValue):
+        super().__init__()
+        self.listValue = listValue
+
+    def eval(self):
+        return [value.eval() for value in self.listValue]
+
+
+class TupleContainer(Expression):
+    def __init__(self, tupleValue):
+        super().__init__()
+        self.tupleValue = tupleValue
+
+    def eval(self):
+        return self.tupleValue
+
 
 class Num(Expression):
 

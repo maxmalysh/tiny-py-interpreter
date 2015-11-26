@@ -171,7 +171,7 @@ factor
     ;
 
 atom
-    : '{' dictorsetmaker? '}'
+    : collectiondefs
     | nameaccess
     | number
     | string+
@@ -185,6 +185,18 @@ nameaccess
     | NAME '(' arglist? ')'         # FuncInvoke
     | NAME '.' nameaccess           # DottedName // This won't work for a.attr.attr!
     | NAME '[' subscriptlist ']'    # SubName
+    ;
+
+collectiondefs
+    : '{' dictorsetmaker? '}'       # DictMaker
+    | '[' testlist_comp?  ']'       # ListMaker
+    | '(' testlist_comp?  ')'       # TupleMaker
+    ;
+
+// FIXME: add trailing ','
+testlist_comp
+    : test
+    | testlist_comp ',' testlist_comp      //( ',' test )* ','?
     ;
 
 funcinvoke
@@ -214,14 +226,15 @@ dictorsetmaker
     ;
 
 dictormaker
-    : test ':' test                 # DictMakerTest
-    | dictormaker ',' dictormaker   # DictMakerPair
+    : test ':' test
+    | dictormaker ',' dictormaker
     ;
 
 setmaker
     : test                      # SetMakerTest
     | setmaker ',' setmaker     # SetMakerPair
     ;
+
 /**
  *
  * Strings and numbers
@@ -292,6 +305,10 @@ COLON  : ':';
 
 OPEN_PAREN  : '(' { self.opened += 1 };
 CLOSE_PAREN : ')' { self.opened -= 1 };
+OPEN_BRACK  : '[' { self.opened += 1 };
+CLOSE_BRACK : ']' { self.opened -= 1 };
+OPEN_BRACE  : '{' { self.opened += 1 };
+CLOSE_BRACE : '}' { self.opened -= 1 };
 
 LEFT_SHIFT : '<<';
 RIGHT_SHIFT : '>>';

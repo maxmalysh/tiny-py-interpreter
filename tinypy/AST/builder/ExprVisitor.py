@@ -96,15 +96,14 @@ class ExprVisitorMixin(TinyPyVisitor):
         elif ctx.FALSE() != None:
             return AST.expr.NameConstant('False')
 
-        if ctx.dictorsetmaker() != None:
-            return self.visit(ctx.dictorsetmaker())
 
-        # Visit other nodes:  nameaccess / number / string
+        # Visit other nodes:  collectiondefs / nameaccess / number / string
         return self.visitChildren(ctx)
 
 
+
     #
-    # Name access
+    # Name access: PlainName, FuncInvoke
     #
 
     def visitPlainName(self, ctx:TinyPyParser.PlainNameContext):
@@ -123,23 +122,65 @@ class ExprVisitorMixin(TinyPyVisitor):
         funcName = AST.stmt.Name(name, AST.stmt.Name.Context.Load)
         return AST.expr.CallExpr(func=funcName, args=args)
 
-
     #
-    # Funcinvoke and arglist
+    # Collection definitions
     #
 
-    def visitFuncinvoke(self, ctx:TinyPyParser.FuncinvokeContext):
-        name = ctx.NAME().getText()
-        args = []
+    def visitDictMaker(self, ctx:TinyPyParser.DictMakerContext):
+        if ctx.dictorsetmaker() != None:
+            self.visit(ctx.dictorsetmaker())
 
-        if ctx.arglist() != None:
-            for argStmt in ctx.arglist().test():
-                arg = self.visit(argStmt)
-                if arg != None:
-                    args.append(arg)
+        return AST.expr.DictContainer({})
 
-        funcName = AST.stmt.Name(name, AST.stmt.Name.Context.Load)
-        return AST.expr.CallExpr(func=funcName, args=args)
+    def visitDictormaker(self, ctx:TinyPyParser.DictormakerContext):
+        if ctx.test(0) != None:
+            left = self.visit(ctx.test(0))
+            right = self.visit(ctx.test(1))
+            if isinstance(ctx.parentCtx, TinyPyParser.DictormakerContext):
+                return {left : right}
+            else:
+                return AST.expr.DictContainer({left : right})
+
+        if ctx.dictormaker(0) != None:
+            left = self.visit(ctx.dictormaker(0))
+            right = self.visit(ctx.dictormaker(1))
+
+            result = left.copy()
+            result.update(right)
+
+            return AST.expr.DictContainer(result)
+
+    def visitListMaker(self, ctx:TinyPyParser.ListMakerContext):
+        if ctx.testlist_comp() == None:
+            return AST.expr.ListContainer([])
+
+        return AST.expr.ListContainer(self.visit(ctx.testlist_comp()))
+
+    def visitTupleMaker(self, ctx:TinyPyParser.TupleMakerContext):
+        if ctx.testlist_comp() == None:
+            return AST.expr.TupleContainer(())
+
+        return AST.expr.TupleContainer(tuple(self.visit(ctx.testlist_comp())))
+
+    def visitTestlist_comp(self, ctx:TinyPyParser.Testlist_compContext):
+        if ctx.test() != None:
+            return [self.visit(ctx.test())]
+
+        left = self.visit(ctx.testlist_comp(0))
+        right = self.visit(ctx.testlist_comp(1))
+        result = []
+
+        if type(left) is list:
+            result += left
+        else:
+            result.append(left)
+
+        if type(right) is list:
+            result += right
+        else:
+            result.append(right)
+
+        return result
 
     #
     # Strings and numbers
