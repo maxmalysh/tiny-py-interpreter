@@ -1,6 +1,7 @@
 from enum import Enum
 from AST.ast import Statement, Expression
-from AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, BitAndOp, BitOrOp, BitXorOp, LshiftOp, RshiftOp, Name
+from AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, LshiftOp, RshiftOp
+from AST.expr import BitAndOp, BitOrOp, BitXorOp, Name
 
 import runtime.Memory
 import runtime.Errors
@@ -121,6 +122,61 @@ class WhileStmt(Statement):
         result = []
 
         while self.test.eval() == True:
+            shouldBreak = False
+            for stmt in self.body:
+                evalResult = stmt.eval()
+
+                if isinstance(evalResult, ControlFlowMark):
+                    if evalResult.type == ControlFlowMark.Type.Break:
+                        shouldBreak = True
+                        break
+                    elif evalResult.type == ControlFlowMark.Type.Continue:
+                        break
+                    elif evalResult.type == ControlFlowMark.Type.Pass:
+                        pass
+                    elif evalResult.type == ControlFlowMark.Type.Return:
+                        return evalResult
+
+                if type(evalResult) is list:
+                    result += evalResult
+                else:
+                    result.append(evalResult)
+            if shouldBreak:
+                break
+
+        return result
+
+"""
+# A for loop.
+#   @target holds the variable(s) the loop assigns to, as a single Name, Tuple or List node.
+#   @iter holds the item to be looped over, again as a single node.
+#   @body and orelse contain lists of nodes to execute.
+#
+# @orelse is not used as it is not present in grammar.
+"""
+class ForStmt(Statement):
+    def __init__(self, target, iter, body, orelse=None):
+        super().__init__()
+        self.target = target
+        self.iter = iter
+        self.body = body
+
+        if not isinstance(target, Name):
+            raise runtime.Errors.SyntaxError("can't assign to literal")
+
+        if orelse is not None:
+            raise NotImplementedError("You should implement orelse in grammar first!")
+
+    def eval(self):
+        result = []
+
+        # Check if target name exists. If no - create it.
+        #runtime.Memory.CurrentNamespace.get(self)
+
+        for x in self.iter.eval():
+            # Set target to the current value
+            runtime.Memory.CurrentNamespace.set(self.target.id, x)
+
             shouldBreak = False
             for stmt in self.body:
                 evalResult = stmt.eval()

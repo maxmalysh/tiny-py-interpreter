@@ -197,40 +197,63 @@ class CallExpr(Expression):
 #
 # Collections
 #
-class DictContainer(Expression):
-    def __init__(self, containerValue:dict):
+class CollectionContainer(Expression):
+    def __init__(self, value):
         super().__init__()
-        self.containerValue = containerValue
+        self.value = value
+
+    def __repr__(self):
+        return self.value.__repr__()
+
+
+class ListContainer(CollectionContainer):
+    def __init__(self, value:list):
+        super().__init__(value)
 
     def eval(self):
-        return self.containerValue
-        #for pair in self.containerValue:
+        return ListContainer([value.eval() for value in self.value])
 
+    def __add__(self, other):
+        if type(other) is not ListContainer:
+            msg = 'can only concatenate list to list'
+            raise runtime.Errors.TypeError(msg)
+        return self.value + other.value
+
+    def append(self, what):
+        return self.value.append(what)
+
+    def __iter__(self):
+        return iter(self.value)
+
+
+class TupleContainer(CollectionContainer):
+    def __init__(self, value):
+        super().__init__(value)
+
+    def eval(self):
+        return TupleContainer(tuple(value.eval() for value in self.value))
+
+    def __add__(self, other):
+        if type(other) is not TupleContainer:
+            msg = 'can only concatenate tuple to tuple'
+            raise runtime.Errors.TypeError(msg)
+        return self.value + other.value
+
+    def __iter__(self):
+        return iter(self.value)
+
+
+class DictContainer(CollectionContainer):
+    def __init__(self, value:dict):
+        super().__init__(value)
 
     def copy(self):
-        return self.containerValue.copy()
+        return DictContainer(self.value.copy())
 
     def update(self, right):
-        return self.containerValue.update(right)
+        return DictContainer(self.value.update(right.value))
 
 
-
-class ListContainer(Expression):
-    def __init__(self, listValue):
-        super().__init__()
-        self.listValue = listValue
-
-    def eval(self):
-        return [value.eval() for value in self.listValue]
-
-
-class TupleContainer(Expression):
-    def __init__(self, tupleValue):
-        super().__init__()
-        self.tupleValue = tupleValue
-
-    def eval(self):
-        return self.tupleValue
 
 
 class Num(Expression):

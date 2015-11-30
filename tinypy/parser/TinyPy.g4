@@ -65,6 +65,7 @@ small_stmt
 compound_stmt
     : if_stmt
     | while_stmt
+    | for_stmt
     | funcdef;
 
 /**
@@ -84,6 +85,10 @@ if_else:
 
 while_stmt
     : WHILE test ':' suite //( ELSE ':' suite )?
+    ;
+
+for_stmt
+    : FOR nameaccess IN test ':' suite
     ;
 
 funcdef
@@ -141,7 +146,6 @@ continue_stmt: CONTINUE;
  *
  */
 
-
 test    : expr                  # TestExpr
         | test comp_op test     # Comparison
         | NOT test              # NotTest
@@ -193,10 +197,10 @@ collectiondefs
     | '(' testlist_comp?  ')'       # TupleMaker
     ;
 
-// FIXME: add trailing ','
 testlist_comp
     : test
-    | testlist_comp ',' testlist_comp      //( ',' test )* ','?
+    | testlist_comp ',' testlist_comp
+    | testlist_comp ','
     ;
 
 funcinvoke

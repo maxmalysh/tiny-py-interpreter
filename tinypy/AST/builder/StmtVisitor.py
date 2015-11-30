@@ -64,6 +64,14 @@ class StmtVisitorMixin(TinyPyVisitor):
         return AST.stmt.WhileStmt(test=test, body=suite, orelse=[])
 
 
+    def visitFor_stmt(self, ctx:TinyPyParser.For_stmtContext):
+        expr = self.visit(ctx.nameaccess())
+        test = self.visit(ctx.test())
+        suite = self.visit(ctx.suite())
+
+        return AST.stmt.ForStmt(target=expr, iter=test, body=suite)
+
+
     def visitFuncdef(self, ctx:TinyPyParser.FuncdefContext):
         name = ctx.NAME().getText()
         suite = self.visit(ctx.suite())

@@ -88,13 +88,13 @@ class InteractiveShell:
                 results = ast.eval()
 
                 #
-                # We should change this! We should remove all lists,
-                # flatten the result onto the single list
+                # ast.eval() returns list of statements; loop through them and print
                 #
                 if results != None:
                     for statement in results:
                         if statement != None:
                             sys.displayhook(statement)
+
                 #if results != None:
                 #    sys.displayhook(results)
 

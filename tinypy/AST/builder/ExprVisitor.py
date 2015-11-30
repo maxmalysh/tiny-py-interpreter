@@ -101,7 +101,6 @@ class ExprVisitorMixin(TinyPyVisitor):
         return self.visitChildren(ctx)
 
 
-
     #
     # Name access: PlainName, FuncInvoke
     #
@@ -165,6 +164,9 @@ class ExprVisitorMixin(TinyPyVisitor):
     def visitTestlist_comp(self, ctx:TinyPyParser.Testlist_compContext):
         if ctx.test() != None:
             return [self.visit(ctx.test())]
+
+        if ctx.testlist_comp(1) == None:
+            return self.visit(ctx.testlist_comp(0))
 
         left = self.visit(ctx.testlist_comp(0))
         right = self.visit(ctx.testlist_comp(1))
