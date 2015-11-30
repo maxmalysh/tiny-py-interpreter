@@ -96,13 +96,12 @@ class ExprVisitorMixin(TinyPyVisitor):
         elif ctx.FALSE() != None:
             return AST.expr.NameConstant('False')
 
-
         # Visit other nodes:  collectiondefs / nameaccess / number / string
         return self.visitChildren(ctx)
 
 
     #
-    # Name access: PlainName, FuncInvoke
+    # Name access: PlainName, FuncInvoke, SubName
     #
 
     def visitPlainName(self, ctx:TinyPyParser.PlainNameContext):
@@ -121,6 +120,29 @@ class ExprVisitorMixin(TinyPyVisitor):
         funcName = AST.stmt.Name(name, AST.stmt.Name.Context.Load)
         return AST.expr.CallExpr(func=funcName, args=args)
 
+    def visitSubName(self, ctx:TinyPyParser.SubNameContext):
+        nameNode = AST.expr.Name(id = ctx.NAME().getText(), ctx=AST.expr.Name.Context.Load)
+        subscript = self.visit(ctx.subscript())
+        return AST.stmt.Subscript(value=nameNode, slice=subscript, ctx=AST.stmt.Subscript.Context.Load)
+
+    #
+    # Index and slice operations
+    #
+
+    def visitSubscriptIndex(self, ctx:TinyPyParser.SubscriptIndexContext):
+        test = self.visit(ctx.test())
+        return AST.stmt.Index(value=test)
+
+    def visitSubscriptSlice(self, ctx:TinyPyParser.SubscriptSliceContext):
+        lower = upper = None
+
+        if ctx.test(0) != None:
+            lower = self.visit(ctx.test(0))
+
+        if ctx.test(1) != None:
+            upper = self.visit(ctx.test(1))
+
+        return AST.stmt.Slice(lower=lower, upper=upper, step=None)
     #
     # Collection definitions
     #

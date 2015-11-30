@@ -24,3 +24,9 @@ class SyntaxError(BaseRuntimeException):
     pass
 
 
+class KeyError(BaseRuntimeException):
+    pass
+
+
+class IndexError(BaseRuntimeException):
+    pass

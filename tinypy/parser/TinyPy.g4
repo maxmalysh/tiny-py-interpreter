@@ -188,7 +188,7 @@ nameaccess
     : NAME                          # PlainName
     | NAME '(' arglist? ')'         # FuncInvoke
     | NAME '.' nameaccess           # DottedName // This won't work for a.attr.attr!
-    | NAME '[' subscriptlist ']'    # SubName
+    | NAME '[' subscript ']'        # SubName
     ;
 
 collectiondefs
@@ -211,17 +211,9 @@ arglist
     : (test ',')* test
     ;
 
-subscriptlist
-    : subscript ( ',' subscript )* ','?
-    ;
-
 subscript
-    : test
-    | test? ':' test? sliceop?
-    ;
-
-sliceop
-    : ':' test?
+    : test                  #SubscriptIndex
+    | test? ':' test?       #SubscriptSlice
     ;
 
 dictorsetmaker

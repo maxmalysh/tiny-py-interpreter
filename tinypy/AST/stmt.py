@@ -289,19 +289,56 @@ class Attribute(Statement):
                     return Attribute.Wrapper(self.value, self.attr)
 
 
-
+"""
+A subscript, such as l[1].
+    @value is the object, often a Name.
+    @slice is one of @Index or @Slice.
+    @ctx is Load, Store or Del according to what it does with the subscript.
+"""
 class Subscript(Statement):
+    class Context(Enum):
+        Load = 1
+        Store = 2
+        Del = 3
+
     def __init__(self, value, slice, ctx):
         super().__init__()
         self.value = value
         self.slice = slice
         self.ctx = ctx
 
+    def eval(self):
+        lValue = self.value.eval()
+
+        try:
+            if isinstance(self.slice, Index):
+                index = self.slice.eval()
+                return lValue[index]
+            elif isinstance(self.slice, Slice):
+                lower, upper = self.slice.eval()
+                return lValue[lower:upper]
+            else:
+                raise ValueError("Unexpected slice type")
+        except IndexError as e:
+            raise runtime.Errors.IndexError(e)
+        except KeyError as e:
+            raise runtime.Errors.KeyError(e)
+        except TypeError as e:
+            raise runtime.Errors.TypeError(e)
+
+"""
+Simple subscripting with a single value: l[1]
+"""
 class Index(Statement):
     def __init__(self, value):
         super().__init__()
         self.value = value
 
+    def eval(self):
+        return self.value.eval()
+"""
+Regular slicing: l[1:2]
+"""
 class Slice(Statement):
     def __init__(self, lower, upper, step):
         super().__init__()
@@ -309,7 +346,16 @@ class Slice(Statement):
         self.upper = upper
         self.step = step
 
+        if self.step != None:
+            raise NotImplementedError()
 
+    def eval(self):
+        lower = upper = None
+        if self.lower != None:
+            lower = self.lower.eval()
+        if self.upper != None:
+            upper = self.upper.eval()
+        return lower, upper
 """
 # Control flow statements.
 # Each statement returns corresponding @ControlFlowMark as a result of evaluation.
