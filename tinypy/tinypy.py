@@ -81,13 +81,13 @@ if __name__ == '__main__':
                            help='Show flattened concreted syntax tree for the input (parse tree)')
     argParser.add_argument('--tokens',  dest='parse_tree',  action='store_true',
                            help='Show string representation of a parse tree for the input')
-
+    argParser.add_argument('--parse', dest='parse_only', action='store_true',
+                           help='Parse input without evaluating it.')
     #
     # Parse arguments
     #
     argParser.set_defaults(cst=False, parse_tree=False)
     args = argParser.parse_args()
-    # print(args)
 
     if args.eval_input != None:
         eval_string(args.eval_input, args)
@@ -135,6 +135,7 @@ if __name__ == '__main__':
         if ast == None:
             exit()
 
-        ast.eval()
+        if not args.parse_only:
+            ast.eval()
 
 

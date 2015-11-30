@@ -85,6 +85,9 @@ class InteractiveShell:
                 if ast == None:
                     continue
 
+                if self.args.parse_only:
+                    continue
+
                 results = ast.eval()
 
                 #
