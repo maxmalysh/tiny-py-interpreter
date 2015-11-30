@@ -131,6 +131,13 @@ class ExprVisitorMixin(TinyPyVisitor):
 
         return AST.expr.DictContainer({})
 
+    def visitSetmaker(self, ctx:TinyPyParser.SetmakerContext):
+        result = set({})
+        for test in ctx.test():
+            result.add(self.visit(test))
+        return AST.expr.SetContainer(result)
+
+
     def visitDictormaker(self, ctx:TinyPyParser.DictormakerContext):
         if ctx.test(0) != None:
             left = self.visit(ctx.test(0))

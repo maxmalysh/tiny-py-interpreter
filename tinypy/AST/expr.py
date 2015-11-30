@@ -208,6 +208,9 @@ class CollectionContainer(Expression):
     def __iter__(self):
         return iter(self.value)
 
+    def __getitem__(self, item):
+        return self.value.__getitem__(item)
+
 
 class ListContainer(CollectionContainer):
     def __init__(self, value:list):
@@ -259,6 +262,17 @@ class DictContainer(CollectionContainer):
             result[newKey] = newVal
 
         return result
+
+class SetContainer(CollectionContainer):
+    def __init__(self, value:set):
+        super().__init__(value)
+
+    def eval(self):
+        result = set({})
+        for item in self.value:
+            result.add(item.eval())
+        return SetContainer(result)
+
 
 class Num(Expression):
 

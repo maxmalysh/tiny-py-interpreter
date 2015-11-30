@@ -235,8 +235,7 @@ dictormaker
     ;
 
 setmaker
-    : test                      # SetMakerTest
-    | setmaker ',' setmaker     # SetMakerPair
+    : test ( ',' test )*
     ;
 
 /**
