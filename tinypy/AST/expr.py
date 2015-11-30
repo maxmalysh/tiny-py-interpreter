@@ -205,6 +205,9 @@ class CollectionContainer(Expression):
     def __repr__(self):
         return self.value.__repr__()
 
+    def __iter__(self):
+        return iter(self.value)
+
 
 class ListContainer(CollectionContainer):
     def __init__(self, value:list):
@@ -222,9 +225,6 @@ class ListContainer(CollectionContainer):
     def append(self, what):
         return self.value.append(what)
 
-    def __iter__(self):
-        return iter(self.value)
-
 
 class TupleContainer(CollectionContainer):
     def __init__(self, value):
@@ -239,9 +239,6 @@ class TupleContainer(CollectionContainer):
             raise runtime.Errors.TypeError(msg)
         return self.value + other.value
 
-    def __iter__(self):
-        return iter(self.value)
-
 
 class DictContainer(CollectionContainer):
     def __init__(self, value:dict):
@@ -253,8 +250,15 @@ class DictContainer(CollectionContainer):
     def update(self, right):
         return DictContainer(self.value.update(right.value))
 
+    def eval(self):
+        result = {}
 
+        for key in self.value.keys():
+            newKey = key.eval()
+            newVal = self.value[key].eval()
+            result[newKey] = newVal
 
+        return result
 
 class Num(Expression):
 

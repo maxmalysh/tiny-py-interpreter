@@ -127,7 +127,7 @@ class ExprVisitorMixin(TinyPyVisitor):
 
     def visitDictMaker(self, ctx:TinyPyParser.DictMakerContext):
         if ctx.dictorsetmaker() != None:
-            self.visit(ctx.dictorsetmaker())
+            return self.visit(ctx.dictorsetmaker())
 
         return AST.expr.DictContainer({})
 
@@ -135,10 +135,7 @@ class ExprVisitorMixin(TinyPyVisitor):
         if ctx.test(0) != None:
             left = self.visit(ctx.test(0))
             right = self.visit(ctx.test(1))
-            if isinstance(ctx.parentCtx, TinyPyParser.DictormakerContext):
-                return {left : right}
-            else:
-                return AST.expr.DictContainer({left : right})
+            return AST.expr.DictContainer({left : right})
 
         if ctx.dictormaker(0) != None:
             left = self.visit(ctx.dictormaker(0))
@@ -147,7 +144,10 @@ class ExprVisitorMixin(TinyPyVisitor):
             result = left.copy()
             result.update(right)
 
-            return AST.expr.DictContainer(result)
+            if type(result) is not AST.expr.DictContainer:
+                return AST.expr.DictContainer(result)
+            else:
+                return result
 
     def visitListMaker(self, ctx:TinyPyParser.ListMakerContext):
         if ctx.testlist_comp() == None:
