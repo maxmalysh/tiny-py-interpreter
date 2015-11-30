@@ -40,7 +40,13 @@ class DivOp(BinOp):
 
 class ModOp(BinOp):
     def eval(self):
-        return self.left.eval() % self.right.eval()
+        left  = self.left.eval()
+        right = self.right.eval()
+
+        if right == 0:
+            raise runtime.Errors.ZeroDivisionError()
+
+        return left % right
 
 class LshiftOp(BinOp):
     def eval(self):
