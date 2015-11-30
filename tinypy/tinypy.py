@@ -61,7 +61,6 @@ def eval_string(input_string, args=None):
 # * Unit tests
 # * Change stdin/stdout reads to the input / print
 # * Refactor different input source handling (file / shell)
-# * Manually read files (don't forget unicode!)
 # * Add exceptions (to the parser) for break / continue outside of loops and return outside of function definition
 #
 
@@ -97,7 +96,11 @@ if __name__ == '__main__':
         shell.loop()
         exit()
     else:
-        input_stream = antlr4.FileStream(args.filename)
+        with open(args.filename) as file_contents:
+            content = file_contents.read()
+        content += '\n'
+
+        input_stream = antlr4.InputStream(content)
 
         # Instantiate an run generated lexer
         lexer = CustomLexer(input_stream)
