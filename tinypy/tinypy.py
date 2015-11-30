@@ -1,4 +1,5 @@
 import argparse
+from enum import Enum
 
 import antlr4
 from antlr4.tree.Trees import Trees
@@ -11,8 +12,15 @@ from parser.CustomListener import CustomListener
 from parser.TinyPyParser import TinyPyParser
 from shell.shell import InteractiveShell
 
-def eval_string(input_string, args=None):
-    input_stream = antlr4.InputStream(input_string)
+
+class InputType(Enum):
+    File = 1
+    SingleInput = 2
+    Expression = 3
+
+
+def tinypy_eval(input_string, firstRule:InputType, args=None):
+    input_stream = antlr4.InputStream(content)
 
     # Instantiate an run generated lexer
     lexer = CustomLexer(input_stream)
@@ -23,7 +31,7 @@ def eval_string(input_string, args=None):
     parser._errHandler = CustomErrorStrategy()
 
     try:
-        parse_tree = parser.eval_input()
+        parse_tree = parser.file_input()
     except Exception as e:
         exit(-1)
 
@@ -32,19 +40,9 @@ def eval_string(input_string, args=None):
     walker = antlr4.ParseTreeWalker()
     walker.walk(listener, parse_tree)
 
-    # Evaluate it...
-    from AST.Builder import CustomVisitor
-
-    visitor = CustomVisitor()
-    ast = visitor.visitEval_input(parse_tree)
-    print(ast)
-    print(ast.eval())
-
-    if not args:
-        return
 
     # Build a flattened syntax tree
-    cst = CstFlattened(tree=parse_tree)
+    cst = CstFiltered(tree=parse_tree)
 
     if args.parse_tree:
         parseTreeString = Trees.toStringTree(parse_tree, recog=parser)
@@ -53,22 +51,24 @@ def eval_string(input_string, args=None):
     if args.cst:
         print(cst)
 
+    # Evaluate it...
+    visitor = CustomVisitor()
 
-#
-# TODO:
-# * Probably add lists and dicts (check what we should change in the grammar)
-# * Exception handling
-# * Unit tests
-# * Change stdin/stdout reads to the input / print
-# * Refactor different input source handling (file / shell)
-# * Add exceptions (to the parser) for break / continue outside of loops and return outside of function definition
-#
+    if firstRule == InputType.File:
+        ast = visitor.visitFile_input(parse_tree)
+    elif firstRule == InputType.Expression:
+        ast = visitor.visitEval_input(parse_tree)
+    else:
+        ast = visitor.visitSingle_input(parse_tree)
 
-#
-# Known problems:
-# * Unicode characters are not erased properly (have to use input() instead of sys.stdin)
-# * When reading from file, there should be no attempt to evaluate the parse tree, if minor errors were encountered
-#
+    if ast == None:
+        exit(-1)
+
+    if not args.parse_only:
+        ast.eval()
+
+    return 0
+
 
 if __name__ == '__main__':
     argParser = argparse.ArgumentParser()
@@ -88,57 +88,21 @@ if __name__ == '__main__':
     argParser.set_defaults(cst=False, parse_tree=False)
     args = argParser.parse_args()
 
-    if args.eval_input != None:
-        eval_string(args.eval_input, args)
-    elif args.filename == None:
+    if args.filename == None:
         shell = InteractiveShell(args)
         shell.print_greeting()
         shell.loop()
-        exit()
+    if args.eval_input != None:
+        firstRule = InputType.SingleInput
+        content = args.eval_input
     else:
+        firstRule = InputType.File
+
         with open(args.filename) as file_contents:
             content = file_contents.read()
         content += '\n'
 
-        input_stream = antlr4.InputStream(content)
-
-        # Instantiate an run generated lexer
-        lexer = CustomLexer(input_stream)
-        tokens = antlr4.CommonTokenStream(lexer)
-
-        # Instantiate and run generated parser
-        parser = TinyPyParser(tokens)
-        parser._errHandler = CustomErrorStrategy()
-
-        try:
-            parse_tree = parser.file_input()
-        except Exception as e:
-            exit(-1)
-
-        # Traverse the parse tree
-        listener = CustomListener()
-        walker = antlr4.ParseTreeWalker()
-        walker.walk(listener, parse_tree)
-
-
-        # Build a flattened syntax tree
-        cst = CstFiltered(tree=parse_tree)
-
-        if args.parse_tree:
-            parseTreeString = Trees.toStringTree(parse_tree, recog=parser)
-            print(parseTreeString)
-
-        if args.cst:
-            print(cst)
-
-        # Evaluate it...
-        visitor = CustomVisitor()
-        ast = visitor.visitFile_input(parse_tree)
-
-        if ast == None:
-            exit()
-
-        if not args.parse_only:
-            ast.eval()
+    retvalue = tinypy_eval(content, firstRule, args)
+    exit(retvalue)
 
 

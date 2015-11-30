@@ -55,7 +55,7 @@ class InteractiveShell:
                 parse_tree = self.parser.single_input()
 
                 # Determine what to do next
-                if error_listener.input_unfinished or self.lexer.opened != 0:
+                if error_listener.input_unfinished or self.lexer.opened < 0:
                     # User has not finished his input yet, read the next line and repeat
                     self.readMore = True
                     continue
