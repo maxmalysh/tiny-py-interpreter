@@ -24,6 +24,10 @@ class SyntaxError(BaseRuntimeException):
     pass
 
 
+class AttributeError(BaseRuntimeException):
+    pass
+
+
 class KeyError(BaseRuntimeException):
     pass
 

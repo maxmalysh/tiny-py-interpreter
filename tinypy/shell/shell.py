@@ -101,11 +101,17 @@ class InteractiveShell:
                 #if results != None:
                 #    sys.displayhook(results)
 
+            except KeyboardInterrupt as e:
+                print("")
+                exit(0)
             except antlr4.RecognitionException as e:
                 print("Caught" + str(e) )
             except runtime.Errors.BaseRuntimeException as e:
                 print(e.__class__.__name__ + ": " + str(e))
-            ##
+            except BaseException as e:
+                print(e.__class__.__name__ + ": " + str(e))
+
+                ##
             ## Add here our own super class of the own exception system
             ##
             #except KeyboardInterrupt as e:

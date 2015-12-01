@@ -1,4 +1,4 @@
-import argparse
+import argparse, time
 from enum import Enum
 
 import antlr4
@@ -20,6 +20,7 @@ class InputType(Enum):
 
 
 def tinypy_eval(input_string, firstRule:InputType, args=None):
+    totalTime = time.time()
     input_stream = antlr4.InputStream(content)
 
     # Instantiate an run generated lexer
@@ -30,28 +31,25 @@ def tinypy_eval(input_string, firstRule:InputType, args=None):
     parser = TinyPyParser(tokens)
     parser._errHandler = CustomErrorStrategy()
 
+    # Traverse the parse tree
+    parseTime = time.time()
     try:
         parse_tree = parser.file_input()
     except Exception as e:
         exit(-1)
+    parseTime = time.time() - parseTime
 
-    # Traverse the parse tree
-    listener = CustomListener()
-    walker = antlr4.ParseTreeWalker()
-    walker.walk(listener, parse_tree)
-
-
-    # Build a flattened syntax tree
-    cst = CstFiltered(tree=parse_tree)
-
+    # Print parse trees if need (full or flattened)
     if args.parse_tree:
         parseTreeString = Trees.toStringTree(parse_tree, recog=parser)
         print(parseTreeString)
 
     if args.cst:
+        cst = CstFiltered(tree=parse_tree)
         print(cst)
 
-    # Evaluate it...
+    # Build an AST
+    astBuildTime = time.time()
     visitor = CustomVisitor()
 
     if firstRule == InputType.File:
@@ -60,12 +58,33 @@ def tinypy_eval(input_string, firstRule:InputType, args=None):
         ast = visitor.visitEval_input(parse_tree)
     else:
         ast = visitor.visitSingle_input(parse_tree)
+    astBuildTime = time.time() - astBuildTime
 
     if ast == None:
-        exit(-1)
+        return -1
 
-    if not args.parse_only:
-        ast.eval()
+    if args.parse_only:
+        return 0
+
+    evalTime = time.time()
+    ast.eval()
+    evalTime = time.time() - evalTime
+
+    totalTime = time.time() - totalTime
+
+    if args.print_timings:
+        timings = [
+            ('Parsing',         parseTime),
+            ('Building an AST', astBuildTime),
+            ('Evaluating',      evalTime),
+            ('Total time',      totalTime),
+            ('Etc', totalTime-parseTime-astBuildTime-evalTime)
+        ]
+        print("#"*80)
+        for timing in timings:
+            print((timing[0]+": %.3f ms") % (timing[1]*1000))
+
+
 
     return 0
 
@@ -82,6 +101,8 @@ if __name__ == '__main__':
                            help='Show string representation of a parse tree for the input')
     argParser.add_argument('--parse', dest='parse_only', action='store_true',
                            help='Parse input without evaluating it.')
+    argParser.add_argument('--timings', dest='print_timings', action='store_true',
+                           help='Print time spend during parsing, building an AST and evaluating.')
     #
     # Parse arguments
     #
