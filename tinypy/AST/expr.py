@@ -244,6 +244,9 @@ class ListContainer(CollectionContainer):
             raise runtime.Errors.TypeError(msg)
         return self.value + other.value
 
+    def __mul__(self, other):
+        return self.value.__mul__(other)
+
     def append(self, what):
         return self.value.append(what)
 
@@ -261,6 +264,8 @@ class TupleContainer(CollectionContainer):
             raise runtime.Errors.TypeError(msg)
         return self.value + other.value
 
+    def __mul__(self, other):
+        return self.value.__mul__(other)
 
 class DictContainer(CollectionContainer):
     def __init__(self, value:dict):
