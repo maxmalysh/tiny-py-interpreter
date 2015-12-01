@@ -92,7 +92,7 @@ class IfStmt(Statement):
         test = self.test.eval()
         result = []
 
-        for stmt in self.body if (test == True) else self.orelse:
+        for stmt in self.body if (test) else self.orelse:
             evalResult = stmt.eval()
 
             if isinstance(evalResult, ControlFlowMark):
@@ -123,7 +123,7 @@ class WhileStmt(Statement):
     def eval(self):
         result = []
 
-        while self.test.eval() == True:
+        while self.test.eval():
             shouldBreak = False
             for stmt in self.body:
                 evalResult = stmt.eval()
