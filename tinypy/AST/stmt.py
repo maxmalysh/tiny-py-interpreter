@@ -38,10 +38,11 @@ class FunctionDef(Statement):
 
     def eval(self) -> None:
 
-        previousNamespace = self.getNamespace()
-        namespace = runtime.Memory.Namespace(outerScope=previousNamespace)
+        declarationNamespace = self.getNamespace()
 
         def container(*args):
+            namespace = runtime.Memory.Namespace(outerScope=declarationNamespace)
+            previousNamespace = runtime.Memory.CurrentNamespace
             runtime.Memory.CurrentNamespace = namespace
 
             if len(args) != len(self.args):
@@ -67,7 +68,7 @@ class FunctionDef(Statement):
 
         # Finally, write the function container to the memory.
         # Call to the container will trigger eval of function body
-        previousNamespace.set(self.name, container)
+        declarationNamespace.set(self.name, container)
         return None
 
 
