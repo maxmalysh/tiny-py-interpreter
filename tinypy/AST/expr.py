@@ -6,10 +6,10 @@ from AST.ast import Expression
 import runtime.Memory
 import runtime.Errors
 
-#
-# Binary operations
-#
 
+"""
+# Binary arithmetic, bitwise and logic operations
+"""
 class BinOp(Expression):
     def __init__(self, left:Expression, right:Expression):
         super().__init__()
@@ -62,10 +62,10 @@ class BitOrOp(BinOp):
     def eval(self):
         return self.left.eval() | self.right.eval()
 
-#
-# Unary operations
-#
 
+"""
+# Unary arithmetic operations
+"""
 class UnaryOp(Expression):
     def __init__(self, op, operand:Expression):
         super().__init__()
@@ -81,10 +81,9 @@ class UnaryOp(Expression):
             raise ValueError('Unsupported unary operation!')
 
 
-#
-# Comparisons
-#
-
+"""
+# Base class for comparisons.
+"""
 class Compare(Expression):
 
     class Op(Enum):
@@ -135,9 +134,9 @@ class UnaryComp(Compare):
         return Compare.opTable[self.op](operand)
 
 
-#
+"""
 # Represents None, False and True literals.
-#
+"""
 class NameConstant(Expression):
     nameTable = { 'None' : None, 'True': True, 'False': False }
 
@@ -151,11 +150,11 @@ class NameConstant(Expression):
         except KeyError:
             raise ValueError("Wrong name constant")
 
-#
+"""
 # A variable name.
 #     @id holds the name as a string
 #     @ctx is one of the following types: @Load / @Store / @Del
-#
+"""
 class Name(Expression):
     class Context(Enum):
         Load = 1
@@ -178,11 +177,13 @@ class Name(Expression):
     def getNamespace(self):
         # Problem: we're very loosely coupled.
         return runtime.Memory.CurrentNamespace
-#
+
+
+"""
 # Function call
 #     @param func is the function, which will often be a Name object.
 #     @args holds a list of the arguments passed by position.
-#
+"""
 class CallExpr(Expression):
     def __init__(self, func, args):
         super().__init__()
@@ -194,9 +195,13 @@ class CallExpr(Expression):
         evalArgs = [ arg.eval() for arg in self.args ]
         return func(*evalArgs)
 
+
+"""
+# Base class for collections.
+#   @value holds a collection, such as a list or a dict.
 #
-# Collections
-#
+# This class delegates common collection methods  to the contained value.
+"""
 class CollectionContainer(Expression):
     def __init__(self, value):
         super().__init__()
@@ -210,6 +215,12 @@ class CollectionContainer(Expression):
 
     def __getitem__(self, item):
         return self.value.__getitem__(item)
+
+    def __setitem__(self, key, value):
+        return self.value.__setitem__(key, value)
+
+    def __len__(self):
+        return self.value.__len__()
 
 
 class ListContainer(CollectionContainer):
@@ -263,6 +274,7 @@ class DictContainer(CollectionContainer):
 
         return result
 
+
 class SetContainer(CollectionContainer):
     def __init__(self, value:set):
         super().__init__(value)
@@ -273,7 +285,9 @@ class SetContainer(CollectionContainer):
             result.add(item.eval())
         return SetContainer(result)
 
-
+"""
+# Number literal
+"""
 class Num(Expression):
 
     def __init__(self, value):
@@ -283,7 +297,9 @@ class Num(Expression):
     def eval(self):
         return self.value
 
-
+"""
+# String literal
+"""
 class Str(Expression):
     def __init__(self, value):
         super().__init__()
