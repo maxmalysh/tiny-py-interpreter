@@ -22,6 +22,9 @@ class Namespace:
         'float' : float,
         'type'  : type,
         'range' : range,
+        'set'   : set,
+        'max'   : max,
+        'min'   : min,
     }
 
     def __init__(self, outerScope):

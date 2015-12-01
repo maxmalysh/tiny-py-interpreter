@@ -6,7 +6,7 @@ from antlr4.tree.Trees import Trees
 from AST.builder.Builder import CustomVisitor
 
 from parser.CST import CstFlattened, CstFiltered
-from parser.Errors import CustomErrorStrategy
+from parser.Errors import CustomErrorStrategy, CustomErrorListener
 from parser.CustomLexer import CustomLexer
 from parser.CustomListener import CustomListener
 from parser.TinyPyParser import TinyPyParser
@@ -31,13 +31,19 @@ def tinypy_eval(input_string, firstRule:InputType, args=None):
     parser = TinyPyParser(tokens)
     parser._errHandler = CustomErrorStrategy()
 
+    error_listener = CustomErrorListener()
+    parser.addErrorListener(error_listener)
+
     # Traverse the parse tree
     parseTime = time.time()
     try:
         parse_tree = parser.file_input()
     except Exception as e:
-        exit(-1)
+        return -1
     parseTime = time.time() - parseTime
+
+    if error_listener.errors_encountered != 0:
+        return -1
 
     # Print parse trees if need (full or flattened)
     if args.parse_tree:
@@ -67,7 +73,12 @@ def tinypy_eval(input_string, firstRule:InputType, args=None):
         return 0
 
     evalTime = time.time()
-    ast.eval()
+    try:
+        ast.eval()
+    except BaseException as e:
+        print(e.__class__.__name__ + ": " + str(e))
+        return -1
+
     evalTime = time.time() - evalTime
 
     totalTime = time.time() - totalTime
@@ -83,8 +94,6 @@ def tinypy_eval(input_string, firstRule:InputType, args=None):
         print("#"*80)
         for timing in timings:
             print((timing[0]+": %.3f ms") % (timing[1]*1000))
-
-
 
     return 0
 

@@ -1,3 +1,4 @@
+import copy
 from enum import Enum
 from AST.ast import Statement, Expression, MemoryContext
 from AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, LshiftOp, RshiftOp, BinOp, UnaryOp, Compare
@@ -249,8 +250,11 @@ class AugAssignStmt(AssignStmt):
     }
 
     def __init__(self, name, value, op):
-        nameNodeLoad  = Name(id=name, ctx=MemoryContext.Load)
-        nameNodeStore = Name(id=name, ctx=MemoryContext.Store)
+        nameNodeLoad = copy.copy(name)
+        nameNodeStore = copy.copy(name)
+
+        nameNodeLoad.ctx = MemoryContext.Load
+        nameNodeStore.ctx = MemoryContext.Store
 
         binOp = AugAssignStmt.opTable[op](left=nameNodeLoad, right=value)
         super().__init__(target=nameNodeStore, value=binOp)

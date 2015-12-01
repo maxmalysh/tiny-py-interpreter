@@ -108,8 +108,8 @@ class InteractiveShell:
                 print("Caught" + str(e) )
             except runtime.Errors.BaseRuntimeException as e:
                 print(e.__class__.__name__ + ": " + str(e))
-            except BaseException as e:
-                print(e.__class__.__name__ + ": " + str(e))
+            #except BaseException as e:
+            #    print(e.__class__.__name__ + ": " + str(e))
 
                 ##
             ## Add here our own super class of the own exception system

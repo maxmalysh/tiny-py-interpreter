@@ -242,10 +242,10 @@ class ListContainer(CollectionContainer):
         if type(other) is not ListContainer:
             msg = 'can only concatenate list to list'
             raise runtime.Errors.TypeError(msg)
-        return self.value + other.value
+        return ListContainer(self.value + other.value)
 
     def __mul__(self, other):
-        return self.value.__mul__(other)
+        return ListContainer(self.value.__mul__(other))
 
     def append(self, what):
         return self.value.append(what)
@@ -262,10 +262,10 @@ class TupleContainer(CollectionContainer):
         if type(other) is not TupleContainer:
             msg = 'can only concatenate tuple to tuple'
             raise runtime.Errors.TypeError(msg)
-        return self.value + other.value
+        return TupleContainer(self.value + other.value)
 
     def __mul__(self, other):
-        return self.value.__mul__(other)
+        return TupleContainer(self.value.__mul__(other))
 
 class DictContainer(CollectionContainer):
     def __init__(self, value:dict):
@@ -297,6 +297,9 @@ class SetContainer(CollectionContainer):
         for item in self.value:
             result.add(item.eval())
         return SetContainer(result)
+
+    def update(self, right):
+        return SetContainer(self.value.update(right))
 
 """
 # Number literal
