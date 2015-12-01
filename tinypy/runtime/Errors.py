@@ -30,3 +30,7 @@ class KeyError(BaseRuntimeException):
 
 class IndexError(BaseRuntimeException):
     pass
+
+
+class NotImplementedError(BaseRuntimeException):
+    pass

@@ -113,9 +113,9 @@ suite
  */
 
 expr_stmt
-    : test                # ExprStmtExpr
-    | NAME '=' test       # ExprStmtAssign
-    | NAME augassign test # ExprStmtAugmented
+    : test                      # ExprStmtExpr
+    | nameaccess '=' test       # ExprStmtAssign
+    | nameaccess augassign test # ExprStmtAugmented
     ;
 
 augassign : '+=' | '-=' | '*=' | '/=' | '%='
@@ -186,9 +186,9 @@ atom
 
 nameaccess
     : NAME                          # PlainName
-    | NAME '(' arglist? ')'         # FuncInvoke
-    | NAME '.' nameaccess           # DottedName // This won't work for a.attr.attr!
-    | NAME '[' subscript ']'        # SubName
+    | nameaccess '(' arglist? ')'   # FuncInvoke
+    | nameaccess '.' NAME           # DottedName // This won't work for a.attr.attr!
+    | nameaccess '[' subscript ']'  # SubName
     ;
 
 collectiondefs
@@ -212,8 +212,8 @@ arglist
     ;
 
 subscript
-    : test                  #SubscriptIndex
-    | test? ':' test?       #SubscriptSlice
+    : test                          #SubscriptIndex
+    | lower=test? ':' upper=test?   #SubscriptSlice
     ;
 
 dictorsetmaker

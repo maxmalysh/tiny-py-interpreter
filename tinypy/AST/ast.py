@@ -4,7 +4,7 @@
 # https://docs.python.org/3/reference/expressions.html#calls
 # https://docs.python.org/3/reference/executionmodel.html#naming
 #
-from runtime.Memory import Namespace
+from enum import Enum
 
 
 class AST(object):
@@ -58,3 +58,9 @@ class Statement(AST):
     def __init__(self):
         super().__init__()
 
+
+""" Memory context for names, attributes, indexes, et.c. """
+class MemoryContext(Enum):
+    Load = 1
+    Store = 2
+    Del = 3

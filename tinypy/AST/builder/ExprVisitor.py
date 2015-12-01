@@ -1,6 +1,7 @@
 from parser.TinyPyParser import TinyPyParser
 from parser.TinyPyVisitor import TinyPyVisitor
 
+from AST.ast import MemoryContext
 import AST.expr
 import AST.stmt
 
@@ -113,7 +114,7 @@ class ExprVisitorMixin(TinyPyVisitor):
         elif ctx.FALSE() != None:
             return AST.expr.NameConstant('False')
 
-        # Visit other nodes:  collectiondefs / nameaccess / number / string
+        # Visit other nodes
         return self.visitChildren(ctx)
 
 
@@ -121,11 +122,20 @@ class ExprVisitorMixin(TinyPyVisitor):
     # Name access: PlainName, FuncInvoke, SubName
     #
 
+    def nameContextFor(self, ctx):
+        if type(ctx.parentCtx) is TinyPyParser.ExprStmtAssignContext or type(ctx.parentCtx) is TinyPyParser.ExprStmtAugmentedContext:
+            return MemoryContext.Store
+        else:
+            return MemoryContext.Load
+
+
     def visitPlainName(self, ctx:TinyPyParser.PlainNameContext):
-        return AST.expr.Name(id=ctx.NAME().getText(), ctx=AST.expr.Name.Context.Load)
+        context = self.nameContextFor(ctx)
+        return AST.expr.Name(id=ctx.NAME().getText(), ctx=context)
+
 
     def visitFuncInvoke(self, ctx:TinyPyParser.FuncInvokeContext):
-        name = ctx.NAME().getText()
+        funcName = self.visit(ctx.nameaccess())
         args = []
 
         if ctx.arglist() != None:
@@ -134,13 +144,23 @@ class ExprVisitorMixin(TinyPyVisitor):
                 if arg != None:
                     args.append(arg)
 
-        funcName = AST.stmt.Name(name, AST.stmt.Name.Context.Load)
         return AST.expr.CallExpr(func=funcName, args=args)
 
+
+    def visitDottedName(self, ctx:TinyPyParser.DottedNameContext):
+        left = self.visit(ctx.nameaccess())
+        attrName = ctx.NAME().getText()
+        return AST.stmt.Attribute(value=left, attr=attrName, ctx=MemoryContext.Load)
+
+
     def visitSubName(self, ctx:TinyPyParser.SubNameContext):
-        nameNode = AST.expr.Name(id = ctx.NAME().getText(), ctx=AST.expr.Name.Context.Load)
+        leftNode = self.visit(ctx.nameaccess())
         subscript = self.visit(ctx.subscript())
-        return AST.stmt.Subscript(value=nameNode, slice=subscript, ctx=AST.stmt.Subscript.Context.Load)
+
+        context = self.nameContextFor(ctx)
+
+        return AST.stmt.Subscript(value=leftNode, slice=subscript, ctx=context)
+
 
     #
     # Index and slice operations
@@ -153,11 +173,11 @@ class ExprVisitorMixin(TinyPyVisitor):
     def visitSubscriptSlice(self, ctx:TinyPyParser.SubscriptSliceContext):
         lower = upper = None
 
-        if ctx.test(0) != None:
-            lower = self.visit(ctx.test(0))
+        if ctx.lower != None:
+            lower = self.visit(ctx.lower)
 
-        if ctx.test(1) != None:
-            upper = self.visit(ctx.test(1))
+        if ctx.upper != None:
+            upper = self.visit(ctx.upper)
 
         return AST.stmt.Slice(lower=lower, upper=upper, step=None)
     #

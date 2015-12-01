@@ -1,7 +1,7 @@
 from enum import Enum
 import operator
 
-from AST.ast import Expression
+from AST.ast import Expression, MemoryContext
 
 import runtime.Memory
 import runtime.Errors
@@ -162,20 +162,16 @@ class NameConstant(Expression):
 #     @ctx is one of the following types: @Load / @Store / @Del
 """
 class Name(Expression):
-    class Context(Enum):
-        Load = 1
-        Store = 2
-        Del = 3
 
-    def __init__(self, id, ctx:Context):
+    def __init__(self, id, ctx:MemoryContext):
         super().__init__()
         self.id = id
         self.ctx = ctx
 
     def eval(self):
-        if self.ctx == Name.Context.Load:
+        if self.ctx == MemoryContext.Load:
             return self.getNamespace().get(name=self.id)
-        elif self.ctx == Name.Context.Store:
+        elif self.ctx == MemoryContext.Store:
             return self.id
         else:
             raise NotImplementedError()

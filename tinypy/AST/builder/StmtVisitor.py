@@ -89,16 +89,14 @@ class StmtVisitorMixin(TinyPyVisitor):
     # Small statements
     #
     def visitExprStmtAssign(self, ctx:TinyPyParser.ExprStmtAssignContext):
-        name = ctx.NAME().getText()
+        name = self.visit(ctx.nameaccess())
         expr = self.visit(ctx.test())
 
-        nameNode = AST.stmt.Name(id=name, ctx=AST.stmt.Name.Context.Store)
-
-        return AST.stmt.AssignStmt(target=nameNode, value=expr)
+        return AST.stmt.AssignStmt(target=name, value=expr)
 
 
     def visitExprStmtAugmented(self, ctx:TinyPyParser.ExprStmtAugmentedContext):
-        name = ctx.NAME().getText()
+        name = self.visit(ctx.nameaccess())
         value = self.visit(ctx.test())
         op = ctx.augassign().getText()
 

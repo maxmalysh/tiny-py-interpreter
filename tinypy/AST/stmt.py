@@ -1,7 +1,9 @@
 from enum import Enum
-from AST.ast import Statement, Expression
-from AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, LshiftOp, RshiftOp
-from AST.expr import BitAndOp, BitOrOp, BitXorOp, Name
+from AST.ast import Statement, Expression, MemoryContext
+from AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, LshiftOp, RshiftOp, BinOp, UnaryOp, Compare
+from AST.expr import BitAndOp, BitOrOp, BitXorOp, Name, CallExpr
+
+import AST.expr
 
 import runtime.Memory
 import runtime.Errors
@@ -208,6 +210,9 @@ class ForStmt(Statement):
 #
 # Multiple nodes in targets represents assigning the same value to each.
 # Unpacking is represented by putting a Tuple or List within targets.
+#
+# Notice, that grammar I've implemented doesn't allow to assign to operators/keywords/literals;
+# Because of this we don't perform check for the type of a target value here.
 """
 class AssignStmt(Statement):
     def __init__(self, target, value:Expression):
@@ -216,11 +221,17 @@ class AssignStmt(Statement):
         self.value = value
 
     def eval(self) -> None:
+        if isinstance(self.target, AST.expr.CallExpr):
+            raise runtime.Errors.SyntaxError("can't assign to function call")
+
         lValue = self.target.eval()
         rValue = self.value.eval()
+
+        if isinstance(lValue, Subscript.AssignWrapper):
+            lValue.collection[lValue.index] = rValue
+            return
+
         runtime.Memory.CurrentNamespace.set(name=lValue, value=rValue)
-
-
 
 class AugAssignStmt(AssignStmt):
     opTable = {
@@ -237,8 +248,8 @@ class AugAssignStmt(AssignStmt):
     }
 
     def __init__(self, name, value, op):
-        nameNodeLoad  = Name(id=name, ctx=Name.Context.Load)
-        nameNodeStore = Name(id=name, ctx=Name.Context.Store)
+        nameNodeLoad  = Name(id=name, ctx=MemoryContext.Load)
+        nameNodeStore = Name(id=name, ctx=MemoryContext.Store)
 
         binOp = AugAssignStmt.opTable[op](left=nameNodeLoad, right=value)
         super().__init__(target=nameNodeStore, value=binOp)
@@ -252,10 +263,6 @@ class AugAssignStmt(AssignStmt):
 #   @ctx is Load, Store or Del according to how the attribute is acted on.
 """
 class Attribute(Statement):
-    class Context(Enum):
-        Load = 1
-        Store = 2
-        Del = 3
 
     class Wrapper():
         def __init__(self, name, attr):
@@ -271,22 +278,20 @@ class Attribute(Statement):
     def eval(self):
         value = self.value.eval()
 
-        if self.ctx == Attribute.Context.Load:
+        if self.ctx == MemoryContext.Load:
             if hasattr(value, self.attr):
                 return getattr(value, self.attr)
             else:
                 msg = "object has no attribute %s" % self.attr
                 raise runtime.Errors.AttributeError(msg)
-        elif self.ctx == Attribute.Context.Store:
-            # Builtin function or method? AttributeError
-            # Is instance of object? Write value
-            # Is instance of function container? Write value
-            # Otherwise raise an error
-            if isinstance(value, object):
-                if value.__class__.__module__ == 'builtins':
-                    raise runtime.Errors.ArithmeticError("writing to attributes of built-in objects is not supported")
-                elif callable(value):
-                    return Attribute.Wrapper(self.value, self.attr)
+        elif self.ctx == MemoryContext.Store:
+            raise NotImplementedError("Assigning to attributes is not supported!")
+            #
+            # if isinstance(value, object):
+            #     if value.__class__.__module__ == 'builtins':
+            #         raise runtime.Errors.ArithmeticError("writing to attributes of built-in objects is not supported")
+            #     elif callable(value):
+            #         return Attribute.Wrapper(self.value, self.attr)
 
 
 """
@@ -296,10 +301,11 @@ A subscript, such as l[1].
     @ctx is Load, Store or Del according to what it does with the subscript.
 """
 class Subscript(Statement):
-    class Context(Enum):
-        Load = 1
-        Store = 2
-        Del = 3
+
+    class AssignWrapper:
+        def __init__(self, collection, index):
+            self.collection = collection
+            self.index = index
 
     def __init__(self, value, slice, ctx):
         super().__init__()
@@ -313,10 +319,22 @@ class Subscript(Statement):
         try:
             if isinstance(self.slice, Index):
                 index = self.slice.eval()
-                return lValue[index]
+
+                if self.ctx == MemoryContext.Load:
+                    return lValue[index]
+                elif self.ctx == MemoryContext.Store:
+                    return Subscript.AssignWrapper(lValue, index)
+                else:
+                    raise NotImplementedError
+
             elif isinstance(self.slice, Slice):
                 lower, upper = self.slice.eval()
-                return lValue[lower:upper]
+
+                if self.ctx == MemoryContext.Load:
+                    return lValue[lower:upper]
+                else:
+                    raise NotImplementedError("Writing to slices & deleting elements is not supported")
+
             else:
                 raise ValueError("Unexpected slice type")
         except IndexError as e:
