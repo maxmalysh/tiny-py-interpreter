@@ -122,6 +122,12 @@ class BinaryComp(Compare):
     def eval(self):
         left = self.left.eval()
         right = self.right.eval()
+
+        if self.op == Compare.Op.IN:
+            return left in right
+        elif self.op == Compare.Op.NOT_IN:
+            return left not in right
+
         return Compare.opTable[self.op](left, right)
 
 class UnaryComp(Compare):

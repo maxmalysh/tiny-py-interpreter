@@ -1,7 +1,6 @@
 from parser.TinyPyParser import TinyPyParser
 from parser.TinyPyVisitor import TinyPyVisitor
 
-import AST.ast as ast
 import AST.expr
 import AST.stmt
 
@@ -15,6 +14,24 @@ class ExprVisitorMixin(TinyPyVisitor):
         left  = self.visit(ctx.test(0))
         right = self.visit(ctx.test(1))
         op = ctx.comp_op().getText()
+
+        firstSymbolType = ctx.comp_op().children[0].symbol.type
+
+        if firstSymbolType == TinyPyParser.IN:
+            op = AST.expr.Compare.Op.IN
+        elif firstSymbolType == TinyPyParser.IS:
+            op = AST.expr.Compare.Op.IS
+
+        if len(ctx.comp_op().children) == 2:
+            secondSymbolType = ctx.comp_op().children[1].symbol.type
+
+            if firstSymbolType == TinyPyParser.NOT and secondSymbolType == TinyPyParser.IN:
+                op = AST.expr.Compare.Op.NOT_IN
+            elif firstSymbolType == TinyPyParser.IS and secondSymbolType == TinyPyParser.NOT:
+                op = AST.expr.Compare.Op.IS_NOT
+            else:
+                raise ValueError("Unexpected binary comparison operation")
+
         return AST.expr.BinaryComp(left=left, right=right, op=op)
 
     def visitNotTest(self, ctx:TinyPyParser.NotTestContext):

@@ -336,6 +336,7 @@ class Index(Statement):
 
     def eval(self):
         return self.value.eval()
+
 """
 Regular slicing: l[1:2]
 """
@@ -356,6 +357,8 @@ class Slice(Statement):
         if self.upper != None:
             upper = self.upper.eval()
         return lower, upper
+
+
 """
 # Control flow statements.
 # Each statement returns corresponding @ControlFlowMark as a result of evaluation.
