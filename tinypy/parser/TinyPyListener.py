@@ -1,4 +1,4 @@
-# Generated from /Users/apple/Development/tiny-py-interpreter/tinypy/parser/TinyPy.g4 by ANTLR 4.5.1
+# Generated from parser/TinyPy.g4 by ANTLR 4.5.1
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .TinyPyParser import TinyPyParser
@@ -104,6 +104,15 @@ class TinyPyListener(ParseTreeListener):
 
     # Exit a parse tree produced by TinyPyParser#while_stmt.
     def exitWhile_stmt(self, ctx:TinyPyParser.While_stmtContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#for_stmt.
+    def enterFor_stmt(self, ctx:TinyPyParser.For_stmtContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#for_stmt.
+    def exitFor_stmt(self, ctx:TinyPyParser.For_stmtContext):
         pass
 
 
@@ -377,6 +386,78 @@ class TinyPyListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by TinyPyParser#FuncInvoke.
+    def enterFuncInvoke(self, ctx:TinyPyParser.FuncInvokeContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#FuncInvoke.
+    def exitFuncInvoke(self, ctx:TinyPyParser.FuncInvokeContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#PlainName.
+    def enterPlainName(self, ctx:TinyPyParser.PlainNameContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#PlainName.
+    def exitPlainName(self, ctx:TinyPyParser.PlainNameContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#DottedName.
+    def enterDottedName(self, ctx:TinyPyParser.DottedNameContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#DottedName.
+    def exitDottedName(self, ctx:TinyPyParser.DottedNameContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#SubName.
+    def enterSubName(self, ctx:TinyPyParser.SubNameContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#SubName.
+    def exitSubName(self, ctx:TinyPyParser.SubNameContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#DictMaker.
+    def enterDictMaker(self, ctx:TinyPyParser.DictMakerContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#DictMaker.
+    def exitDictMaker(self, ctx:TinyPyParser.DictMakerContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#ListMaker.
+    def enterListMaker(self, ctx:TinyPyParser.ListMakerContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#ListMaker.
+    def exitListMaker(self, ctx:TinyPyParser.ListMakerContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#TupleMaker.
+    def enterTupleMaker(self, ctx:TinyPyParser.TupleMakerContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#TupleMaker.
+    def exitTupleMaker(self, ctx:TinyPyParser.TupleMakerContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#testlist_comp.
+    def enterTestlist_comp(self, ctx:TinyPyParser.Testlist_compContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#testlist_comp.
+    def exitTestlist_comp(self, ctx:TinyPyParser.Testlist_compContext):
+        pass
+
+
     # Enter a parse tree produced by TinyPyParser#funcinvoke.
     def enterFuncinvoke(self, ctx:TinyPyParser.FuncinvokeContext):
         pass
@@ -392,6 +473,51 @@ class TinyPyListener(ParseTreeListener):
 
     # Exit a parse tree produced by TinyPyParser#arglist.
     def exitArglist(self, ctx:TinyPyParser.ArglistContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#SubscriptIndex.
+    def enterSubscriptIndex(self, ctx:TinyPyParser.SubscriptIndexContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#SubscriptIndex.
+    def exitSubscriptIndex(self, ctx:TinyPyParser.SubscriptIndexContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#SubscriptSlice.
+    def enterSubscriptSlice(self, ctx:TinyPyParser.SubscriptSliceContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#SubscriptSlice.
+    def exitSubscriptSlice(self, ctx:TinyPyParser.SubscriptSliceContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#dictorsetmaker.
+    def enterDictorsetmaker(self, ctx:TinyPyParser.DictorsetmakerContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#dictorsetmaker.
+    def exitDictorsetmaker(self, ctx:TinyPyParser.DictorsetmakerContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#dictormaker.
+    def enterDictormaker(self, ctx:TinyPyParser.DictormakerContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#dictormaker.
+    def exitDictormaker(self, ctx:TinyPyParser.DictormakerContext):
+        pass
+
+
+    # Enter a parse tree produced by TinyPyParser#setmaker.
+    def enterSetmaker(self, ctx:TinyPyParser.SetmakerContext):
+        pass
+
+    # Exit a parse tree produced by TinyPyParser#setmaker.
+    def exitSetmaker(self, ctx:TinyPyParser.SetmakerContext):
         pass
 
 

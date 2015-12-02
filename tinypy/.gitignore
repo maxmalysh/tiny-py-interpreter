@@ -1,2 +1,8 @@
 parser_notes.md
 .DS_Store
+/parser/TinyPy.tokens
+/parser/TinyPyLexer.py
+/parser/TinyPyLexer.tokens
+/parser/TinyPyListener.py
+/parser/TinyPyParser.py
+/parser/TinyPyVisitor.py

@@ -1,4 +1,4 @@
-# Generated from /Users/apple/Development/tiny-py-interpreter/tinypy/parser/TinyPy.g4 by ANTLR 4.5.1
+# Generated from parser/TinyPy.g4 by ANTLR 4.5.1
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .TinyPyParser import TinyPyParser
@@ -61,6 +61,11 @@ class TinyPyVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by TinyPyParser#while_stmt.
     def visitWhile_stmt(self, ctx:TinyPyParser.While_stmtContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#for_stmt.
+    def visitFor_stmt(self, ctx:TinyPyParser.For_stmtContext):
         return self.visitChildren(ctx)
 
 
@@ -214,6 +219,46 @@ class TinyPyVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by TinyPyParser#FuncInvoke.
+    def visitFuncInvoke(self, ctx:TinyPyParser.FuncInvokeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#PlainName.
+    def visitPlainName(self, ctx:TinyPyParser.PlainNameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#DottedName.
+    def visitDottedName(self, ctx:TinyPyParser.DottedNameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#SubName.
+    def visitSubName(self, ctx:TinyPyParser.SubNameContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#DictMaker.
+    def visitDictMaker(self, ctx:TinyPyParser.DictMakerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#ListMaker.
+    def visitListMaker(self, ctx:TinyPyParser.ListMakerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#TupleMaker.
+    def visitTupleMaker(self, ctx:TinyPyParser.TupleMakerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#testlist_comp.
+    def visitTestlist_comp(self, ctx:TinyPyParser.Testlist_compContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by TinyPyParser#funcinvoke.
     def visitFuncinvoke(self, ctx:TinyPyParser.FuncinvokeContext):
         return self.visitChildren(ctx)
@@ -221,6 +266,31 @@ class TinyPyVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by TinyPyParser#arglist.
     def visitArglist(self, ctx:TinyPyParser.ArglistContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#SubscriptIndex.
+    def visitSubscriptIndex(self, ctx:TinyPyParser.SubscriptIndexContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#SubscriptSlice.
+    def visitSubscriptSlice(self, ctx:TinyPyParser.SubscriptSliceContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#dictorsetmaker.
+    def visitDictorsetmaker(self, ctx:TinyPyParser.DictorsetmakerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#dictormaker.
+    def visitDictormaker(self, ctx:TinyPyParser.DictormakerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by TinyPyParser#setmaker.
+    def visitSetmaker(self, ctx:TinyPyParser.SetmakerContext):
         return self.visitChildren(ctx)
 
 
