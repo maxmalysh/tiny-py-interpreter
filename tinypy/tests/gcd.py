@@ -1,5 +1,8 @@
-x = int(input("x = "))
-y = int(input("y = "))
+#x = int(input("x = "))
+#y = int(input("y = "))
+
+x = 12
+y = 8
 
 while y != 0:
     hey = x
