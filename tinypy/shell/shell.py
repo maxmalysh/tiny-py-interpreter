@@ -4,10 +4,12 @@ import antlr4
 from antlr4.tree.Trees import Trees
 
 from AST.builder.Builder import CustomVisitor
+from AST.stmt import ControlFlowMark
 from parser.CustomLexer import CustomLexer
 from parser.TinyPyParser import TinyPyParser
 from parser.Errors import CustomErrorStrategy, CustomErrorListener, BufferedErrorListener
 from parser import CST
+
 import runtime.Errors
 
 class InteractiveShell:
@@ -95,7 +97,7 @@ class InteractiveShell:
                 #
                 if results != None:
                     for statement in results:
-                        if statement != None:
+                        if statement != None and not isinstance(statement, ControlFlowMark):
                             sys.displayhook(statement)
 
                 #if results != None:
@@ -108,17 +110,9 @@ class InteractiveShell:
                 print("Caught" + str(e) )
             except runtime.Errors.BaseRuntimeException as e:
                 print(e.__class__.__name__ + ": " + str(e))
-            #except BaseException as e:
-            #    print(e.__class__.__name__ + ": " + str(e))
+            except BaseException as e:
+                print(e.__class__.__name__ + ": " + str(e))
 
-                ##
-            ## Add here our own super class of the own exception system
-            ##
-            #except KeyboardInterrupt as e:
-            #    print("\n" + e.__class__.__name__)
-            #    print("Type exit() to quit")
-            #except Exception as e:
-            #    print(e.__class__.__name__ + ": " + str(e))
 
     def print_greeting(self):
         print(self.greeting)

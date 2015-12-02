@@ -19,12 +19,20 @@ class Namespace:
         'len'   : len,
         'str'   : str,
         'int'   : int,
+        'hex'   : hex,
+        'oct'   : oct,
+        'bin'   : bin,
         'float' : float,
         'type'  : type,
         'range' : range,
-        'set'   : set,
+        'chr'   : chr,
+        'ascii' : ascii,
+        'abs'   : abs,
         'max'   : max,
         'min'   : min,
+        'sum'   : sum,
+        'open'  : open,
+        'reversed' : reversed,
     }
 
     def __init__(self, outerScope):
