@@ -2,6 +2,7 @@ from parser.TinyPyParser import TinyPyParser
 from parser.TinyPyVisitor import TinyPyVisitor
 
 import AST.stmt
+import runtime.Errors
 
 class StmtVisitorMixin(TinyPyVisitor):
 
@@ -108,18 +109,47 @@ class StmtVisitorMixin(TinyPyVisitor):
     def visitReturn_stmt(self, ctx:TinyPyParser.Return_stmtContext):
         test = None
 
+        validParents = (TinyPyParser.FuncdefContext, )
+
+        if not self.validContextParents(ctx, validParents):
+            raise runtime.Errors.SyntaxError("'return' outside function")
+
         if ctx.test() != None:
             test = self.visit(ctx.test())
 
         return AST.stmt.ReturnStmt(expr=test)
 
+
     def visitPass_stmt(self, ctx:TinyPyParser.Pass_stmtContext):
         return AST.stmt.PassStmt()
 
+
     def visitBreak_stmt(self, ctx:TinyPyParser.Break_stmtContext):
+        validParents = TinyPyParser.For_stmtContext, TinyPyParser.While_stmtContext
+
+        if not self.validContextParents(ctx, validParents):
+            raise runtime.Errors.SyntaxError("'break' outside loop")
+
         return AST.stmt.BreakStmt()
 
+
     def visitContinue_stmt(self, ctx:TinyPyParser.Continue_stmtContext):
+        validParents = TinyPyParser.For_stmtContext, TinyPyParser.While_stmtContext
+
+        if not self.validContextParents(ctx, validParents):
+            raise runtime.Errors.SyntaxError("'continue' outside loop")
+
         return AST.stmt.ContinueStmt()
 
+    #
+    # Check whether context has one of the specified proper parents
+    #
+    def validContextParents(self, context, properParents:tuple):
+        context = context.parentCtx
 
+        while context != None:
+            context = context.parentCtx
+            if isinstance(context, properParents):
+                return True
+
+        return False
