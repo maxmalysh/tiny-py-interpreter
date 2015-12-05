@@ -184,6 +184,13 @@ class ExprVisitorMixin(TinyPyVisitor):
     # Collection definitions
     #
 
+    def visitDictorsetmaker(self, ctx:TinyPyParser.DictorsetmakerContext):
+        if ctx.dictormaker() != None:
+            return self.visit(ctx.dictormaker())
+
+        if ctx.setmaker() != None:
+            return self.visit(ctx.setmaker())
+
     def visitDictMaker(self, ctx:TinyPyParser.DictMakerContext):
         if ctx.dictorsetmaker() != None:
             return self.visit(ctx.dictorsetmaker())
