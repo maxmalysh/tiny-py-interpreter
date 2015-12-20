@@ -13,8 +13,8 @@ in_directory = os.getcwd() + '/tests'
 proper_tests_dir = in_directory
 failing_tests_dir = in_directory + '/fail'
 
-tinypy_binary = "python3 " + os.getcwd() + "/tinypy.py"
 python_binary = sys.executable
+tinypy_binary = python_binary + " " + os.getcwd() + "/tinypy.py"
 
 
 class FileTestCase(unittest.TestCase):
@@ -32,7 +32,7 @@ class ProperParserTest(FileTestCase):
             shell=True, universal_newlines=True
         )
 
-        # self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.returncode, 0)
         self.assertTrue(not result.stdout)
         self.assertTrue(not result.stderr)
 
@@ -45,7 +45,7 @@ class FailingParserTest(FileTestCase):
             shell=True, universal_newlines=True
         )
 
-        # self.assertNotEqual(result.returncode, 0)
+        self.assertNotEqual(result.returncode, 0)
         self.assertTrue(result.stdout != '')
 
 
@@ -61,7 +61,7 @@ class SemanticTest(FileTestCase):
             shell=True, universal_newlines=True
         )
 
-        # self.assertEqual(result.returncode, 0)
+        self.assertEqual(tinypy_result.returncode, python_result.returncode)
         self.assertEqual(tinypy_result.stdout, python_result.stdout)
 
 

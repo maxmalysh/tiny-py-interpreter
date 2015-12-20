@@ -8,7 +8,6 @@ from AST.builder.Builder import CustomVisitor
 from parser.CST import CstFlattened, CstFiltered
 from parser.Errors import CustomErrorStrategy, CustomErrorListener
 from parser.CustomLexer import CustomLexer
-from parser.CustomListener import CustomListener
 from parser.TinyPyParser import TinyPyParser
 from shell.shell import InteractiveShell
 
@@ -19,7 +18,20 @@ class InputType(Enum):
     Expression = 3
 
 
-def tinypy_eval(input_string, firstRule:InputType, args=None):
+parserRuleFor = {
+    InputType.File        : TinyPyParser.file_input,
+    InputType.SingleInput : TinyPyParser.single_input,
+    InputType.Expression  : TinyPyParser.eval_input,
+}
+
+visitorRuleFor = {
+    InputType.File        : CustomVisitor.visitFile_input,
+    InputType.SingleInput : CustomVisitor.visitSingle_input,
+    InputType.Expression  : CustomVisitor.visitEval_input,
+}
+
+
+def tinypy_eval(content, firstRule: InputType, args=None):
     totalTime = time.time()
     input_stream = antlr4.InputStream(content)
 
@@ -37,7 +49,7 @@ def tinypy_eval(input_string, firstRule:InputType, args=None):
     # Traverse the parse tree
     parseTime = time.time()
     try:
-        parse_tree = parser.file_input()
+        parse_tree = parserRuleFor[firstRule](parser)
     except Exception as e:
         return -1
     parseTime = time.time() - parseTime
@@ -56,14 +68,10 @@ def tinypy_eval(input_string, firstRule:InputType, args=None):
 
     # Build an AST
     astBuildTime = time.time()
-    visitor = CustomVisitor()
 
-    if firstRule == InputType.File:
-        ast = visitor.visitFile_input(parse_tree)
-    elif firstRule == InputType.Expression:
-        ast = visitor.visitEval_input(parse_tree)
-    else:
-        ast = visitor.visitSingle_input(parse_tree)
+    visitor = CustomVisitor()
+    ast = visitorRuleFor[firstRule](visitor, parse_tree)
+
     astBuildTime = time.time() - astBuildTime
 
     if ast == None:
@@ -72,6 +80,7 @@ def tinypy_eval(input_string, firstRule:InputType, args=None):
     if args.parse_only:
         return 0
 
+    # Evaluate the AST we've built
     evalTime = time.time()
     try:
         ast.eval()
@@ -118,7 +127,7 @@ if __name__ == '__main__':
     argParser.set_defaults(cst=False, parse_tree=False)
     args = argParser.parse_args()
 
-    if args.filename == None:
+    if args.filename == None and not args.eval_input:
         shell = InteractiveShell(args)
         shell.print_greeting()
         shell.loop()
@@ -130,8 +139,8 @@ if __name__ == '__main__':
 
         with open(args.filename) as file_contents:
             content = file_contents.read()
-        content += '\n'
 
+    content += '\n'
     retvalue = tinypy_eval(content, firstRule, args)
     exit(retvalue)
 
