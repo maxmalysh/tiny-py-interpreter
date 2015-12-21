@@ -6,7 +6,7 @@
 # How? Probably, enclosing statement should provide such API, so we'll pass enclosing statements
 # as arguments for expressions, and @Expression will have a method "retrieve namespace"
 #
-import runtime.Errors
+from tinypy import runtime
 
 class Namespace:
 

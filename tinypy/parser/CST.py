@@ -1,8 +1,8 @@
 import antlr4
 from antlr4.tree.Tree import ParseTree
 
-from parser.TinyPyParser import TinyPyParser
-from parser.Utils import nameFor
+from tinypy.parser.TinyPyParser import TinyPyParser
+from tinypy.parser.Utils import nameFor
 
 useless_tokens = [
     TinyPyParser.NEWLINE,

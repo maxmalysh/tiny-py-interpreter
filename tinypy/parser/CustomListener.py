@@ -1,4 +1,4 @@
-from parser.TinyPyListener import TinyPyListener
+from tinypy.parser.TinyPyListener import TinyPyListener
 
 
 class CustomListener(TinyPyListener):

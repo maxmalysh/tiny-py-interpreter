@@ -3,14 +3,13 @@ import sys
 import antlr4
 from antlr4.tree.Trees import Trees
 
-from AST.builder.Builder import CustomVisitor
-from AST.stmt import ControlFlowMark
-from parser.CustomLexer import CustomLexer
-from parser.TinyPyParser import TinyPyParser
-from parser.Errors import CustomErrorStrategy, CustomErrorListener, BufferedErrorListener
-from parser import CST
-
-import runtime.Errors
+from tinypy.AST.builder.Builder import CustomVisitor
+from tinypy.AST.stmt import ControlFlowMark
+from tinypy.parser.CustomLexer import CustomLexer
+from tinypy.parser.TinyPyParser import TinyPyParser
+from tinypy.parser.Errors import CustomErrorStrategy, CustomErrorListener, BufferedErrorListener
+from tinypy.parser import CST
+from tinypy import runtime
 
 class InteractiveShell:
     greeting =  "Call exit() to quit\n"

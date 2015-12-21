@@ -1,10 +1,8 @@
 from enum import Enum
 import operator
 
-from AST.ast import Expression, MemoryContext
-
-import runtime.Memory
-import runtime.Errors
+from tinypy.AST.ast import Expression, MemoryContext
+from tinypy import runtime
 
 
 """

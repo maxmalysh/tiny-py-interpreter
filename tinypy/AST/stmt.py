@@ -1,13 +1,11 @@
 import copy
 from enum import Enum
-from AST.ast import Statement, Expression, MemoryContext
-from AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, LshiftOp, RshiftOp, BinOp, UnaryOp, Compare
-from AST.expr import BitAndOp, BitOrOp, BitXorOp, Name, CallExpr
+from tinypy.AST.ast import Statement, Expression, MemoryContext
+from tinypy.AST.expr import AddOp, SubOp, MultOp, DivOp, ModOp, LshiftOp, RshiftOp, BinOp, UnaryOp, Compare
+from tinypy.AST.expr import BitAndOp, BitOrOp, BitXorOp, Name, CallExpr
 
-import AST.expr
-
-import runtime.Memory
-import runtime.Errors
+from tinypy import AST
+from tinypy import runtime
 
 """
 # Function definition.

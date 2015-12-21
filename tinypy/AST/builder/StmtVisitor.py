@@ -1,8 +1,8 @@
-from parser.TinyPyParser import TinyPyParser
-from parser.TinyPyVisitor import TinyPyVisitor
+from tinypy.parser.TinyPyParser import TinyPyParser
+from tinypy.parser.TinyPyVisitor import TinyPyVisitor
 
-import AST.stmt
-import runtime.Errors
+from tinypy import AST
+from tinypy import runtime
 
 class StmtVisitorMixin(TinyPyVisitor):
 

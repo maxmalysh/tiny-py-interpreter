@@ -4,7 +4,7 @@ from antlr4.error.ErrorStrategy import DefaultErrorStrategy
 from antlr4.Parser import Parser
 from antlr4.Token import Token
 
-from parser.TinyPyParser import TinyPyParser
+from tinypy.parser.TinyPyParser import TinyPyParser
 
 
 class IndentationErr(RecognitionException):

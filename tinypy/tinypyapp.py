@@ -3,13 +3,13 @@ from enum import Enum
 
 import antlr4
 from antlr4.tree.Trees import Trees
-from AST.builder.Builder import CustomVisitor
 
-from parser.CST import CstFlattened, CstFiltered
-from parser.Errors import CustomErrorStrategy, CustomErrorListener
-from parser.CustomLexer import CustomLexer
-from parser.TinyPyParser import TinyPyParser
-from shell.shell import InteractiveShell
+from tinypy.AST.builder.Builder import CustomVisitor
+from tinypy.parser.CST import CstFlattened, CstFiltered
+from tinypy.parser.Errors import CustomErrorStrategy, CustomErrorListener
+from tinypy.parser.CustomLexer import CustomLexer
+from tinypy.parser.TinyPyParser import TinyPyParser
+from tinypy.shell.shell import InteractiveShell
 
 
 class InputType(Enum):
@@ -31,9 +31,20 @@ visitorRuleFor = {
 }
 
 
-def tinypy_eval(content, firstRule: InputType, args=None):
+class EvalArguments:
+    def __init__(self, cst=False, parse_tree=False, parse_only=False, print_timings=False):
+        self.cst = cst
+        self.parse_tree = parse_tree
+        self.parse_only = parse_only
+        self.print_timings = print_timings
+
+
+def tinypy_eval(sourcecode:str, firstRule=InputType.Expression, args=None):
+    if args == None:
+        args = EvalArguments()
+
     totalTime = time.time()
-    input_stream = antlr4.InputStream(content)
+    input_stream = antlr4.InputStream(sourcecode)
 
     # Instantiate an run generated lexer
     lexer = CustomLexer(input_stream)
@@ -107,7 +118,7 @@ def tinypy_eval(content, firstRule: InputType, args=None):
     return 0
 
 
-if __name__ == '__main__':
+def main():
     argParser = argparse.ArgumentParser()
     argParser.add_argument('filename', type=str, nargs='?',
                            help='Path to the script file.')
@@ -124,7 +135,7 @@ if __name__ == '__main__':
     #
     # Parse arguments
     #
-    argParser.set_defaults(cst=False, parse_tree=False)
+    argParser.set_defaults(cst=False, parse_tree=False, tokens=False, parse=False, timings=False)
     args = argParser.parse_args()
 
     if args.filename == None and not args.eval_input:
@@ -144,4 +155,5 @@ if __name__ == '__main__':
     retvalue = tinypy_eval(content, firstRule, args)
     exit(retvalue)
 
-
+if __name__ == '__main__':
+    main()

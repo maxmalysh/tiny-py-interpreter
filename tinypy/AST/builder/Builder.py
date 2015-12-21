@@ -1,10 +1,10 @@
-from AST.builder.ExprVisitor import ExprVisitorMixin
-from AST.builder.StmtVisitor import StmtVisitorMixin
+from tinypy.AST.builder.ExprVisitor import ExprVisitorMixin
+from tinypy.AST.builder.StmtVisitor import StmtVisitorMixin
 
-from parser.TinyPyParser import TinyPyParser
-from parser.TinyPyVisitor import TinyPyVisitor
+from tinypy.parser.TinyPyParser import TinyPyParser
+from tinypy.parser.TinyPyVisitor import TinyPyVisitor
 
-from AST import ast
+from tinypy.AST import ast
 
 class CustomVisitor(StmtVisitorMixin, ExprVisitorMixin, TinyPyVisitor):
 

@@ -1,4 +1,4 @@
-from parser.TinyPyParser import TinyPyParser
+from tinypy.parser.TinyPyParser import TinyPyParser
 
 #
 # Converts Lisp-style s-expression string to python dictionary.

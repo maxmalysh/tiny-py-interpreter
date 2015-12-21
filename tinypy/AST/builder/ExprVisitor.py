@@ -1,9 +1,8 @@
-from parser.TinyPyParser import TinyPyParser
-from parser.TinyPyVisitor import TinyPyVisitor
+from tinypy.parser.TinyPyParser import TinyPyParser
+from tinypy.parser.TinyPyVisitor import TinyPyVisitor
 
-from AST.ast import MemoryContext
-import AST.expr
-import AST.stmt
+from tinypy import AST
+from tinypy.AST.ast import MemoryContext
 
 class ExprVisitorMixin(TinyPyVisitor):
 
