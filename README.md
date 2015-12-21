@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/maxmalysh/tiny-py-interpreter.svg)](https://travis-ci.org/maxmalysh/tiny-py-interpreter)
+[![Coverage Status](https://coveralls.io/repos/maxmalysh/tiny-py-interpreter/badge.svg?branch=master&service=github)](https://coveralls.io/github/maxmalysh/tiny-py-interpreter?branch=master)
+
 # TinyPy Interpreter
 
 ## About
@@ -21,7 +24,9 @@ Step-by-step instruction:
 3. Generate parser
     1. cd `tiny-py-interpreter/tinypy`
     2. `antlr4 -visitor parser/TinyPy.g4`
-
+4. Install tinypy: `pip3 install .`
+5. Try to launch some tests: `python3 setup.py test`
+    
 
 [1]: http://www.antlr.org
 [2]: https://github.com/antlr/antlr4

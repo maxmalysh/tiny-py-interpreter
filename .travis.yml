@@ -1,7 +1,6 @@
 language: python
 python:
   - "3.5"
-  - "pypy"
 
 #before_install:
 #  - java install oraclejdk8
@@ -13,9 +12,13 @@ python:
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
+  - "pip install coveralls"
   - "git clone https://github.com/maxmalysh/tiny-py-interpreter-auto-gen"
   - "mv tiny-py-interpreter-auto-gen/* tinypy/parser/"
   - "pip install ."
 
 # command to run tests
-script: "python setup.py test"
+script: "coverage run --source=tinypy setup.py test"
+
+after_success:
+  coveralls
