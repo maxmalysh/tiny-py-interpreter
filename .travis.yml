@@ -14,8 +14,8 @@ python:
 install:
   - "pip install -r requirements.txt"
   - "git clone https://github.com/maxmalysh/tiny-py-interpreter-auto-gen"
-  - "cp tiny-py-interpreter-auto-gen/* ./parser"
+  - "mv tiny-py-interpreter-auto-gen/* tinypy/parser/"
   - "pip install ."
-  -
+
 # command to run tests
 script: "python setup.py test"
