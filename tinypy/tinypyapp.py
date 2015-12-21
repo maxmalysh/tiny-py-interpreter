@@ -154,6 +154,3 @@ def main():
     content += '\n'
     retvalue = tinypy_eval(content, firstRule, args)
     exit(retvalue)
-
-if __name__ == '__main__':
-    main()

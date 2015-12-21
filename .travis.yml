@@ -2,23 +2,25 @@ language: python
 python:
   - "3.5"
 
-#before_install:
-#  - java install oraclejdk8
-#  - cd /usr/local/lib
-#  - export CLASSPATH=".:/usr/local/lib/antlr-4.5.1-complete.jar:$CLASSPATH"
-#  - alias antlr4='java -jar /usr/local/lib/antlr-4.5.1-complete.jar'
-#  - wget http://www.antlr.org/download/antlr-4.5.1-complete.jar
+before_install:
+  - wget http://www.antlr.org/download/antlr-4.5.1-complete.jar
+  - antlr4='java -jar antlr-4.5.1-complete.jar'
 
 # command to install dependencies
 install:
   - "pip install -r requirements.txt"
   - "pip install coveralls"
-  - "git clone https://github.com/maxmalysh/tiny-py-interpreter-auto-gen"
-  - "mv tiny-py-interpreter-auto-gen/* tinypy/parser/"
+  - "$antlr4 -visitor tinypy/parser/TinyPy.g4"
   - "pip install ."
+  # Add subprocess support for coverage
+  - SPACK=$(python -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
+  - printf "\nimport coverage; coverage.process_startup()\n" >> "$SPACK/sitecustomize.py"
 
 # command to run tests
-script: "coverage run --source=tinypy setup.py test"
+script:
+  - "coverage run setup.py test"
+  - "coverage combine"
+  - "coverage report"
 
 after_success:
   coveralls

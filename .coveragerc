@@ -1,0 +1,19 @@
+[run]
+parallel = True
+
+omit =
+    # used only for debugs purposes
+    tinypy/parser/CST.py
+    tinypy/parser/Utils.py
+    # auto-generated files
+    tinypy/parser/TinyPy*.py
+
+source =
+    tinypy
+
+[report]
+exclude_lines =
+    # Don't complain if tests don't hit defensive assertion code:
+    raise AssertionError
+    raise NotImplementedError
+

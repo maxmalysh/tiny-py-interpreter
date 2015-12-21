@@ -4,17 +4,16 @@ import unittest
 import subprocess
 from subprocess import PIPE, STDOUT
 
-#
-# FIXME: make this work on Windows,
-# FIXME: launch tinypy as a binary, not as a script, and check exit codes
-#
 
 in_directory = os.getcwd() + '/tinypy/tests'
 proper_tests_dir = in_directory
 failing_tests_dir = in_directory + '/fail'
 
 python_binary = sys.executable
-tinypy_binary = "tinypy"
+tinypy_binary = sys.executable + ' ' + os.getcwd() + '/test_entryp.py'
+
+envs = dict(os.environ)
+envs['COVERAGE_PROCESS_START'] = '.coveragerc'
 
 
 class FileTestCase(unittest.TestCase):
@@ -32,10 +31,10 @@ class ProperParserTest(FileTestCase):
     def runTest(self):
         result = subprocess.run(
             tinypy_binary + " --parse " + self.file_path, stdout=PIPE, stderr=STDOUT,
-            shell=True, universal_newlines=True
+            shell=True, universal_newlines=True, env=envs,
         )
 
-        #self.assertEqual(result.returncode, 0)
+        self.assertEqual(result.returncode, 0)
         self.assertTrue(not result.stdout)
         self.assertTrue(not result.stderr)
 
@@ -45,7 +44,7 @@ class FailingParserTest(FileTestCase):
     def runTest(self):
         result = subprocess.run(
             tinypy_binary + " --parse " + self.file_path, stdout=PIPE, stderr=STDOUT,
-            shell=True, universal_newlines=True
+            shell=True, universal_newlines=True, env=envs,
         )
 
         self.assertNotEqual(result.returncode, 0)
@@ -57,7 +56,7 @@ class SemanticTest(FileTestCase):
     def runTest(self):
         tinypy_result = subprocess.run(
             tinypy_binary + ' ' + self.file_path, stdout=PIPE, stderr=STDOUT,
-            shell=True, universal_newlines=True
+            shell=True, universal_newlines=True, env=envs
         )
         python_result = subprocess.run(
             python_binary + ' ' + self.file_path, stdout=PIPE, stderr=STDOUT,
