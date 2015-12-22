@@ -1,0 +1,20 @@
+environment:
+  os: Windows Server 2012
+
+  matrix:
+    - PYTHON: C:\\Python35
+    - PYTHON: C:\\Python35-x64
+
+install:
+  - ps: wget 'http://www.antlr.org/download/antlr-4.5.1-complete.jar' -OutFile antlr4.jar
+  - "java -jar antlr4.jar -visitor tinypy\\parser\\TinyPy.g4"
+  - "dir tinypy\\parser"
+  - "%PYTHON%\\python.exe -m pip install -r requirements.txt"
+  - "%PYTHON%\\python.exe setup.py install"
+
+build: off
+
+test_script:
+  - "%PYTHON%\\python.exe setup.py test"
+
+# docs here: http://www.appveyor.com/docs/appveyor-yml

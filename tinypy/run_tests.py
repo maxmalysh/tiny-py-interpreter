@@ -114,6 +114,9 @@ def get_suite():
     for file in os.listdir(proper_tests_dir):
         file_path = os.path.join(proper_tests_dir, file)
 
+        if file.startswith("unicode") and os.name == 'nt':
+            continue
+
         if file.endswith(".txt"):
             suite.addTest(ProperParserTest(file_path))
 

@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/maxmalysh/tiny-py-interpreter.svg)](https://travis-ci.org/maxmalysh/tiny-py-interpreter)
+[![Unix Build Status](https://travis-ci.org/maxmalysh/tiny-py-interpreter.svg)](https://travis-ci.org/maxmalysh/tiny-py-interpreter)
+[![Windows Build status](https://ci.appveyor.com/api/projects/status/github/maxmalysh/tiny-py-interpreter?svg=true)](https://ci.appveyor.com/project/maxmalysh/tiny-py-interpreter)
 [![Coverage Status](https://coveralls.io/repos/maxmalysh/tiny-py-interpreter/badge.svg?branch=master&service=github)](https://coveralls.io/github/maxmalysh/tiny-py-interpreter?branch=master)
 
 # TinyPy Interpreter
