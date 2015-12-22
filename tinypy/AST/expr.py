@@ -297,7 +297,7 @@ class SetContainer(CollectionContainer):
         return SetContainer(result)
 
     def update(self, right):
-        return SetContainer(self.value.update(right))
+        SetContainer(self.value.update(right))
 
 """
 # Number literal
