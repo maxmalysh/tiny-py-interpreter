@@ -1,3 +1,4 @@
+import sys, os, stat
 import argparse, time
 from enum import Enum
 
@@ -94,7 +95,7 @@ def tinypy_eval(sourcecode:str, firstRule=InputType.Expression, args=None):
     # Evaluate the AST we've built
     evalTime = time.time()
     try:
-        ast.eval()
+        evalResult = ast.eval()
     except BaseException as e:
         print(e.__class__.__name__ + ": " + str(e))
         return -1
@@ -115,6 +116,9 @@ def tinypy_eval(sourcecode:str, firstRule=InputType.Expression, args=None):
         for timing in timings:
             print((timing[0]+": %.3f ms") % (timing[1]*1000))
 
+    if firstRule == InputType.Expression:
+        return evalResult
+
     return 0
 
 
@@ -132,24 +136,40 @@ def main():
                            help='Parse input without evaluating it.')
     argParser.add_argument('--timings', dest='print_timings', action='store_true',
                            help='Print time spend during parsing, building an AST and evaluating.')
+    argParser.add_argument('-q', dest='ignore_greeting', action='store_true',
+                           help="Don't print version and copyright messages on interactive startup")
+
     #
     # Parse arguments
     #
     argParser.set_defaults(cst=False, parse_tree=False, tokens=False, parse=False, timings=False)
     args = argParser.parse_args()
 
-    if args.filename == None and not args.eval_input:
+    #
+    # Check whether content is redirected
+    #
+    mode = os.fstat(0).st_mode
+    redirected = True if stat.S_ISREG(mode) else False
+
+    if args.filename == None and not args.eval_input and not redirected:
         shell = InteractiveShell(args)
-        shell.print_greeting()
+
+        if not args.ignore_greeting:
+            shell.print_greeting()
+
         shell.loop()
+
     if args.eval_input != None:
         firstRule = InputType.SingleInput
         content = args.eval_input
     else:
         firstRule = InputType.File
 
-        with open(args.filename) as file_contents:
-            content = file_contents.read()
+        if not redirected:
+            with open(args.filename) as file_contents:
+                content = file_contents.read()
+        else:
+            content = ''.join(sys.stdin.readlines())
 
     content += '\n'
     retvalue = tinypy_eval(content, firstRule, args)
