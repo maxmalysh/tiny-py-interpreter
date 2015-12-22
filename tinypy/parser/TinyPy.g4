@@ -154,7 +154,7 @@ test    : expr                  # TestExpr
         ;
 
 comp_op     : '<' | '>' | '==' | '>=' | '<=' | '<>' | '!='
-            | IN | NOT IN | IS | IS NOT
+            | IN | NOT IN | IS NOT | IS
             ;
 
 
