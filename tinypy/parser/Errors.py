@@ -44,6 +44,7 @@ class CustomErrorListener(ProxyErrorListener):
         super().__init__(delegates=[])
         self.errors_encountered = 0
         self.input_unfinished = False
+        self.eof_received = False
 
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
         self.errors_encountered += 1
@@ -62,6 +63,10 @@ class CustomErrorListener(ProxyErrorListener):
         #
         if offendingSymbol.type == Token.EOF and msg == "missing <INVALID> at '<EOF>'":
             self.input_unfinished = True
+
+        if offendingSymbol.type == Token.EOF and line == 1 and column == 0:
+            if isinstance(e.ctx , TinyPyParser.Single_inputContext):
+                self.eof_received = True
 
         super().syntaxError(recognizer, offendingSymbol, line, column, msg, e)
 
