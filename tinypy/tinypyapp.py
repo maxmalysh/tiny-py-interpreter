@@ -138,7 +138,8 @@ def main():
                            help='Print time spend during parsing, building an AST and evaluating.')
     argParser.add_argument('-q', dest='ignore_greeting', action='store_true',
                            help="Don't print version and copyright messages on interactive startup")
-
+    argParser.add_argument('-i', dest='force_promt', action='store_true',
+                           help='forces a prompt even if stdin does not appear to be a terminal')
     #
     # Parse arguments
     #
@@ -146,12 +147,11 @@ def main():
     args = argParser.parse_args()
 
     #
-    # Check whether content is redirected
+    # Check whether terminal is attached
     #
-    mode = os.fstat(0).st_mode
-    redirected = True if stat.S_ISREG(mode) else False
+    isatty = True if sys.stdin.isatty() else False
 
-    if args.filename == None and not args.eval_input and not redirected:
+    if args.filename == None and (isatty or args.force_promt) and not args.eval_input:
         shell = InteractiveShell(args)
 
         if not args.ignore_greeting:
@@ -165,7 +165,7 @@ def main():
     else:
         firstRule = InputType.File
 
-        if not redirected:
+        if isatty:
             with open(args.filename) as file_contents:
                 content = file_contents.read()
         else:

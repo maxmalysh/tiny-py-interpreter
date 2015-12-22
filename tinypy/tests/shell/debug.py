@@ -3,7 +3,6 @@ if True:
     pass
 
 
-# See this in interpreter mode:
 if True:
    2
    if True:

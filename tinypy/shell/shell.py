@@ -57,6 +57,7 @@ class InteractiveShell:
 
                 # Determine what to do next
                 if error_listener.eof_received:
+                    print()
                     exit(0)
                 elif error_listener.input_unfinished or self.lexer.opened > 0:
                     # User has not finished his input yet, read the next line and repeat
